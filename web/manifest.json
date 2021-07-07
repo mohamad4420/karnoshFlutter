@@ -1,6 +1,6 @@
 {
-    "name": "karnosh",
-    "short_name": "karnosh",
+    "name": "karnoshflutter",
+    "short_name": "karnoshflutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

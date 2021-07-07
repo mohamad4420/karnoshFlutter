@@ -1,4 +1,4 @@
-package com.example.karnosh
+package com.example.karnoshflutter
 
 import io.flutter.embedding.android.FlutterActivity
 

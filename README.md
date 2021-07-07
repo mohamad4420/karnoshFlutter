@@ -1,4 +1,4 @@
-# karnosh
+# karnoshflutter
 
 A new Flutter project.
 
