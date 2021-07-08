@@ -9,7 +9,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'karnosh', debugShowCheckedModeBanner: false, home: HomePage());
+        builder: (context, child) {
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: HomePage(),
+          );
+        },
+        title: 'karnosh',
+        debugShowCheckedModeBanner: false,
+        home: HomePage());
   }
 }
 
