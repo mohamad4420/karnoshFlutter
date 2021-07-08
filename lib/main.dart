@@ -9,15 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        builder: (context, child) {
-          return Directionality(
-            textDirection: TextDirection.rtl,
-            child: HomePage(),
-          );
-        },
         title: 'karnosh',
         debugShowCheckedModeBanner: false,
-        home: HomePage());
+        home: Directionality(
+          textDirection: TextDirection.rtl,
+          child: HomePage(),
+        ));
   }
 }
 
@@ -28,7 +25,7 @@ class HomePage extends StatelessWidget {
           title: Text("karnsoh"),
           backgroundColor: Colors.red[400],
         ),
-        endDrawer: Drawer(
+        drawer: Drawer(
             child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
