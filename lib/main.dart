@@ -35,6 +35,6 @@ class MyApp extends StatelessWidget {
                 )
               ],
             )),
-            drawer: Drawer()));
+            drawer: Drawer(text: Text("abodia "))));
   }
 }
