@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import './src/body.dart';
 import './src/DrowerHome.dart';
-import './src/curveText.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,12 +25,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: CurvedText(
-            radius: 8,
-            text: "كرشنوش",
-            textStyle: TextStyle(),
-            startAngle: 190,
-          ),
+          title: Text("karnosh"),
           backgroundColor: Colors.red[400],
         ),
         drawer: DrowerHome(),
