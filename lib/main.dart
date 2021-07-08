@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './src/body.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,41 +9,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'karnosh',
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("karnsoh"),
-            backgroundColor: Colors.red[400],
-            centerTitle: true,
-          ),
-          endDrawer: Drawer(
-              child: ListView(
-            children: <Widget>[
-              UserAccountsDrawerHeader(
-                accountName: Text("mohamad abudaya"),
-                accountEmail: Text("m1152580@gmail.com"),
-                currentAccountPicture: CircleAvatar(
-                  child: Image(
-                    image: NetworkImage(
-                        'https://lh3.googleusercontent.com/ogw/ADea4I4APSzm8AVe1Kb_t3-9pt8fJXV9EPV3p347d-jp0FI=s500-c-mo'),
-                    fit: BoxFit.fill,
-                  ),
+        title: 'karnosh', debugShowCheckedModeBanner: false, home: HomePage());
+  }
+}
+
+class HomePage extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("karnsoh"),
+          backgroundColor: Colors.red[400],
+        ),
+        endDrawer: Drawer(
+            child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text("mohamad abudaya"),
+              accountEmail: Text("m1152580@gmail.com"),
+              currentAccountPicture: CircleAvatar(
+                child: Image(
+                  image: NetworkImage(
+                      'https://lh3.googleusercontent.com/ogw/ADea4I4APSzm8AVe1Kb_t3-9pt8fJXV9EPV3p347d-jp0FI=s500-c-mo'),
+                  fit: BoxFit.fill,
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.red[400],
-                ),
-              )
-            ],
-          )),
-          body: Container(
-            child: Text("moahamd abudaya",
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.red[600],
-                    letterSpacing: 5,
-                    wordSpacing: 15)),
-          ),
-        ));
+              ),
+              decoration: BoxDecoration(
+                color: Colors.red[400],
+              ),
+            )
+          ],
+        )),
+        body: Mybody());
   }
 }
