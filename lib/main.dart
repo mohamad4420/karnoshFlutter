@@ -8,10 +8,11 @@ void main() {
   runApp(MyApp());
 }
 
+var mediaQueryData;
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var mediaQueryData = MediaQuery.of(context);
     return MaterialApp(
         title: 'karnosh',
         debugShowCheckedModeBanner: false,
@@ -24,29 +25,24 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
+    mediaQueryData ??= MediaQuery.of(context);
+    String device = getDeviceType(mediaQueryData);
     return Scaffold(
         appBar: AppBar(
-          title: Text("karnosh"),
+          title: Text(device),
           backgroundColor: Colors.red[400],
         ),
-        drawer: DrowerHome(),
+        drawer: device == "Desktop" || device == "Tablet" ? null : DrowerHome(),
         body: Mybody());
   }
 }
 
 String getDeviceType(MediaQueryData mediaQueryData) {
-  Orientation orientation = mediaQueryData.orientation;
-  double width = 0;
-  if (orientation == Orientation.landscape) {
-    width = mediaQueryData.size.height;
-  } else {
-    width = mediaQueryData.size.width;
-  }
+  double width = mediaQueryData.size.width;
+
   if (width >= 950) {
     return "Desktop";
   }
-  if (width >= 600) {
-    return "Tablet";
-  }
+
   return "Mobile";
 }
