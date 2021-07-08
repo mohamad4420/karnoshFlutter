@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                   child: Image(
                     image: NetworkImage(
                         'https://lh3.googleusercontent.com/ogw/ADea4I4APSzm8AVe1Kb_t3-9pt8fJXV9EPV3p347d-jp0FI=s500-c-mo'),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -35,6 +35,14 @@ class MyApp extends StatelessWidget {
               )
             ],
           )),
+          body: Container(
+            child: Text("moahamd abudaya",
+                style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.red[600],
+                    letterSpacing: 5,
+                    wordSpacing: 15)),
+          ),
         ));
   }
 }
