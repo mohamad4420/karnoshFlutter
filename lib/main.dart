@@ -9,7 +9,6 @@ void main() {
 }
 
 var mediaQueryData;
-var device;
 
 class MyApp extends StatelessWidget {
   @override
@@ -26,12 +25,14 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
-    mediaQueryData ??= MediaQuery.of(context);
-    device ??= getDeviceType(mediaQueryData);
+    mediaQueryData = MediaQuery.of(context);
+    String device = getDeviceType(mediaQueryData);
+
     return Scaffold(
         appBar: AppBar(
-          title: Text(device),
+          title: Text("karnosh"),
           backgroundColor: Colors.red[400],
+          centerTitle: device == "Desktop" || device == "Tablet" ? false : true,
         ),
         drawer: device == "Desktop" || device == "Tablet" ? null : DrowerHome(),
         body: Mybody());
@@ -40,10 +41,8 @@ class HomePage extends StatelessWidget {
 
 String getDeviceType(MediaQueryData mediaQueryData) {
   double width = mediaQueryData.size.width;
-
   if (width >= 950) {
     return "Desktop";
   }
-
   return "Mobile";
 }

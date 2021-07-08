@@ -3,6 +3,7 @@ import 'package:karnoshflutter/main.dart';
 
 class Mybody extends StatelessWidget {
   Widget build(BuildContext context) {
+    String device = getDeviceType(mediaQueryData);
     return Container(
       child: Text(device,
           style: TextStyle(
