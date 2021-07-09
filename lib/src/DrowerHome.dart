@@ -19,7 +19,38 @@ class DrowerHome extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.red[400],
             ),
-          )
+          ),
+          ListTile(
+            title: Text("الصفحه الرئيسيه"),
+            leading: Icon(Icons.home),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("الاقسام"),
+          ),
+          Divider(
+            color: Colors.black54,
+          ),
+          ListTile(
+            title: Text("افلام"),
+            leading: Icon(Icons.movie),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("مسلسلسلات"),
+            leading: Icon(Icons.mobile_friendly),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("انمي"),
+            leading: Icon(Icons.animation),
+            onTap: () => {},
+          ),
+          ListTile(
+            title: Text("قائمتي"),
+            leading: Icon(Icons.my_library_add),
+            onTap: () => {},
+          ),
         ],
       )),
     );
