@@ -33,6 +33,13 @@ class HomePage extends StatelessWidget {
           title: Text("karnosh"),
           backgroundColor: Colors.red[400],
           centerTitle: device == "Desktop" || device == "Tablet" ? false : true,
+          leading: Builder(
+            builder: (context) {
+              return Container(
+                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                  child: Image.asset('../icon/favicon.png'));
+            },
+          ),
         ),
         drawer: device == "Desktop" || device == "Tablet" ? null : DrowerHome(),
         body: Mybody());
