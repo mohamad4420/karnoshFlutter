@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'slider.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -14,19 +14,29 @@ final themeMode = ValueNotifier(2);
 class Mybody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-        child: Column(
+        child: ListView(
       children: [
         Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
+        Container(
+          child: Text("action", style: TextStyle(fontSize: 35)),
+          color: Colors.amber[100],
+        ),
+        MySlider(),
+        Container(
+          child: Text("horror", style: TextStyle(fontSize: 35)),
+          color: Colors.amber[100],
+        ),
+        MySlider(),
+        Container(
+          child: Text("life", style: TextStyle(fontSize: 35)),
+          color: Colors.amber[100],
+        ),
+        MySlider(),
+        Container(
+          child: Text("children", style: TextStyle(fontSize: 35)),
+          color: Colors.amber[100],
+        ),
+        MySlider(),
       ],
     ));
   }
