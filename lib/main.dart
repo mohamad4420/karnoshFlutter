@@ -29,6 +29,7 @@ class HomePage extends StatelessWidget {
     String device = getDeviceType(mediaQueryData);
 
     return Scaffold(
+        backgroundColor: Colors.grey,
         appBar: AppBar(
           title: Text("karnosh"),
           backgroundColor: Colors.red[400],
