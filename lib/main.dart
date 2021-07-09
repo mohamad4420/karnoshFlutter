@@ -33,16 +33,22 @@ class HomePage extends StatelessWidget {
           title: Text("karnosh"),
           backgroundColor: Colors.red[400],
           centerTitle: device == "Desktop" || device == "Tablet" ? false : true,
-          leading: Builder(
-            builder: (context) {
-              return Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-                  child: Image.asset('../icon/favicon.png'));
-            },
-          ),
+          leading: device == "Desktop" || device == "Tablet" ? MyIcon() : null,
         ),
         drawer: device == "Desktop" || device == "Tablet" ? null : DrowerHome(),
         body: Mybody());
+  }
+}
+
+class MyIcon extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return Container(
+            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: Image.asset('../icon/favicon.png'));
+      },
+    );
   }
 }
 
