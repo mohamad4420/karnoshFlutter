@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class MySlider extends StatelessWidget {
   Widget build(BuildContext context) {
+    var items = "Fuck";
     return CarouselSlider(
       options: CarouselOptions(
         height: 350,
@@ -26,7 +27,7 @@ class MySlider extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.red, borderRadius: BorderRadius.circular(8)),
                 child: Text(
-                  'text $i',
+                  items + ' $i',
                   style: TextStyle(fontSize: 16.0),
                 ));
           },

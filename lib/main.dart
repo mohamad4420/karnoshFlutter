@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import './src/body.dart';
 import './src/DrowerHome.dart';
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
+    mediaQueryData ??= MediaQuery.of(context);
     String device = getDeviceType(mediaQueryData);
 
     return Scaffold(
