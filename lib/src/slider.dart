@@ -9,13 +9,10 @@ class MySlider extends StatelessWidget {
       options: CarouselOptions(
           height: MediaQuery.of(context).size.width * 0.45,
           viewportFraction: 0.3,
-          initialPage: 0,
-          enableInfiniteScroll: true,
-          reverse: false,
-          autoPlay: false,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          autoPlayCurve: Curves.fastOutSlowIn,
+          initialPage: 1,
+          enableInfiniteScroll: false,
+          pageSnapping: true,
+          disableCenter: true,
           enlargeCenterPage: false,
           scrollDirection: Axis.horizontal),
       items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) {
@@ -26,10 +23,13 @@ class MySlider extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 2.0),
                 decoration: BoxDecoration(
                     color: Colors.red, borderRadius: BorderRadius.circular(8)),
-                child: Text(
-                  items + ' $width',
-                  style: TextStyle(fontSize: 16.0),
-                ));
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image(
+                      image: NetworkImage(
+                          'https://m.media-amazon.com/images/M/MV5BN2UxYzYzZDYtNWM0NC00ZDQ1LWIwZTktNDk1Y2I5ZWZmZTI5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._CR360,55,1605,2380_UX402_UY596_QL75_UX280_CR0,0,280,414_.jpg'),
+                      fit: BoxFit.cover,
+                    )));
           },
         );
       }).toList(),
