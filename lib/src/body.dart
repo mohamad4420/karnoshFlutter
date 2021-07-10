@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karnosh/src/Most.dart';
 import 'slider.dart';
 import 'SliderTest.dart';
 
@@ -9,6 +10,7 @@ class Mybody extends StatelessWidget {
     return Container(
         child: ListView(
       children: <Widget>[
+        Most(),
         Container(
           child: Text("action", style: TextStyle(fontSize: 35)),
         ),
