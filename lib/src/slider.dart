@@ -47,3 +47,27 @@ class MyCard extends StatelessWidget {
     );
   }
 }
+
+class SliderItem extends StatelessWidget {
+  @required
+  final String? name;
+  SliderItem({this.name});
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              name ?? '',
+              style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.start,
+            ),
+          ),
+          MySlider(),
+        ],
+      ),
+    );
+  }
+}
