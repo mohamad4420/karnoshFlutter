@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/Most.dart';
-import 'slider.dart';
-import 'SliderTest.dart';
+import 'Slider.dart';
 
 final themeMode = ValueNotifier(2);
 
@@ -11,23 +10,35 @@ class Mybody extends StatelessWidget {
         child: ListView(
       children: <Widget>[
         Most(),
-        Container(
-          child: Text("action", style: TextStyle(fontSize: 35)),
-        ),
-        MySliderTest(),
-        Container(
-          child: Text("horror", style: TextStyle(fontSize: 35)),
-        ),
-        MySliderTest(),
-        Container(
-          child: Text("life", style: TextStyle(fontSize: 35)),
-        ),
-        MySliderTest(),
-        Container(
-          child: Text("children", style: TextStyle(fontSize: 35)),
-        ),
-        MySliderTest()
+        SliderItem(name: "حياة"),
+        SliderItem(name: "اطفال"),
+        SliderItem(name: "اكشن"),
+        SliderItem(name: "مغامرات"),
       ],
     ));
+  }
+}
+
+class SliderItem extends StatelessWidget {
+  @required
+  final String? name;
+  SliderItem({this.name});
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              name ?? '',
+              style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.start,
+            ),
+          ),
+          MySlider(),
+        ],
+      ),
+    );
   }
 }

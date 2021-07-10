@@ -1,36 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
+final List<String> imgList = [
+  'https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX280_CR0,0,280,414_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BZDhlMzY0ZGItZTcyNS00ZTAxLWIyMmYtZGQ2ODg5OWZiYmJkXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BNTkwOTE1ZDYtODQ3Yy00YTYwLTg0YWQtYmVkNmFjNGZlYmRiXkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BNjRmNDI5MjMtMmFhZi00YzcwLWI4ZGItMGI2MjI0N2Q3YmIwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_QL75_UX380_CR0,4,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BNTAzYTlkMWEtOTNjZC00ZDU0LWI5ODUtYTRmYzY0MTAzYWZlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_QL75_UX380_CR0,4,380,562_.jpg'
+];
 
 class MySlider extends StatelessWidget {
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-          height: MediaQuery.of(context).size.width * 0.45,
-          viewportFraction: 0.3,
-          initialPage: 1,
-          enableInfiniteScroll: false,
-          pageSnapping: true,
-          disableCenter: true,
-          enlargeCenterPage: false,
-          scrollDirection: Axis.horizontal),
-      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 2.0),
-                decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(8)),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image(
-                      image: NetworkImage(
-                          'https://m.media-amazon.com/images/M/MV5BN2UxYzYzZDYtNWM0NC00ZDQ1LWIwZTktNDk1Y2I5ZWZmZTI5XkEyXkFqcGdeQXVyMTkxNjUyNQ@@._CR360,55,1605,2380_UX402_UY596_QL75_UX280_CR0,0,280,414_.jpg'),
-                      fit: BoxFit.cover,
-                    )));
-          },
-        );
-      }).toList(),
+    return Container(
+        height: MediaQuery.of(context).size.width * 0.45,
+        child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return MyCard(img: imgList[index]);
+            },
+            /*separatorBuilder: (context, index) {
+              return SizedBox(
+                width: 0,
+              );
+            },*/
+            itemCount: imgList.length));
+  }
+}
+
+class MyCard extends StatelessWidget {
+  @required
+  final String? img;
+  MyCard({this.img});
+
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+      width: MediaQuery.of(context).size.width * 0.29,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image(
+          fit: BoxFit.cover,
+          image: NetworkImage(img ?? ''),
+        ),
+      ),
     );
   }
 }

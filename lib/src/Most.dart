@@ -2,30 +2,42 @@ import 'package:flutter/material.dart';
 
 class Most extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 300, 0, 00),
-      decoration: BoxDecoration(
-        color: Colors.black45,
-        image: DecorationImage(
-          image: NetworkImage(
-              "https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@.jpg"),
-          fit: BoxFit.fill,
+    return Stack(children: <Widget>[
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.black45,
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX1120_CR0,0,1120,1656_.jpg"),
+            fit: BoxFit.fill,
+          ),
         ),
+        height: MediaQuery.of(context).size.height * 0.75,
+        width: MediaQuery.of(context).size.width,
       ),
-      height: 600,
-      width: 375,
-      child: Column(
-        children: [Name(), Ganeress(), PlayAndList(), Discription(), Time()],
-      ),
-    );
+      Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height * 0.75,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: const FractionalOffset(0.0, 1.0),
+            end: const FractionalOffset(0.0, 0.0),
+            colors: [Colors.black, Colors.transparent],
+          ))),
+      Container(
+        padding: EdgeInsets.fromLTRB(0, 300, 0, 0),
+        child: Column(
+          children: [Name(), Ganeress(), PlayAndList(), Discription(), Time()],
+        ),
+      )
+    ]);
   }
 }
 
 class Name extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
-      height: 30,
+      width: MediaQuery.of(context).size.width,
       child: Center(
         child: Text(
           "the witcher",
@@ -43,7 +55,7 @@ class Name extends StatelessWidget {
 class Ganeress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-        width: 400,
+        width: MediaQuery.of(context).size.width,
         child: Row(
           children: [
             Center(
