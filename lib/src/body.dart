@@ -10,7 +10,24 @@ class Mybody extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(color: Colors.red[400]),
         child: ListView(
-          children: <Widget>[Most()],
+          children: <Widget>[
+            Container(
+              child: Text("action", style: TextStyle(fontSize: 35)),
+            ),
+            MySliderTest(),
+            Container(
+              child: Text("horror", style: TextStyle(fontSize: 35)),
+            ),
+            MySliderTest(),
+            Container(
+              child: Text("life", style: TextStyle(fontSize: 35)),
+            ),
+            MySliderTest(),
+            Container(
+              child: Text("children", style: TextStyle(fontSize: 35)),
+            ),
+            MySliderTest()
+          ],
         ));
   }
 }
