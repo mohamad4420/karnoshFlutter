@@ -3,8 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class MySlider extends StatelessWidget {
   Widget build(BuildContext context) {
-    var items = "Fuck";
-    var width = MediaQuery.of(context).size.width;
     return CarouselSlider(
       options: CarouselOptions(
           height: MediaQuery.of(context).size.width * 0.45,

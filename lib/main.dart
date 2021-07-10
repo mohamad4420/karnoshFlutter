@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import './src/body.dart';
 import './src/DrowerHome.dart';
+import './src/Search.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  final List<String> listGen = List.generate(10, (index) => 'Text $index');
   Widget build(BuildContext context) {
     mediaQueryData ??= MediaQuery.of(context);
     String device = getDeviceType(mediaQueryData);
@@ -31,10 +33,18 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.red[400],
         appBar: AppBar(
           title: Text("karnosh"),
-          backgroundColor:
-              Colors.red[400].withOpacity((0).clamp(0, 1).toDouble()),
+          backgroundColor: Colors.red[400],
           centerTitle: device == "Desktop" || device == "Tablet" ? false : true,
           leading: device == "Desktop" || device == "Tablet" ? MyIcon() : null,
+          actions: <Widget>[
+            IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: Search(searchList: listGen));
+                },
+                icon: Icon(Icons.search)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
+          ],
         ),
         drawer: device == "Desktop" || device == "Tablet" ? null : DrowerHome(),
         body: Mybody());

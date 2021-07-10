@@ -1,25 +1,49 @@
 import 'package:flutter/material.dart';
 
 final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  'https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX280_CR0,0,280,414_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BZDhlMzY0ZGItZTcyNS00ZTAxLWIyMmYtZGQ2ODg5OWZiYmJkXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BNTkwOTE1ZDYtODQ3Yy00YTYwLTg0YWQtYmVkNmFjNGZlYmRiXkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BNjRmNDI5MjMtMmFhZi00YzcwLWI4ZGItMGI2MjI0N2Q3YmIwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_QL75_UX380_CR0,0,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_QL75_UX380_CR0,4,380,562_.jpg',
+  'https://m.media-amazon.com/images/M/MV5BNTAzYTlkMWEtOTNjZC00ZDU0LWI5ODUtYTRmYzY0MTAzYWZlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_QL75_UX380_CR0,4,380,562_.jpg'
 ];
 
 class MySliderTest extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Container(
-            child: Text('data '),
-          );
-        },
+        height: MediaQuery.of(context).size.width * 0.45,
+        margin: EdgeInsets.fromLTRB(0, 3, 0, 3),
+        child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return MyCard(Img: imgList[index]);
+            },
+            /*separatorBuilder: (context, index) {
+              return SizedBox(
+                width: 0,
+              );
+            },*/
+            itemCount: imgList.length));
+  }
+}
+
+class MyCard extends StatelessWidget {
+  @required
+  final String? Img;
+  MyCard({this.Img});
+
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
+      width: MediaQuery.of(context).size.width * 0.29,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Image(
+          fit: BoxFit.cover,
+          image: NetworkImage(Img ?? ''),
+        ),
       ),
     );
   }
