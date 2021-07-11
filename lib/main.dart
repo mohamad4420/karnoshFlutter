@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  var homeColor = Colors.black;
+  var homeColor = Color(0xFF212121);
 
   final List<String> listGen = List.generate(10, (index) => 'Text $index');
   Widget build(BuildContext context) {
