@@ -29,10 +29,11 @@ class SliderItem extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
             width: MediaQuery.of(context).size.width,
             child: Text(
               name ?? '',
-              style: TextStyle(fontSize: 24),
+              style: TextStyle(fontSize: 24, color: Colors.white60),
               textAlign: TextAlign.start,
             ),
           ),

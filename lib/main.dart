@@ -24,16 +24,19 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  var homeColor = Color(
+    0xff670909,
+  );
   final List<String> listGen = List.generate(10, (index) => 'Text $index');
   Widget build(BuildContext context) {
     mediaQueryData ??= MediaQuery.of(context);
     String device = getDeviceType(mediaQueryData);
 
     return Scaffold(
-        backgroundColor: Colors.red[400],
+        backgroundColor: homeColor,
         appBar: AppBar(
           title: Text("karnosh"),
-          backgroundColor: Colors.red[400],
+          backgroundColor: homeColor,
           centerTitle: device == "Desktop" || device == "Tablet" ? false : true,
           leading: device == "Desktop" || device == "Tablet" ? MyIcon() : null,
           actions: <Widget>[

@@ -22,7 +22,12 @@ class Most extends StatelessWidget {
               gradient: LinearGradient(
             begin: const FractionalOffset(0.0, 1.0),
             end: const FractionalOffset(0.0, 0.0),
-            colors: [Colors.black, Colors.transparent],
+            colors: [
+              Color(
+                0xff670909,
+              ),
+              Colors.transparent
+            ],
           ))),
       Container(
         padding: EdgeInsets.fromLTRB(0, 300, 0, 0),
