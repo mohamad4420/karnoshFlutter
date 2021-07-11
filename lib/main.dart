@@ -32,24 +32,37 @@ class HomePage extends StatelessWidget {
     String device = getDeviceType(mediaQueryData);
 
     return Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: homeColor,
-        appBar: AppBar(
-          title: Text("karnosh"),
-          backgroundColor: homeColor,
-          centerTitle: device == "Desktop" || device == "Tablet" ? false : true,
-          leading: device == "Desktop" || device == "Tablet" ? MyIcon() : null,
-          actions: <Widget>[
-            IconButton(
-                onPressed: () {
-                  showSearch(
-                      context: context, delegate: Search(searchList: listGen));
-                },
-                icon: Icon(Icons.search)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
-          ],
-        ),
         drawer: device == "Desktop" || device == "Tablet" ? null : DrowerHome(),
-        body: Mybody());
+        body: Stack(
+          children: [
+            Mybody(),
+            Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: AppBar(
+                  title: Text("karnosh"),
+                  backgroundColor: homeColor.withOpacity(0),
+                  centerTitle:
+                      device == "Desktop" || device == "Tablet" ? false : true,
+                  leading: device == "Desktop" || device == "Tablet"
+                      ? MyIcon()
+                      : null,
+                  actions: <Widget>[
+                    IconButton(
+                        onPressed: () {
+                          showSearch(
+                              context: context,
+                              delegate: Search(searchList: listGen));
+                        },
+                        icon: Icon(Icons.search)),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
+                  ],
+                ))
+          ],
+        ));
   }
 }
 
