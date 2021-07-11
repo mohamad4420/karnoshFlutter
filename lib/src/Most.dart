@@ -87,7 +87,10 @@ class PlayAndList extends StatelessWidget {
 class Play extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      child: Text("play"),
+      decoration: BoxDecoration(),
+      child: Row(
+        children: [Text("تشغيل"), Text("Icon")],
+      ),
     );
   }
 }
