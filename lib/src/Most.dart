@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karnosh/main.dart';
+import 'package:http/http.dart' as http;
 
 class Most extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -68,12 +71,31 @@ class Name extends StatelessWidget {
 }
 
 class Ganeress extends StatelessWidget {
+  Future getData() async {
+    var url = Uri.parse("https://karnoshab.herokuapp.com/api/movie/Series");
+    var res = await http.post(url);
+    var resBody = jsonDecode(res.body);
+    print(resBody);
+    return resBody;
+  }
+
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 30,
         child: Center(
-            child: ListView(
+            child: FutureBuilder(
+          future: getData(),
+          builder: (context, snapshot) {
+            return ListView.builder(itemBuilder: (data, i) {
+              return GenereItem(name: 'اكشن');
+            });
+          },
+        )));
+  }
+}
+
+/*ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           children: [
@@ -84,9 +106,8 @@ class Ganeress extends StatelessWidget {
             GenereItem(name: 'ابو دية'),
             GenereItem(name: 'زفت'),
           ],
-        )));
-  }
-}
+        )
+*/
 
 class GenereItem extends StatelessWidget {
   @required
