@@ -4,7 +4,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.black12,
       title: TextField(
         decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
