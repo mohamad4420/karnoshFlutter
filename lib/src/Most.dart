@@ -70,7 +70,7 @@ class Ganeress extends StatelessWidget {
     var url = Uri.parse("https://karnoshab.herokuapp.com/api/movie/Series");
     var res = await http.post(url);
     var resBody = jsonDecode(res.body);
-    print(resBody);
+
     return resBody;
   }
 

@@ -22,26 +22,14 @@ environment:
 
 dependencies:
   flutter:
-    fonts:
-    - family: Tajawal
-      fonts: 
-        - asset: lib/fonts/Tajawal/Tajawal-Black.ttf
-        - asset: lib/fonts/Tajawal/Tajawal-Bold.ttf
-        - asset: lib/fonts/Tajawal/Tajawal-ExtraBold.ttf
-        - asset: lib/fonts/Tajawal/Tajawal-ExtraLight.ttf
-        - asset: lib/fonts/Tajawal/Tajawal-Light.ttf
-        - asset: lib/fonts/Tajawal/Tajawal-Medium.ttf
-        - asset: lib/fonts/Tajawal/Tajawal-Regular.ttf
-
     sdk: flutter
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  mongo_dart: ^0.7.0+2
-  sevr: any
-  
+  google_fonts: ^2.1.0
+  http: ^0.13.3
    
 
 dev_dependencies:
@@ -53,6 +41,16 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  fonts:
+     - family: Tajawal
+       fonts: 
+            - asset: lib/fonts/Tajawal/Tajawal-Black.ttf
+            - asset: lib/fonts/Tajawal/Tajawal-Bold.ttf
+            - asset: lib/fonts/Tajawal/Tajawal-ExtraBold.ttf
+            - asset: lib/fonts/Tajawal/Tajawal-ExtraLight.ttf
+            - asset: lib/fonts/Tajawal/Tajawal-Light.ttf
+            - asset: lib/fonts/Tajawal/Tajawal-Medium.ttf
+            - asset: lib/fonts/Tajawal/Tajawal-Regular.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
