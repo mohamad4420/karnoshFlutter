@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:karnosh/src/Most.dart';
 import 'Slider.dart';
 
@@ -33,7 +34,12 @@ class SliderItem extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Text(
               name ?? '',
-              style: TextStyle(fontSize: 24, color: Colors.white),
+              style: GoogleFonts.tajawal(
+                textStyle: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
               textAlign: TextAlign.start,
             ),
           ),

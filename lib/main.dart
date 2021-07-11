@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:karnosh/src/pages/search.dart';
 import './src/body.dart';
 import './src/DrowerHome.dart';
-import './src/Search.dart';
+import '/src/pages/search.dart';
 
 void main() {
   runApp(MyApp());
@@ -53,9 +54,11 @@ class HomePage extends StatelessWidget {
                   actions: <Widget>[
                     IconButton(
                         onPressed: () {
-                          showSearch(
-                              context: context,
-                              delegate: Search(searchList: listGen));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SearchPage()),
+                          );
                         },
                         icon: Icon(Icons.search)),
                     IconButton(onPressed: () {}, icon: Icon(Icons.favorite))
