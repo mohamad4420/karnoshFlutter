@@ -24,9 +24,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  var homeColor = Color(
-    0xff670909,
-  );
+  var homeColor = Colors.black;
+
   final List<String> listGen = List.generate(10, (index) => 'Text $index');
   Widget build(BuildContext context) {
     mediaQueryData ??= MediaQuery.of(context);

@@ -1,38 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:karnosh/main.dart';
 
 class Most extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
       Container(
         decoration: BoxDecoration(
-          color: Colors.black45,
           image: DecorationImage(
             image: NetworkImage(
                 "https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX1120_CR0,0,1120,1656_.jpg"),
             fit: BoxFit.fill,
           ),
         ),
-        height: MediaQuery.of(context).size.height * 0.75,
+        height: MediaQuery.of(context).size.height * 0.66,
         width: MediaQuery.of(context).size.width,
       ),
       Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.75,
+          height: MediaQuery.of(context).size.height * 0.66,
           decoration: BoxDecoration(
               gradient: LinearGradient(
             begin: const FractionalOffset(0.0, 1.0),
             end: const FractionalOffset(0.0, 0.0),
-            colors: [
-              Color(
-                0xff670909,
-              ),
-              Colors.transparent
-            ],
+            colors: [Colors.black, Colors.transparent],
           ))),
       Container(
-        padding: EdgeInsets.fromLTRB(0, 300, 0, 0),
+        padding: EdgeInsets.fromLTRB(
+            0, MediaQuery.of(context).size.height * 0.45, 0, 0),
         child: Column(
-          children: [Name(), Ganeress(), PlayAndList(), Discription(), Time()],
+          children: [
+            Name(),
+            Ganeress(),
+            PlayAndList(),
+          ],
         ),
       )
     ]);
@@ -45,12 +46,13 @@ class Name extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: Center(
         child: Text(
-          "the witcher",
+          "The Witcher 2019",
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 22,
-            color: Colors.red,
-          ),
+          style: GoogleFonts.encodeSansSemiCondensed(
+              textStyle: TextStyle(
+            color: Colors.white70,
+            fontSize: 27,
+          )),
         ),
       ),
     );
@@ -61,25 +63,49 @@ class Ganeress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
-        child: Row(
+        height: 30,
+        child: Center(
+            child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
           children: [
-            Center(
-                child: Text(
-              "اكشن",
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.red,
-              ),
-            )),
+            GenereItem(name: 'اكشن'),
+            GenereItem(name: 'مغامرات'),
+            GenereItem(name: 'رعب'),
+            GenereItem(name: 'حياة'),
+            GenereItem(name: 'ابو دية'),
+            GenereItem(name: 'زفت'),
           ],
-        ));
+        )));
+  }
+}
+
+class GenereItem extends StatelessWidget {
+  @required
+  final String? name;
+  GenereItem({this.name});
+  Widget build(BuildContext context) {
+    return Center(
+        child: Container(
+      constraints: BoxConstraints(minWidth: 50),
+      alignment: Alignment.center,
+      child: Text(name ?? '',
+          style:
+              GoogleFonts.tajawal(textStyle: TextStyle(color: Colors.white70))),
+      height: 30,
+      margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
+      padding: EdgeInsets.fromLTRB(3, 0, 3, 0),
+      /*decoration: BoxDecoration(
+          border: Border.all(color: Colors.white70),
+          borderRadius: BorderRadius.circular(16)),*/
+    ));
   }
 }
 
 class PlayAndList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
-      children: [Play(), List()],
+      children: [List(), Play(), Info()],
     );
   }
 }
@@ -87,19 +113,82 @@ class PlayAndList extends StatelessWidget {
 class Play extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(),
-      child: Row(
-        children: [Text("تشغيل"), Text("Icon")],
-      ),
-    );
+        margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.025,
+            0, MediaQuery.of(context).size.width * 0.025, 0),
+        width: MediaQuery.of(context).size.width * 0.30,
+        height: 40,
+        /* decoration: BoxDecoration(
+            color: Colors.red, borderRadius: BorderRadius.circular(12)),*/
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              primary: Colors.white70 // set the background color
+
+              ),
+          onPressed: () {},
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.play_arrow,
+                color: Colors.black,
+              ),
+              Text(
+                'تشغيل',
+                style: TextStyle(color: Colors.black),
+              )
+            ],
+          ),
+        ));
   }
 }
 
 class List extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      child: Text("list"),
-    );
+        width: MediaQuery.of(context).size.width * 0.30,
+        height: 70,
+        /*decoration: BoxDecoration(
+          color: Colors.red, borderRadius: BorderRadius.circular(12)),*/
+        child: TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+          onPressed: () {},
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.add,
+                color: Colors.white70,
+              ),
+              Text('اضافة', style: TextStyle(color: Colors.white70))
+            ],
+          ),
+        ));
+  }
+}
+
+class Info extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.30,
+        height: 70,
+        /*  decoration: BoxDecoration(
+          color: Colors.red, borderRadius: BorderRadius.circular(12)),*/
+        child: TextButton(
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+          onPressed: () {},
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.info_outline,
+                color: Colors.white70,
+              ),
+              Text('معلومات', style: TextStyle(color: Colors.white70))
+            ],
+          ),
+        ));
   }
 }
 

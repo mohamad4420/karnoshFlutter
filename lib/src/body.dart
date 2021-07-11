@@ -33,7 +33,7 @@ class SliderItem extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             child: Text(
               name ?? '',
-              style: TextStyle(fontSize: 24, color: Colors.white60),
+              style: TextStyle(fontSize: 24, color: Colors.white),
               textAlign: TextAlign.start,
             ),
           ),
