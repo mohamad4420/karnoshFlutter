@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:karnosh/main.dart';
+
 import 'package:http/http.dart' as http;
 
 class Most extends StatelessWidget {
@@ -88,14 +88,15 @@ class Ganeress extends StatelessWidget {
           future: getData(),
           builder: (context, snapshot) {
             return ListView.builder(itemBuilder: (data, i) {
-              return GenereItem(name: 'اكشن');
+              return Text(snapshot.data.hashCode.toString());
             });
           },
         )));
   }
 }
 
-/*ListView(
+/*
+ListView(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           children: [
