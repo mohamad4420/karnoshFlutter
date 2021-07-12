@@ -5,7 +5,7 @@ class Most extends StatefulWidget {
   _MostState createState() => _MostState();
 }
 
-bool pressed = false;
+bool isListed = false;
 
 class _MostState extends State<Most> {
   Widget build(BuildContext context) {
@@ -177,22 +177,22 @@ class _vidListState extends State<vidList> {
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
           onPressed: () {
             setState(() {
-              if (pressed == false)
-                pressed = true;
+              if (isListed == false)
+                isListed = true;
               else
-                pressed = false;
+                isListed = false;
             });
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                (pressed) ? Icons.check : Icons.add,
-                color: (pressed) ? Colors.blue[500] : Colors.white70,
+                isListed ? Icons.check : Icons.add,
+                color: isListed ? Colors.blue[500] : Colors.white70,
               ),
-              Text((pressed) ? 'تم الاضافة' : 'اضافة',
+              Text(isListed ? 'تم الاضافة' : 'اضافة',
                   style: TextStyle(
-                      color: (pressed) ? Colors.blue[500] : Colors.white70))
+                      color: isListed ? Colors.blue[500] : Colors.white70))
             ],
           ),
         ));
