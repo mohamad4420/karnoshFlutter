@@ -4,19 +4,19 @@ import 'models.dart';
 import 'package:http/http.dart' as http;
 
 class FetchApi {
-  Future<List<vidModels>> fetchVid() async {
+  Future<VidModels> fetchVid() async {
     http.Response response = await http
         .get(Uri.parse("https://karnoshab.herokuapp.com/api/movie/topAnimeA"));
 
-    print(json.decode(response.body)[0]);
+    print(json.decode(response.body)[4]);
 
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
 
-      List<vidModels> videos = [];
-      for (var item in body) {
-        videos.add(vidModels.fromJson(item));
-      }
+      VidModels videos;
+
+      videos = (VidModels.fromJson(body[9]));
+
       return videos;
     }
     return null;

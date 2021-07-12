@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-class vidModels {
+class VidModels {
   /*
   final List<String> genres;
   final List<String> SeasonData;
@@ -23,8 +21,23 @@ class vidModels {
   final String createdAt;
   */
   String name;
-  vidModels(this.name);
-  vidModels.fromJson(Map<String, dynamic> map) {
+  String date;
+  String type;
+  String poster;
+  String description;
+  String rating;
+
+  VidModels(this.name, this.date, this.type, this.description, this.poster,
+      this.rating);
+  VidModels.fromJson(Map<String, dynamic> map) {
     this.name = map['name'];
+    this.date = map['date'];
+    this.type = map['type'];
+    this.poster = map['poster'];
+    this.description = map['Description'];
+    if (map['rating'] == null) {
+      this.rating = 'NoDATA';
+    } else
+      this.rating = map['rating'];
   }
 }
