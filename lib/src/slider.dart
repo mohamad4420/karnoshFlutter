@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'model/models.dart';
 
 final List<String> imgList = [
   'https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX280_CR0,0,280,414_.jpg',
@@ -9,22 +10,48 @@ final List<String> imgList = [
   'https://m.media-amazon.com/images/M/MV5BNTAzYTlkMWEtOTNjZC00ZDU0LWI5ODUtYTRmYzY0MTAzYWZlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_QL75_UX380_CR0,4,380,562_.jpg'
 ];
 
-class MySlider extends StatelessWidget {
+class SliderItem extends StatelessWidget {
+  final String name;
+  final String fetchUrl;
+  SliderItem({this.name, this.fetchUrl});
   Widget build(BuildContext context) {
     return Container(
-        height: MediaQuery.of(context).size.width * 0.45,
-        child: ListView.builder(
-            physics: BouncingScrollPhysics(),
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              name,
+              style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.start,
+            ),
+          ),
+          MySlider(),
+        ],
+      ),
+    );
+  }
+}
+
+class MySlider extends StatefulWidget {
+  _MySliderState createState() => _MySliderState();
+}
+
+class _MySliderState extends State<MySlider> {
+  Widget build(BuildContext context) {
+    FetchApi fetchApi = FetchApi();
+    return FutureBuilder(
+        future: fetchApi.fetchVid("MovieUbdate"),
+        builder: (context, snapshot) {
+          List<VidModels> vids = snapshot.data[0];
+          return ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return MyCard(img: imgList[index]);
-            },
-            /*separatorBuilder: (context, index) {
-              return SizedBox(
-                width: 0,
-              );
-            },*/
-            itemCount: imgList.length));
+            itemBuilder: (context, index) => MyCard(
+              img: vids[index].poster,
+            ),
+          );
+        });
   }
 }
 
@@ -43,30 +70,6 @@ class MyCard extends StatelessWidget {
           fit: BoxFit.cover,
           image: NetworkImage(img),
         ),
-      ),
-    );
-  }
-}
-
-class SliderItem extends StatelessWidget {
-  @required
-  final String name;
-  SliderItem({this.name});
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      child: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              name,
-              style: TextStyle(fontSize: 24),
-              textAlign: TextAlign.start,
-            ),
-          ),
-          MySlider(),
-        ],
       ),
     );
   }

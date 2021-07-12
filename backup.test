@@ -1,0 +1,22 @@
+
+
+
+
+        class MySlider extends StatelessWidget {
+  Widget build(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.width * 0.45,
+        child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return MyCard(img: imgList[index]);
+            },
+            /*separatorBuilder: (context, index) {
+              return SizedBox(
+                width: 0,
+              );
+            },*/
+            itemCount: imgList.length));
+  }
+}
