@@ -44,7 +44,7 @@ class _MySliderState extends State<MySlider> {
     return FutureBuilder(
         future: fetchApi.fetchVid("MovieUbdate"),
         builder: (context, snapshot) {
-          List<VidModels> vids = snapshot.data[0];
+          List<VidModels> vids = snapshot.data;
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => MyCard(

@@ -36,7 +36,8 @@ class VidModels {
     this.name = map['name'];
     this.date = map['date'];
     this.type = map['type'];
-    (map['genres'] as List).map((i) => this.Genres.add(i)).toList();
+    if (map['genres'] != null)
+      (map['genres'] as List).map((i) => this.Genres.add(i)).toList();
     this.poster = map['poster'];
     this.description = map['Description'];
     if (map['rating'] == null) {

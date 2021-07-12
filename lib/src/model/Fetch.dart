@@ -9,12 +9,12 @@ class FetchApi {
         .get(Uri.parse("https://karnoshab.herokuapp.com/api/movie/" + url));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
-      print(body[0]);
+
       List<VidModels> videos = [];
       for (var item in body) {
         videos.add(VidModels.fromJson(item));
       }
-
+      print(videos[0].poster);
       return videos;
     }
     return null;
