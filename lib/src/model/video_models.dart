@@ -22,4 +22,9 @@ class vidModels {
   final String updatedAt;
   final String createdAt;
   */
+  String name;
+  vidModels(this.name);
+  vidModels.fromJson(Map<String, dynamic> map) {
+    this.name = map['name'];
+  }
 }

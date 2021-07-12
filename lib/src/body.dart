@@ -22,7 +22,7 @@ class Mybody extends StatelessWidget {
 
 class SliderItem extends StatelessWidget {
   @required
-  final String? name;
+  final String name;
   SliderItem({this.name});
   Widget build(BuildContext context) {
     return Container(

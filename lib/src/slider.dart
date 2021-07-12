@@ -30,7 +30,7 @@ class MySlider extends StatelessWidget {
 
 class MyCard extends StatelessWidget {
   @required
-  final String? img;
+  final String img;
   MyCard({this.img});
 
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class MyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: Image(
           fit: BoxFit.cover,
-          image: NetworkImage(img ?? ''),
+          image: NetworkImage(img),
         ),
       ),
     );
@@ -50,7 +50,7 @@ class MyCard extends StatelessWidget {
 
 class SliderItem extends StatelessWidget {
   @required
-  final String? name;
+  final String name;
   SliderItem({this.name});
   Widget build(BuildContext context) {
     return Container(
@@ -60,7 +60,7 @@ class SliderItem extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width,
             child: Text(
-              name ?? '',
+              name,
               style: TextStyle(fontSize: 24),
               textAlign: TextAlign.start,
             ),

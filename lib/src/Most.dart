@@ -1,10 +1,15 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'model/models.dart';
 
-class Most extends StatelessWidget {
+class Most extends StatefulWidget {
+  _MostState createState() => _MostState();
+}
+
+class _MostState extends State<Most> {
   Widget build(BuildContext context) {
+    FetchApi fetchApi = FetchApi();
     return Stack(children: <Widget>[
       Container(
         decoration: BoxDecoration(
@@ -39,7 +44,12 @@ class Most extends StatelessWidget {
             0, MediaQuery.of(context).size.height * 0.45, 0, 0),
         child: Column(
           children: [
-            Name(),
+            FutureBuilder(
+                future: fetchApi.fetchVid(),
+                builder: (context, snapshot) {
+                  return Name(snapshot.data[0].toString());
+                }),
+            Name(''),
             Ganeress(),
             PlayAndList(),
           ],
@@ -50,11 +60,13 @@ class Most extends StatelessWidget {
 }
 
 class Name extends StatelessWidget {
+  final String name;
+  Name(this.name);
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Center(
-        child: Text("The Witcher 2019",
+        child: Text(name,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white70,
@@ -66,26 +78,22 @@ class Name extends StatelessWidget {
 }
 
 class Ganeress extends StatelessWidget {
-  Future getData() async {
-    var url = Uri.parse("https://karnoshab.herokuapp.com/api/movie/searchAdd");
-    var res = await http.post(url, body: {"q": ""});
-    var resBody = jsonDecode(res.body);
-
-    return resBody;
-  }
-
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 30,
         child: Center(
-            child: FutureBuilder(
-          future: getData(),
-          builder: (context, snapshot) {
-            return ListView.builder(itemBuilder: (data, i) {
-              return Text(snapshot.data.toString());
-            });
-          },
+            child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          children: [
+            GenereItem(name: 'اكشن'),
+            GenereItem(name: 'مغامرات'),
+            GenereItem(name: 'رعب'),
+            GenereItem(name: 'حياة'),
+            GenereItem(name: 'ابو دية'),
+            GenereItem(name: 'زفت'),
+          ],
         )));
   }
 }
@@ -107,7 +115,7 @@ ListView(
 
 class GenereItem extends StatelessWidget {
   @required
-  final String? name;
+  final String name;
   GenereItem({this.name});
   Widget build(BuildContext context) {
     return Center(

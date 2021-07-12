@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Search extends SearchDelegate {
   @required
-  final List<String>? searchList;
+  final List<String> searchList;
   Search({this.searchList});
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -42,7 +42,7 @@ class Search extends SearchDelegate {
     query.isEmpty
         ? Suggestions = recent
         : Suggestions.addAll(
-            searchList!.where((element) => element.contains(query)));
+            searchList.where((element) => element.contains(query)));
     return ListView.builder(
       itemCount: Suggestions.length,
       itemBuilder: (context, index) {
