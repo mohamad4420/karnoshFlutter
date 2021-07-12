@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class vidModels {
+  /*
   final List<String> genres;
   final List<String> SeasonData;
   final String name;
@@ -20,5 +21,5 @@ class vidModels {
   final String type;
   final String updatedAt;
   final String createdAt;
-  
+  */
 }
