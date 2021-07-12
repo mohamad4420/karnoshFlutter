@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'package:http/http.dart' as http;
 
 class Most extends StatelessWidget {
@@ -56,15 +54,12 @@ class Name extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Center(
-        child: Text(
-          "The Witcher 2019",
-          textAlign: TextAlign.center,
-          style: GoogleFonts.encodeSansSemiCondensed(
-              textStyle: TextStyle(
-            color: Colors.white70,
-            fontSize: 27,
-          )),
-        ),
+        child: Text("The Witcher 2019",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 27,
+            )),
       ),
     );
   }
@@ -75,7 +70,7 @@ class Ganeress extends StatelessWidget {
     var url = Uri.parse("https://karnoshab.herokuapp.com/api/movie/searchAdd");
     var res = await http.post(url, body: {"q": ""});
     var resBody = jsonDecode(res.body);
-    print(resBody);
+
     return resBody;
   }
 
@@ -120,8 +115,7 @@ class GenereItem extends StatelessWidget {
       constraints: BoxConstraints(minWidth: 50),
       alignment: Alignment.center,
       child: Text(name ?? '',
-          style:
-              GoogleFonts.tajawal(textStyle: TextStyle(color: Colors.white70))),
+          style: TextStyle(color: Colors.white70, fontFamily: 'Tajawal')),
       height: 30,
       margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
       padding: EdgeInsets.fromLTRB(3, 0, 3, 0),
