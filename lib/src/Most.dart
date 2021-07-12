@@ -72,8 +72,8 @@ class Name extends StatelessWidget {
 
 class Ganeress extends StatelessWidget {
   Future getData() async {
-    var url = Uri.parse("https://karnoshab.herokuapp.com/api/movie/Series");
-    var res = await http.post(url);
+    var url = Uri.parse("https://karnoshab.herokuapp.com/api/movie/searchAdd");
+    var res = await http.post(url, body: {"q": ""});
     var resBody = jsonDecode(res.body);
     print(resBody);
     return resBody;
@@ -88,7 +88,7 @@ class Ganeress extends StatelessWidget {
           future: getData(),
           builder: (context, snapshot) {
             return ListView.builder(itemBuilder: (data, i) {
-              return Text(snapshot.data.hashCode.toString());
+              return Text(snapshot.data.toString());
             });
           },
         )));
