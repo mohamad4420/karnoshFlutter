@@ -12,9 +12,9 @@ class Mybody extends StatelessWidget {
       children: <Widget>[
         Most(),
         SliderItem(name: "حياة"),
-        /*SliderItem(name: "اطفال"),
+        SliderItem(name: "اطفال"),
         SliderItem(name: "اكشن"),
-        SliderItem(name: "مغامرات"),*/
+        SliderItem(name: "مغامرات"),
       ],
     ));
   }

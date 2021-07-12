@@ -10,6 +10,10 @@ final List<String> imgList = [
   'https://m.media-amazon.com/images/M/MV5BNTAzYTlkMWEtOTNjZC00ZDU0LWI5ODUtYTRmYzY0MTAzYWZlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_QL75_UX380_CR0,4,380,562_.jpg'
 ];
 
+class MySlider extends StatefulWidget {
+  _MySliderState createState() => _MySliderState();
+}
+
 class SliderItem extends StatelessWidget {
   final String name;
   final String fetchUrl;
@@ -34,23 +38,17 @@ class SliderItem extends StatelessWidget {
   }
 }
 
-class MySlider extends StatefulWidget {
-  _MySliderState createState() => _MySliderState();
-}
-
 class _MySliderState extends State<MySlider> {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
+    //https://imd.mini.icom.museum/wp-content/uploads/sites/54/2021/01/IMD_2021_POSTER_EN-683x1024.jpg
+    VidModels test = VidModels("loading", "", "", "", "", "", [""]);
     return FutureBuilder(
-        future: fetchApi.fetchVid("MovieUbdate"),
+        initialData: [test],
+        future: fetchApi.fetchSlider("MovieUbdate"),
         builder: (context, snapshot) {
           List<VidModels> vids = snapshot.data;
-          return ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) => MyCard(
-              img: vids[index].poster,
-            ),
-          );
+          return MyCard(img: vids[0].poster);
         });
   }
 }

@@ -11,10 +11,13 @@ bool isListed = false;
 class _MostState extends State<Most> {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
+    VidModels test = VidModels("loading", "", "", "", "", "", [""]);
     return FutureBuilder(
+        initialData: [test],
         future: fetchApi.fetchVid("getMost"),
         builder: (context, snapshot) {
           List<VidModels> vids = snapshot.data;
+
           return CarouselSlider.builder(
               itemCount: 5,
               options: CarouselOptions(
