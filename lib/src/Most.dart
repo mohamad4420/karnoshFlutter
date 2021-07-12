@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'model/models.dart';
 
 class Most extends StatefulWidget {
@@ -10,6 +8,7 @@ class Most extends StatefulWidget {
 class _MostState extends State<Most> {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
+    fetchApi.fetchVid();
     return FutureBuilder(
         future: fetchApi.fetchVid(),
         builder: (context, snapshot) {

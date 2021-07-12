@@ -7,9 +7,6 @@ class FetchApi {
   Future<VidModels> fetchVid() async {
     http.Response response = await http
         .get(Uri.parse("https://karnoshab.herokuapp.com/api/movie/getMost"));
-
-    print(json.decode(response.body)[4]);
-
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
 
