@@ -41,14 +41,23 @@ class SliderItem extends StatelessWidget {
 class _MySliderState extends State<MySlider> {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
-    //https://imd.mini.icom.museum/wp-content/uploads/sites/54/2021/01/IMD_2021_POSTER_EN-683x1024.jpg
-    VidModels test = VidModels("loading", "", "", "", "", "", [""]);
     return FutureBuilder(
-        initialData: [test],
-        future: fetchApi.fetchSlider("MovieUbdate"),
+        future: fetchApi.fetchVid("MovieUbdate"),
         builder: (context, snapshot) {
-          List<VidModels> vids = snapshot.data;
-          return MyCard(img: vids[0].poster);
+          var vids = snapshot.data;
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
+          else {
+            return Container(
+              height: MediaQuery.of(context).size.height * 0.23,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: vids.length,
+                  itemBuilder: (context, index) {
+                    return MyCard(img: vids[index].poster);
+                  }),
+            );
+          }
         });
   }
 }
