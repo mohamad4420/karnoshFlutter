@@ -5,6 +5,8 @@ class Most extends StatefulWidget {
   _MostState createState() => _MostState();
 }
 
+bool pressed = false;
+
 class _MostState extends State<Most> {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
@@ -105,7 +107,7 @@ class GenereItem extends StatelessWidget {
         child: Container(
       constraints: BoxConstraints(minWidth: 50),
       alignment: Alignment.center,
-      child: Text(name ?? '',
+      child: Text(name,
           style: TextStyle(color: Colors.white70, fontFamily: 'Tajawal')),
       height: 30,
       margin: EdgeInsets.fromLTRB(2, 0, 2, 0),
@@ -120,7 +122,7 @@ class GenereItem extends StatelessWidget {
 class PlayAndListAndInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
-      children: [List(), Play(), Info()],
+      children: [vidList(), Play(), Info()],
     );
   }
 }
@@ -157,9 +159,15 @@ class Play extends StatelessWidget {
   }
 }
 
-class List extends StatelessWidget {
+class vidList extends StatefulWidget {
+  _vidListState createState() => _vidListState();
+}
+
+class _vidListState extends State<vidList> {
   Widget build(BuildContext context) {
     return Container(
+        constraints:
+            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.33),
         width: MediaQuery.of(context).size.width * 0.33,
         height: 70,
         /*decoration: BoxDecoration(
@@ -167,15 +175,24 @@ class List extends StatelessWidget {
         child: TextButton(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              if (pressed == false)
+                pressed = true;
+              else
+                pressed = false;
+            });
+          },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.add,
-                color: Colors.white70,
+                (pressed) ? Icons.check : Icons.add,
+                color: (pressed) ? Colors.blue[500] : Colors.white70,
               ),
-              Text('اضافة', style: TextStyle(color: Colors.white70))
+              Text((pressed) ? 'تم الاضافة' : 'اضافة',
+                  style: TextStyle(
+                      color: (pressed) ? Colors.blue[500] : Colors.white70))
             ],
           ),
         ));
