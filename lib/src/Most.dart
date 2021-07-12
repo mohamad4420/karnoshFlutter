@@ -49,9 +49,9 @@ class _MostState extends State<Most> {
                   0, MediaQuery.of(context).size.height * 0.45, 0, 0),
               child: Column(
                 children: [
-                  Name(vids.rating),
-                  Ganeress(),
-                  PlayAndList(),
+                  Name(vids.name),
+                  Ganeress(vids.Genres, vids.Genres.length),
+                  PlayAndListAndInfo(),
                 ],
               ),
             )
@@ -79,40 +79,23 @@ class Name extends StatelessWidget {
 }
 
 class Ganeress extends StatelessWidget {
+  var genData;
+  int count;
+  Ganeress(this.genData, this.count);
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 30,
         child: Center(
-            child: ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          children: [
-            GenereItem(name: 'اكشن'),
-            GenereItem(name: 'مغامرات'),
-            GenereItem(name: 'رعب'),
-            GenereItem(name: 'حياة'),
-            GenereItem(name: 'ابو دية'),
-            GenereItem(name: 'زفت'),
-          ],
-        )));
+            child: ListView.builder(
+                itemCount: this.count,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return GenereItem(name: genData[index].toString());
+                })));
   }
 }
-
-/*
-ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          children: [
-            GenereItem(name: 'اكشن'),
-            GenereItem(name: 'مغامرات'),
-            GenereItem(name: 'رعب'),
-            GenereItem(name: 'حياة'),
-            GenereItem(name: 'ابو دية'),
-            GenereItem(name: 'زفت'),
-          ],
-        )
-*/
 
 class GenereItem extends StatelessWidget {
   @required
@@ -135,7 +118,7 @@ class GenereItem extends StatelessWidget {
   }
 }
 
-class PlayAndList extends StatelessWidget {
+class PlayAndListAndInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [List(), Play(), Info()],

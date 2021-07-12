@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class FetchApi {
   Future<VidModels> fetchVid() async {
     http.Response response = await http
-        .get(Uri.parse("https://karnoshab.herokuapp.com/api/movie/topAnimeA"));
+        .get(Uri.parse("https://karnoshab.herokuapp.com/api/movie/getMost"));
 
     print(json.decode(response.body)[4]);
 
@@ -14,8 +14,7 @@ class FetchApi {
       var body = json.decode(response.body);
 
       VidModels videos;
-
-      videos = (VidModels.fromJson(body[9]));
+      videos = (VidModels.fromJson(body[0]));
 
       return videos;
     }
