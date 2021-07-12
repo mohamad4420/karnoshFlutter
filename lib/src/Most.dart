@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'model/models.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Most extends StatefulWidget {
   _MostState createState() => _MostState();
@@ -14,49 +15,67 @@ class _MostState extends State<Most> {
     return FutureBuilder(
         future: fetchApi.fetchVid(),
         builder: (context, snapshot) {
-          VidModels vids = snapshot.data;
-          return Stack(children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color(0xFF000000),
-                      offset: Offset(0, 1),
-                      blurRadius: 10)
-                ],
-                image: DecorationImage(
-                  image: NetworkImage(vids.poster),
-                  fit: BoxFit.fill,
-                ),
+          List<VidModels> vids = snapshot.data;
+          return CarouselSlider.builder(
+              itemCount: 5,
+              options: CarouselOptions(
+                height: MediaQuery.of(context).size.height * 0.7,
+                viewportFraction: 1,
+                initialPage: 0,
+                pageSnapping: true,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: false,
+                autoPlayInterval: Duration(seconds: 60),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
               ),
-              height: MediaQuery.of(context).size.height * 0.66,
-              width: MediaQuery.of(context).size.width,
-            ),
-            Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.66,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    gradient: LinearGradient(
-                      begin: const FractionalOffset(0.0, 1.0),
-                      end: const FractionalOffset(0.0, 0.0),
-                      colors: [Color(0xFF212121), Colors.transparent],
-                    ))),
-            Container(
-              padding: EdgeInsets.fromLTRB(
-                  0, MediaQuery.of(context).size.height * 0.45, 0, 0),
-              child: Column(
-                children: [
-                  Name(vids.name),
-                  Ganeress(vids.Genres, vids.Genres.length),
-                  PlayAndListAndInfo(),
-                ],
-              ),
-            )
-          ]);
+              itemBuilder: (BuildContext context, int index, int Page) {
+                return Stack(children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15)),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color(0xFF000000),
+                            offset: Offset(0, 1),
+                            blurRadius: 10)
+                      ],
+                      image: DecorationImage(
+                        image: NetworkImage(vids[index].poster),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.66,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.66,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            begin: const FractionalOffset(0.0, 1.0),
+                            end: const FractionalOffset(0.0, 0.0),
+                            colors: [Color(0xFF212121), Colors.transparent],
+                          ))),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(
+                        0, MediaQuery.of(context).size.height * 0.45, 0, 0),
+                    child: Column(
+                      children: [
+                        Name(vids[index].name),
+                        Ganeress(vids[index].Genres, vids[index].Genres.length),
+                        PlayAndListAndInfo(),
+                      ],
+                    ),
+                  )
+                ]);
+              });
         });
   }
 }
