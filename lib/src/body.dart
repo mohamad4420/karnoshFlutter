@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:karnosh/src/Most.dart';
+import 'package:karnosh/src/src/Most/Most.dart';
 import 'Slider.dart';
 
 final themeMode = ValueNotifier(2);

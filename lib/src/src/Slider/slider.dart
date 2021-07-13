@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'model/models.dart';
+import '../../model/models.dart';
+import './widgets/widgets.dart';
 
 final List<String> imgList = [
   'https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX280_CR0,0,280,414_.jpg',
@@ -59,25 +60,5 @@ class _MySliderState extends State<MySlider> {
             );
           }
         });
-  }
-}
-
-class MyCard extends StatelessWidget {
-  @required
-  final String img;
-  MyCard({this.img});
-
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-      width: MediaQuery.of(context).size.width * 0.29,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image(
-          fit: BoxFit.cover,
-          image: NetworkImage(img),
-        ),
-      ),
-    );
   }
 }
