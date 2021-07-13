@@ -31,9 +31,9 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.3
   carousel_slider: ^4.0.0
-  uuid: ^3.0.4
-  youtube_player_flutter: ^8.0.0
-   
+  uuid: ^3.0.4 
+  youtube_player_iframe: ^2.1.0
+  
 
 dev_dependencies:
   flutter_test:

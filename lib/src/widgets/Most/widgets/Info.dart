@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-void onPressInfo() {}
 YoutubePlayerController _controller = YoutubePlayerController(
-  initialVideoId: 'iLnmTe5Q2Qw',
-  flags: YoutubePlayerFlags(
-    autoPlay: true,
-    mute: true,
-  ),
-);
+    initialVideoId: 'Io9LDgu955Y',
+    params: YoutubePlayerParams(
+        // Defining custom playlist
+        autoPlay: true,
+        showControls: false,
+        showFullscreenButton: false));
 
 class Info extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -20,6 +19,7 @@ class Info extends StatelessWidget {
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
           onPressed: () {
             showModalBottomSheet(
+                backgroundColor: Colors.transparent,
                 context: context,
                 builder: (context) {
                   return Container(
@@ -32,19 +32,43 @@ class Info extends StatelessWidget {
                         BoxShadow(
                             color: Color(0xFF000000),
                             offset: Offset(0, 1),
-                            blurRadius: 10)
+                            blurRadius: 6)
                       ],
                     ),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Column(
-                      children: [
-                        YoutubePlayer(
-                          controller: _controller,
-                          showVideoProgressIndicator: true,
+                    child: Column(children: [
+                      Stack(children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                          child: YoutubePlayerControllerProvider(
+                            controller: _controller,
+                            child: YoutubePlayerIFrame(
+                              aspectRatio: 16 / 9,
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20)),
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              color: Colors.black.withOpacity(0),
+                              height:
+                                  MediaQuery.of(context).size.width * 0.5625,
+                              child: Column(children: [
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.volume_mute_outlined,
+                                      color: Colors.white),
+                                  iconSize: 30,
+                                )
+                              ])),
+                        ),
+                      ])
+                    ]),
                   );
                 });
           },
