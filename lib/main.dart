@@ -4,6 +4,7 @@ import 'package:karnosh/src/pages/search.dart';
 import './src/body.dart';
 import './src/DrowerHome.dart';
 import '/src/pages/search.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +15,10 @@ var mediaQueryData;
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
         title: 'karnosh',
         debugShowCheckedModeBanner: false,
