@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import './widgets/Most/Most.dart';
 import './widgets/Slider/slider.dart';
 
@@ -15,37 +14,17 @@ class Mybody extends StatelessWidget {
         SliderItem(name: "اطفال"),
         SliderItem(name: "اكشن"),
         SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
+        SliderItem(name: "مغامرات"),
       ],
     ));
-  }
-}
-
-class SliderItem extends StatelessWidget {
-  @required
-  final String name;
-  SliderItem({this.name});
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              name ?? '',
-              style: GoogleFonts.tajawal(
-                textStyle: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              textAlign: TextAlign.start,
-            ),
-          ),
-          MySlider(),
-        ],
-      ),
-    );
   }
 }

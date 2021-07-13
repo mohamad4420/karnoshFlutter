@@ -4,6 +4,7 @@ import './widgets/widgets.dart';
 import '../Most/widgets/FunctionsMost.dart';
 
 class MySlider extends StatefulWidget {
+  const MySlider({Key key}) : super(key: key);
   _MySliderState createState() => _MySliderState();
 }
 
@@ -31,7 +32,9 @@ class SliderItem extends StatelessWidget {
   }
 }
 
-class _MySliderState extends State<MySlider> {
+class _MySliderState extends State<MySlider>
+    with AutomaticKeepAliveClientMixin {
+  bool get wantKeepAlive => true;
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
     return FutureBuilder(
