@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './widgets/Most/Most.dart';
-import 'Slider.dart';
+import './widgets/Slider/slider.dart';
 
 final themeMode = ValueNotifier(2);
 
