@@ -28,6 +28,7 @@ class VidModels {
   String poster;
   String description;
   String rating;
+  String time;
   List<String> Genres = [];
 
   VidModels(this.name, this.date, this.type, this.description, this.poster,
@@ -36,6 +37,7 @@ class VidModels {
     this.name = map['name'];
     this.date = map['date'];
     this.type = map['type'];
+    this.time = map['time'];
     if (map['genres'] != null)
       (map['genres'] as List).map((i) => this.Genres.add(i)).toList();
     this.poster = map['poster'];

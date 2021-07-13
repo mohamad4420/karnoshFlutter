@@ -33,6 +33,7 @@ dependencies:
   carousel_slider: ^4.0.0
   uuid: ^3.0.4 
   youtube_player_iframe: ^2.1.0
+  readmore: ^2.1.0
   
 
 dev_dependencies:

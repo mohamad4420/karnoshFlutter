@@ -15,10 +15,6 @@ var mediaQueryData;
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     return MaterialApp(
         title: 'karnosh',
         debugShowCheckedModeBanner: false,
@@ -29,10 +25,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   var homeColor = Color(0xFF212121);
 
   final List<String> listGen = List.generate(10, (index) => 'Text $index');
+
   Widget build(BuildContext context) {
     mediaQueryData ??= MediaQuery.of(context);
     String device = getDeviceType(mediaQueryData);

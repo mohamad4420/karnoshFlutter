@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../model/models.dart';
 import './widgets/widgets.dart';
-
-final List<String> imgList = [
-  'https://m.media-amazon.com/images/M/MV5BOGE4MmVjMDgtMzIzYy00NjEwLWJlODMtMDI1MGY2ZDlhMzE2XkEyXkFqcGdeQXVyMzY0MTE3NzU@._V1_QL75_UX280_CR0,0,280,414_.jpg',
-  'https://m.media-amazon.com/images/M/MV5BZDhlMzY0ZGItZTcyNS00ZTAxLWIyMmYtZGQ2ODg5OWZiYmJkXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_QL75_UX380_CR0,0,380,562_.jpg',
-  'https://m.media-amazon.com/images/M/MV5BNTkwOTE1ZDYtODQ3Yy00YTYwLTg0YWQtYmVkNmFjNGZlYmRiXkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_QL75_UX380_CR0,0,380,562_.jpg',
-  'https://m.media-amazon.com/images/M/MV5BNjRmNDI5MjMtMmFhZi00YzcwLWI4ZGItMGI2MjI0N2Q3YmIwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_QL75_UX380_CR0,0,380,562_.jpg',
-  'https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_QL75_UX380_CR0,4,380,562_.jpg',
-  'https://m.media-amazon.com/images/M/MV5BNTAzYTlkMWEtOTNjZC00ZDU0LWI5ODUtYTRmYzY0MTAzYWZlXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_QL75_UX380_CR0,4,380,562_.jpg'
-];
+import '../Most/widgets/FunctionsMost.dart';
 
 class MySlider extends StatefulWidget {
   _MySliderState createState() => _MySliderState();
@@ -50,12 +42,17 @@ class _MySliderState extends State<MySlider> {
             return Center(child: CircularProgressIndicator());
           else {
             return Container(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.21,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: vids.length,
                   itemBuilder: (context, index) {
-                    return MyCard(img: vids[index].poster);
+                    return GestureDetector(
+                      onTap: () {
+                        BottomSliderMost(context, vids[index]);
+                      },
+                      child: MyCard(img: vids[index].poster),
+                    );
                   }),
             );
           }

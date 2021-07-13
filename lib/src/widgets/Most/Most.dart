@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../model/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
+import 'package:readmore/readmore.dart';
 
 class Most extends StatefulWidget {
   _MostState createState() => _MostState();
@@ -91,9 +92,14 @@ class PlayAndListAndInfo extends StatelessWidget {
 class Discription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        "بعد اندلاع الزومبي في لاس فيغاس,تقوم مجموعة من المرتزقة بالمجازفة النهائية,المغامرة في منطقة الحجر الصحي لسحب أعظم محاولة سرقة على الإطلاق.",
-        style: TextStyle(color: Colors.white60),
+      child: ReadMoreText(
+        'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+        trimLines: 2,
+        colorClickableText: Colors.pink,
+        trimMode: TrimMode.Line,
+        trimCollapsedText: 'Show more',
+        trimExpandedText: 'Show less',
+        moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -121,12 +127,10 @@ class Time extends StatelessWidget {
 class NewPhysics extends ScrollPhysics {
   const NewPhysics({ScrollPhysics parent}) : super(parent: parent);
 
-  @override
   NewPhysics applyTo(ScrollPhysics ancestor) {
     return NewPhysics(parent: buildParent(ancestor));
   }
 
-  @override
   SpringDescription get spring => const SpringDescription(
         mass: 80,
         stiffness: 100,
