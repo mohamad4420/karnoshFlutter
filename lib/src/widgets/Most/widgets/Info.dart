@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'Io9LDgu955Y',
-    params: YoutubePlayerParams(
-        // Defining custom playlist
-        autoPlay: true,
-        showControls: false,
-        showFullscreenButton: false));
+class Info extends StatefulWidget {
+  @override
+  _InfoState createState() => _InfoState();
+}
 
-class Info extends StatelessWidget {
+class _InfoState extends State<Info> {
   Widget build(BuildContext context) {
     return Container(
         width: MediaQuery.of(context).size.width * 0.33,
@@ -18,129 +14,7 @@ class Info extends StatelessWidget {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
           onPressed: () {
-            showModalBottomSheet(
-                backgroundColor: Colors.transparent,
-                context: context,
-                builder: (context) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFF212121),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20)),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Color(0xFF000000),
-                            offset: Offset(0, 1),
-                            blurRadius: 6)
-                      ],
-                    ),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(children: [
-                      Stack(children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20)),
-                          child: YoutubePlayerControllerProvider(
-                            controller: _controller,
-                            child: YoutubePlayerIFrame(
-                              aspectRatio: 16 / 9,
-                            ),
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              topRight: Radius.circular(20)),
-                          child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              color: Colors.black.withOpacity(0),
-                              height:
-                                  MediaQuery.of(context).size.width * 0.5625,
-                              child: Column(children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.volume_mute_outlined,
-                                      color: Colors.white),
-                                  iconSize: 30,
-                                )
-                              ])),
-                        ),
-                      ]),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        child: Row(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              color: Colors.black,
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.16,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.05,
-                                        child: IconButton(
-                                          color: Colors.white,
-                                          icon: Icon(Icons.close),
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.638,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.05,
-                                        child: Text(
-                                          "سان اندريس",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Container(
-                                    width: 60,
-                                    height: 30,
-                                    color: Colors.blue,
-                                  ),
-                                  Container(
-                                    color: Colors.blue,
-                                    child: Text(
-                                        "اذا طلع البدر علينا بعد بكرا بصير العيد واو "),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.2,
-                              height: MediaQuery.of(context).size.height * 0.15,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(
-                                      "https://karnoshab.herokuapp.com/_next/image?url=https%3A%2F%2Fmycima.dev%3A2053%2Fwp-content%2Fuploads%2F2021%2F02%2FAlice-Fades-Away-2021-347x520.jpg&w=1920&q=40"),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ]),
-                  );
-                });
+            test(context);
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -154,4 +28,208 @@ class Info extends StatelessWidget {
           ),
         ));
   }
+}
+
+void test(context) {
+  showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Container(
+            height: 260,
+            decoration: BoxDecoration(
+              color: Color(0xFF212121),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+              boxShadow: [
+                BoxShadow(
+                    color: Color(0xFF000000),
+                    offset: Offset(0, 1),
+                    blurRadius: 6)
+              ],
+            ),
+            child: Column(children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                child: Row(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      child: Center(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.22,
+                          height: 110,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5.0),
+                            child: Image(
+                              fit: BoxFit.fill,
+                              image: NetworkImage(
+                                  "https://karnoshab.herokuapp.com/_next/image?url=https%3A%2F%2Fmycima.dev%3A2053%2Fwp-content%2Fuploads%2F2021%2F02%2FAlice-Fades-Away-2021-347x520.jpg&w=1920&q=40"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width:
+                                    MediaQuery.of(context).size.width * 0.638,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                                  child: Text(
+                                    "سان اندريس",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.16,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                                child: IconButton(
+                                  color: Colors.white,
+                                  icon: Icon(Icons.close),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.73,
+                            height: 30,
+                            child: Row(
+                              children: [
+                                Text("2015  ",
+                                    style: TextStyle(color: Colors.white70)),
+                                Text("+16   ",
+                                    style: TextStyle(color: Colors.white70)),
+                                Text("1 ساعه 54 دقيقه   ",
+                                    style: TextStyle(color: Colors.white70))
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.72,
+                            child: Text(
+                              "اذا طلع البدر علينا بعد بكرو ا بر بصير العيد واواذا طلع البدر علينا بعد بكرو ا بر بصير العيد واو اذا طلع البدر علينا بعد بكرو ا بر بصير العيد واو",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Container(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary:
+                                      Colors.white70 // set the background color
+
+                                  ),
+                              onPressed: () {},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.black,
+                                  ),
+                                  Text(
+                                    'عرض',
+                                    style: TextStyle(color: Colors.black),
+                                  )
+                                ],
+                              ),
+                            )),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.download,
+                                    color: Colors.white70,
+                                  ),
+                                  Text('تنزيل',
+                                      style: TextStyle(color: Colors.white70))
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    color: Colors.white70,
+                                  ),
+                                  Text('اضافه',
+                                      style: TextStyle(color: Colors.white70))
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Divider(
+                color: Colors.grey,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 8, 8, 0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.info_outline,
+                      color: Colors.white70,
+                    ),
+                    Text(' المزيد من المعلومات ',
+                        style: TextStyle(color: Colors.white)),
+                    Container(
+                      child: Icon(
+                        Icons.subdirectory_arrow_left,
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ]),
+          ),
+        );
+      });
 }
