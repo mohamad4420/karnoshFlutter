@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 
 class FetchApi {
   Future<List<VidModels>> fetchVid(String url) async {
-    http.Response response = await http
-        .get(Uri.parse("https://karnoshab.herokuapp.com/api/movie/" + url));
+    http.Response response = await http.post(
+        Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"),
+        body: jsonEncode({"type": "movie_mt"}));
     if (response.statusCode == 200) {
       var body = json.decode(response.body);
 
