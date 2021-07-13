@@ -14,7 +14,7 @@ class _MostState extends State<Most> {
     FetchApi fetchApi = FetchApi();
 
     return FutureBuilder(
-        future: fetchApi.fetchVid("getMost"),
+        future: fetchApi.fetchVid('movie_mt', false, null),
         builder: (context, snapshot) {
           var vids = snapshot.data;
           if (!snapshot.hasData)

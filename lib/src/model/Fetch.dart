@@ -1,23 +1,30 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
 
 import 'models.dart';
 import 'package:http/http.dart' as http;
 
 class FetchApi {
-  Future<List<VidModels>> fetchVid(String url) async {
-    http.Response response = await http.post(
-        Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"),
-        body: jsonEncode({"type": "movie_mt"}));
-    if (response.statusCode == 200) {
-      var body = json.decode(response.body);
+  Future<List<VidModels>> fetchVid(
+      String type, bool sorted, String genres) async {
+    HttpClient httpClient = new HttpClient();
+    HttpClientRequest request = await httpClient.postUrl(
+        Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"));
+    request.headers.set('content-type', 'application/json');
+    request.add(utf8.encode(
+        json.encode({"type": type, "sorted": sorted, "genres": genres})));
+    HttpClientResponse response = await request.close();
 
-      List<VidModels> videos = [];
-      for (var item in body) {
-        videos.add(VidModels.fromJson(item));
-      }
-      print(videos[0].poster);
-      return videos;
+    String reply = await response.transform(utf8.decoder).join();
+    var body = json.decode(reply);
+    httpClient.close();
+    print(reply);
+    List<VidModels> videos = [];
+    for (var item in body) {
+      videos.add(VidModels.fromJson(item));
     }
-    return null;
+
+    return videos;
   }
 }
