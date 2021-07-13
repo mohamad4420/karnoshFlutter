@@ -50,7 +50,7 @@ class _MySliderState extends State<MySlider> {
             return Center(child: CircularProgressIndicator());
           else {
             return Container(
-              height: MediaQuery.of(context).size.height * 0.23,
+              height: MediaQuery.of(context).size.height * 0.25,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: vids.length,
