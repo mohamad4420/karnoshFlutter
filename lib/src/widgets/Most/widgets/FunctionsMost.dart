@@ -9,7 +9,7 @@ void BottomSliderMost(context, data) {
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Container(
-            height: 260,
+            height: 262,
             decoration: BoxDecoration(
               color: Color(0xFF212121),
               borderRadius: BorderRadius.only(
@@ -50,6 +50,7 @@ void BottomSliderMost(context, data) {
                           Row(
                             children: [
                               Container(
+                                constraints: BoxConstraints(maxHeight: 50),
                                 width:
                                     MediaQuery.of(context).size.width * 0.638,
                                 child: Padding(
@@ -95,14 +96,19 @@ void BottomSliderMost(context, data) {
                           ),
                           Container(
                               width: MediaQuery.of(context).size.width * 0.72,
-                              child: ReadMoreText(
-                                data.description,
-                                trimLines: 3,
-                                colorClickableText: Colors.white60,
-                                trimMode: TrimMode.Line,
-                                trimCollapsedText: 'المزيد',
-                                trimExpandedText: 'القليل',
-                                moreStyle: TextStyle(color: Colors.white),
+                              height: 80,
+                              child: Expanded(
+                                child: SingleChildScrollView(
+                                  child: ReadMoreText(
+                                    data.description,
+                                    trimLines: 3,
+                                    colorClickableText: Colors.white60,
+                                    trimMode: TrimMode.Line,
+                                    trimCollapsedText: 'المزيد',
+                                    trimExpandedText: 'القليل',
+                                    moreStyle: TextStyle(color: Colors.white),
+                                  ),
+                                ),
                               ))
                         ],
                       ),

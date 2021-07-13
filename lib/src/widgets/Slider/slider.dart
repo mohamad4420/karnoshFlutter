@@ -35,7 +35,7 @@ class _MySliderState extends State<MySlider> {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
     return FutureBuilder(
-        future: fetchApi.fetchVid("MovieUbdate"),
+        future: fetchApi.fetchVid("LastMovieAdded"),
         builder: (context, snapshot) {
           var vids = snapshot.data;
           if (!snapshot.hasData)
