@@ -5,11 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
 import 'package:readmore/readmore.dart';
 
-class Most extends StatefulWidget {
-  _MostState createState() => _MostState();
-}
-
-class _MostState extends State<Most> {
+class Most extends StatelessWidget {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
 
