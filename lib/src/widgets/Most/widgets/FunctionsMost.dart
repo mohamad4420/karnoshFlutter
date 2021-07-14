@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
-void BottomSliderMost(context, data) {
+void bottomSliderMost(context, data) {
   showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,

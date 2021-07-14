@@ -38,18 +38,18 @@ class Search extends SearchDelegate {
   final List<String> recent = ['Text 3', 'Text 4'];
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> Suggestions = [];
+    List<String> guggestions = [];
     query.isEmpty
-        ? Suggestions = recent
-        : Suggestions.addAll(
-            searchList.where((element) => element.contains(query)));
+        ? guggestions = recent
+        : guggestions
+            .addAll(searchList.where((element) => element.contains(query)));
     return ListView.builder(
-      itemCount: Suggestions.length,
+      itemCount: guggestions.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text(Suggestions[index]),
+          title: Text(guggestions[index]),
           onTap: () {
-            selected = Suggestions[index];
+            selected = guggestions[index];
             showResults(context);
           },
         );

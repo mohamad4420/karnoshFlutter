@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../model/models.dart';
 import './widgets/widgets.dart';
 import '../Most/widgets/FunctionsMost.dart';
+import '../responsive.dart';
 
 class MySlider extends StatefulWidget {
   const MySlider({Key key}) : super(key: key);
@@ -45,14 +46,17 @@ class _MySliderState extends State<MySlider>
             return Center(child: CircularProgressIndicator());
           else {
             return Container(
-              height: MediaQuery.of(context).size.height * 0.21,
+              height: Responsive.isMobile(context)
+                  ? MediaQuery.of(context).size.width * 0.38
+                  : MediaQuery.of(context).size.width * 0.18,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: vids.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        BottomSliderMost(context, vids[index]);
+                        if (Responsive.isMobile(context))
+                          bottomSliderMost(context, vids[index]);
                       },
                       child: MyCard(img: vids[index].poster),
                     );

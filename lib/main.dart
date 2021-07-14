@@ -58,9 +58,6 @@ class _HomePageState extends State<HomePage> {
                   backgroundColor: homeColor.withOpacity(0),
                   centerTitle:
                       device == "Desktop" || device == "Tablet" ? false : true,
-                  leading: device == "Desktop" || device == "Tablet"
-                      ? MyIcon()
-                      : null,
                   actions: <Widget>[
                     IconButton(
                         onPressed: () {

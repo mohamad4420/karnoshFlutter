@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../responsive.dart';
 
 class MyCard extends StatelessWidget {
   @required
@@ -8,7 +9,9 @@ class MyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
-      width: MediaQuery.of(context).size.width * 0.29,
+      width: Responsive.isMobile(context)
+          ? MediaQuery.of(context).size.width * 0.29
+          : MediaQuery.of(context).size.width * 0.13,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Image(

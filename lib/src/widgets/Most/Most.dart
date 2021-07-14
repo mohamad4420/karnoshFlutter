@@ -1,13 +1,24 @@
+import 'package:karnosh/src/widgets/Most/widgets/Desktop/DesktopMain.dart';
 import './widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import '../../model/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
 import 'package:readmore/readmore.dart';
+import '../responsive.dart';
 
 class Most extends StatelessWidget {
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
+    var mainMost;
+    var innerMost;
+    if (Responsive.isMobile(context)) {
+      mainMost = 0.7;
+      innerMost = 0.66;
+    } else {
+      mainMost = 0.95;
+      innerMost = 0.948;
+    }
 
     return FutureBuilder(
         future: fetchApi.fetchVid('movie_mt', false, null),
@@ -16,12 +27,12 @@ class Most extends StatelessWidget {
           if (!snapshot.hasData)
             return Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.7,
+              height: MediaQuery.of(context).size.height * mainMost,
               child: Center(child: CircularProgressIndicator()),
             );
           else
             return Container(
-              height: MediaQuery.of(context).size.height * 0.7,
+              height: MediaQuery.of(context).size.height * mainMost,
               width: MediaQuery.of(context).size.width,
               child: PageView.builder(
                   physics: NewPhysics(),
@@ -41,16 +52,19 @@ class Most extends StatelessWidget {
                                 blurRadius: 10)
                           ],
                           image: DecorationImage(
-                            image: NetworkImage(vids[index].poster),
+                            image: Responsive.isMobile(context)
+                                ? NetworkImage(vids[index].poster)
+                                : NetworkImage(vids[index].galary),
                             fit: BoxFit.fill,
                           ),
                         ),
-                        height: MediaQuery.of(context).size.height * 0.66,
+                        height: MediaQuery.of(context).size.height * innerMost,
                         width: MediaQuery.of(context).size.width,
                       ),
                       Container(
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.66,
+                          height:
+                              MediaQuery.of(context).size.height * innerMost,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               gradient: LinearGradient(
@@ -61,13 +75,17 @@ class Most extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.fromLTRB(
                             0, MediaQuery.of(context).size.height * 0.45, 0, 0),
-                        child: Column(
-                          children: [
-                            Name(vids[index].name),
-                            Ganeress(
-                                vids[index].Genres, vids[index].Genres.length),
-                            PlayAndListAndInfo()
-                          ],
+                        child: Responsive(
+                          mobile: Column(
+                            children: [
+                              Name(vids[index].name),
+                              Ganeress(vids[index].genres,
+                                  vids[index].genres.length),
+                              PlayAndListAndInfo()
+                            ],
+                          ),
+                          desktop: DesktopMain(data: vids[index]),
+                          tablet: Text("Asd"),
                         ),
                       )
                     ]);

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 class VidModels {
   /*
   final List<String> genres;
@@ -29,17 +27,19 @@ class VidModels {
   String description;
   String rating;
   String time;
-  List<String> Genres = [];
+  String galary;
+  List<String> genres = [];
 
   VidModels(this.name, this.date, this.type, this.description, this.poster,
-      this.rating, this.Genres);
+      this.rating, this.genres);
   VidModels.fromJson(Map<String, dynamic> map) {
     this.name = map['name'];
     this.date = map['date'];
     this.type = map['type'];
     this.time = map['time'];
+    this.galary = map['Galary'];
     if (map['genres'] != null)
-      (map['genres'] as List).map((i) => this.Genres.add(i)).toList();
+      (map['genres'] as List).map((i) => this.genres.add(i)).toList();
     this.poster = map['poster'];
     this.description = map['Description'];
     if (map['rating'] == null) {

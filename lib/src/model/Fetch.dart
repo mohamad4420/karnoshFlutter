@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:async';
 
 import 'models.dart';
-import 'package:http/http.dart' as http;
 
 class FetchApi {
   Future<List<VidModels>> fetchVid(
@@ -19,7 +18,6 @@ class FetchApi {
     String reply = await response.transform(utf8.decoder).join();
     var body = json.decode(reply);
     httpClient.close();
-    print(reply);
     List<VidModels> videos = [];
     for (var item in body) {
       videos.add(VidModels.fromJson(item));
