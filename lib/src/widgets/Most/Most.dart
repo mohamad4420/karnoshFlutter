@@ -13,22 +13,36 @@ class Most extends StatelessWidget {
     var mainMost;
     var innerMost;
     if (Responsive.isMobile(context)) {
-      mainMost = 0.7;
-      innerMost = 0.66;
+      mainMost = 0.75;
+      innerMost = 0.7398;
     } else {
       mainMost = 0.95;
       innerMost = 0.948;
     }
 
     return FutureBuilder(
-        future: fetchApi.fetchVid('movie_mt', false, null),
+        future: fetchApi.fetchVid('anime', true, null),
         builder: (context, snapshot) {
           var vids = snapshot.data;
           if (!snapshot.hasData)
             return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * mainMost,
-              child: Center(child: CircularProgressIndicator()),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12,
+                        offset: Offset(0, 1),
+                        blurRadius: 8)
+                  ],
+                ),
+                height: MediaQuery.of(context).size.height * innerMost,
+                width: MediaQuery.of(context).size.width,
+              ),
             );
           else
             return Container(
@@ -49,7 +63,7 @@ class Most extends StatelessWidget {
                             BoxShadow(
                                 color: Color(0xFF000000),
                                 offset: Offset(0, 1),
-                                blurRadius: 10)
+                                blurRadius: 3)
                           ],
                           image: DecorationImage(
                             image: Responsive.isMobile(context)
@@ -74,7 +88,12 @@ class Most extends StatelessWidget {
                               ))),
                       Container(
                         padding: EdgeInsets.fromLTRB(
-                            0, MediaQuery.of(context).size.height * 0.45, 0, 0),
+                            0,
+                            Responsive.isMobile(context)
+                                ? MediaQuery.of(context).size.height * 0.45
+                                : MediaQuery.of(context).size.height * 0.25,
+                            0,
+                            0),
                         child: Responsive(
                           mobile: Column(
                             children: [
@@ -85,7 +104,7 @@ class Most extends StatelessWidget {
                             ],
                           ),
                           desktop: DesktopMain(data: vids[index]),
-                          tablet: Text("Asd"),
+                          tablet: DesktopMain(data: vids[index]),
                         ),
                       )
                     ]);
