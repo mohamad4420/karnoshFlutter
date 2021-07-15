@@ -36,8 +36,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var homeColor = Color(0xFF212121);
-
+  var homeColor = Colors.black;
+//0xFF212121
   final List<String> listGen = List.generate(10, (index) => 'Text $index');
 
   Widget build(BuildContext context) {
@@ -138,5 +138,14 @@ class _HomePageState extends State<HomePage> {
                 ))
           ],
         ));
+  }
+}
+
+class UnderMenu extends StatelessWidget {
+  const UnderMenu({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

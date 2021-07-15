@@ -13,8 +13,8 @@ class Most extends StatelessWidget {
     var mainMost;
     var innerMost;
     if (Responsive.isMobile(context)) {
-      mainMost = 0.75;
-      innerMost = 0.7398;
+      mainMost = 0.8;
+      innerMost = 0.7988;
     } else {
       mainMost = 0.95;
       innerMost = 0.948;
@@ -37,7 +37,7 @@ class Most extends StatelessWidget {
                     BoxShadow(
                         color: Colors.black12,
                         offset: Offset(0, 1),
-                        blurRadius: 8)
+                        blurRadius: 20)
                   ],
                 ),
                 height: MediaQuery.of(context).size.height * innerMost,
@@ -61,7 +61,7 @@ class Most extends StatelessWidget {
                               bottomRight: Radius.circular(15)),
                           boxShadow: [
                             BoxShadow(
-                                color: Color(0xFF000000),
+                                color: Color(0xFF212121),
                                 offset: Offset(0, 1),
                                 blurRadius: 3)
                           ],
@@ -84,13 +84,13 @@ class Most extends StatelessWidget {
                               gradient: LinearGradient(
                                 begin: const FractionalOffset(0.0, 1.0),
                                 end: const FractionalOffset(0.0, 0.0),
-                                colors: [Color(0xFF212121), Colors.transparent],
+                                colors: [Colors.black, Colors.transparent],
                               ))),
                       Container(
                         padding: EdgeInsets.fromLTRB(
                             0,
                             Responsive.isMobile(context)
-                                ? MediaQuery.of(context).size.height * 0.45
+                                ? MediaQuery.of(context).size.height * 0.55
                                 : MediaQuery.of(context).size.height * 0.25,
                             0,
                             0),
@@ -128,7 +128,6 @@ class Discription extends StatelessWidget {
       child: ReadMoreText(
         'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
         trimLines: 2,
-        colorClickableText: Colors.pink,
         trimMode: TrimMode.Line,
         trimCollapsedText: 'Show more',
         trimExpandedText: 'Show less',
