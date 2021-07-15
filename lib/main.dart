@@ -66,98 +66,121 @@ class _HomePageState extends State<HomePage> {
         ),
         extendBodyBehindAppBar: true,
         backgroundColor: homeColor,
-        body: Stack(
-          children: [
-            Mybody(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 75, 0, 0),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 30,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Center(
-                          child: GestureDetector(
-                        onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Movie()),
-                          )
-                        },
-                        child: Text(
-                          "افلام",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )),
-                    ),
-                    Expanded(
-                      child: Center(
-                          child: GestureDetector(
-                        onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Searess()),
-                          )
-                        },
-                        child: Text("مسلاسلات",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold)),
-                      )),
-                    ),
-                    Expanded(
-                      child: Center(
-                          child: GestureDetector(
-                        onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Anime()),
-                          )
-                        },
-                        child: Text("انمي",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold)),
-                      )),
-                    ),
-                  ],
-                ),
-              ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              floating: true,
             ),
-            Positioned(
-                top: 0,
-                left: 0,
-                right: 0, //https://karnoshab.herokuapp.com/icon/favicon.png
-                child: AppBar(
-                  brightness: Brightness.dark,
-                  backgroundColor: Colors.transparent,
-                  actions: <Widget>[
-                    IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SearchPage()),
-                          );
-                        },
-                        icon: Icon(Icons.search)),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image(
-                          width: 30,
-                          image: NetworkImage(
-                              "https://i.pinimg.com/originals/b6/77/cd/b677cd1cde292f261166533d6fe75872.png")),
-                    )
-                  ],
-                ))
+            SliverList(
+                delegate: SliverChildListDelegate([
+              Container(
+                width: double.infinity,
+                child: Mybody(),
+              )
+            ]))
           ],
         ));
+  }
+}
+
+class StackMy extends StatelessWidget {
+  const StackMy({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Mybody(),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 75, 0, 0),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 30,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Center(
+                      child: GestureDetector(
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Movie()),
+                      )
+                    },
+                    child: Text(
+                      "افلام",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )),
+                ),
+                Expanded(
+                  child: Center(
+                      child: GestureDetector(
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Searess()),
+                      )
+                    },
+                    child: Text("مسلاسلات",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                  )),
+                ),
+                Expanded(
+                  child: Center(
+                      child: GestureDetector(
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Anime()),
+                      )
+                    },
+                    child: Text("انمي",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                  )),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+            top: 0,
+            left: 0,
+            right: 0, //https://karnoshab.herokuapp.com/icon/favicon.png
+            child: AppBar(
+              brightness: Brightness.dark,
+              backgroundColor: Colors.transparent,
+              actions: <Widget>[
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SearchPage()),
+                      );
+                    },
+                    icon: Icon(Icons.search)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image(
+                      width: 30,
+                      image: NetworkImage(
+                          "https://i.pinimg.com/originals/b6/77/cd/b677cd1cde292f261166533d6fe75872.png")),
+                )
+              ],
+            ))
+      ],
+    );
   }
 }
