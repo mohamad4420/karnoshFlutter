@@ -15,7 +15,8 @@ class SelectionPage extends StatelessWidget {
             backgroundColor: Colors.black,
             appBar: AppBar(
               title: Text("مسلسلات"),
-              backgroundColor: Color(0xFF222222),
+              brightness: Brightness.dark,
+              backgroundColor: Colors.black,
             ),
             body: Column(children: [
               Container(
