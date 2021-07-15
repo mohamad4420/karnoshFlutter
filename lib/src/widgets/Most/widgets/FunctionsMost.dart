@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import '../../../pages/SelectionPage.dart';
 
 void bottomSliderMost(context, data) {
   showModalBottomSheet(
@@ -35,10 +36,20 @@ void bottomSliderMost(context, data) {
                           height: 110,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5.0),
-                            child: Image(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(data.poster),
-                            ),
+                            child: GestureDetector(
+                                onTap: () => {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => SelectionPage(
+                                                  datas: data,
+                                                )),
+                                      )
+                                    },
+                                child: Image(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(data.poster),
+                                )),
                           ),
                         ),
                       ),

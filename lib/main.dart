@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/pages/search.dart';
 import './src/body.dart';
@@ -38,12 +37,33 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var homeColor = Colors.black;
 //0xFF212121
-  final List<String> listGen = List.generate(10, (index) => 'Text $index');
+  //final List<String> listGen = List.generate(10, (index) => 'Text $index');
+  var _itemIndex = 0;
 
   Widget build(BuildContext context) {
     mediaQueryData ??= MediaQuery.of(context);
 
     return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _itemIndex,
+          onTap: (value) {
+            setState(() {
+              _itemIndex = value;
+              print(value);
+            });
+          },
+          selectedItemColor: Colors.cyan,
+          items: [
+            BottomNavigationBarItem(
+                backgroundColor: homeColor,
+                icon: Icon(Icons.home),
+                label: "الرئيسة"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.download), label: "الرئيسة"),
+            BottomNavigationBarItem(icon: Icon(Icons.call), label: "الرئيسة"),
+            BottomNavigationBarItem(icon: Icon(Icons.menu), label: "الرئيسة")
+          ],
+        ),
         extendBodyBehindAppBar: true,
         backgroundColor: homeColor,
         body: Stack(
@@ -139,14 +159,5 @@ class _HomePageState extends State<HomePage> {
                 ))
           ],
         ));
-  }
-}
-
-class UnderMenu extends StatelessWidget {
-  const UnderMenu({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
