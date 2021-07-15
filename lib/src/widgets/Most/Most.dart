@@ -29,17 +29,6 @@ class Most extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * mainMost,
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15)),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black12,
-                        offset: Offset(0, 1),
-                        blurRadius: 20)
-                  ],
-                ),
                 height: MediaQuery.of(context).size.height * innerMost,
                 width: MediaQuery.of(context).size.width,
               ),
@@ -56,15 +45,6 @@ class Most extends StatelessWidget {
                     return Stack(key: ObjectKey(context), children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(15),
-                              bottomRight: Radius.circular(15)),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color(0xFF212121),
-                                offset: Offset(0, 1),
-                                blurRadius: 3)
-                          ],
                           image: DecorationImage(
                             image: Responsive.isMobile(context)
                                 ? NetworkImage(vids[index].poster)
@@ -80,12 +60,11 @@ class Most extends StatelessWidget {
                           height:
                               MediaQuery.of(context).size.height * innerMost,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
                               gradient: LinearGradient(
-                                begin: const FractionalOffset(0.0, 1.0),
-                                end: const FractionalOffset(0.0, 0.0),
-                                colors: [Colors.black, Colors.transparent],
-                              ))),
+                            begin: const FractionalOffset(0.0, 1.0),
+                            end: const FractionalOffset(0.0, 0.0),
+                            colors: [Colors.black, Colors.transparent],
+                          ))),
                       Container(
                         padding: EdgeInsets.fromLTRB(
                             0,

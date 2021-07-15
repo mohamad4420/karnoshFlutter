@@ -7,6 +7,7 @@ import 'models.dart';
 class FetchApi {
   Future<List<VidModels>> fetchVid(
       String type, bool sorted, String genres) async {
+    print("fetchCaled");
     HttpClient httpClient = new HttpClient();
     HttpClientRequest request = await httpClient.postUrl(
         Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"));

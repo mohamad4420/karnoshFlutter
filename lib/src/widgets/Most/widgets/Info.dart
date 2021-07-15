@@ -12,6 +12,7 @@ class _InfoState extends State<Info> {
         height: 70,
         child: TextButton(
           style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
           onPressed: () {
             // BottomSliderMost(context);

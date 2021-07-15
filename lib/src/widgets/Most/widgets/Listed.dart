@@ -25,6 +25,7 @@ class _ListedState extends State<Listed>
         height: 70,
         child: TextButton(
           style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
               backgroundColor: MaterialStateProperty.all(Colors.transparent)),
           onPressed: () {
             _setListed();
@@ -34,11 +35,11 @@ class _ListedState extends State<Listed>
             children: [
               Icon(
                 _isListed ? Icons.check : Icons.add,
-                color: _isListed ? Colors.blue[500] : Colors.white70,
+                color: _isListed ? Colors.green : Colors.white70,
               ),
               Text(_isListed ? 'تم الاضافة' : 'اضافة',
                   style: TextStyle(
-                      color: _isListed ? Colors.blue[500] : Colors.white70))
+                      color: _isListed ? Colors.green : Colors.white70))
             ],
           ),
         ));

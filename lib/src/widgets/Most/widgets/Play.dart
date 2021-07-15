@@ -7,7 +7,7 @@ class Play extends StatelessWidget {
         height: 40,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: Colors.white70 // set the background color
+              primary: Colors.white // set the background color
 
               ),
           onPressed: () {},
@@ -20,7 +20,7 @@ class Play extends StatelessWidget {
               ),
               Text(
                 'تشغيل',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontSize: 16),
               )
             ],
           ),

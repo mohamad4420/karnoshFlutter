@@ -5,16 +5,27 @@ class Ganeress extends StatelessWidget {
   int count;
   Ganeress(this.genData, this.count);
   Widget build(BuildContext context) {
+    var ind = 0;
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 30,
         child: Center(
             child: ListView.builder(
-                itemCount: this.count,
+                itemCount: this.count * 2 - 1,
                 shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis
+                    .horizontal, //GenereItem(name: genData[index].toString());
                 itemBuilder: (context, index) {
-                  return GenereItem(name: genData[index].toString());
+                  if (index % 2 != 0) ind++;
+                  return index % 2 != 0
+                      ? Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Text(
+                            ".",
+                            style: TextStyle(color: Colors.green, fontSize: 15),
+                          ),
+                        )
+                      : GenereItem(name: genData[ind].toString());
                 })));
   }
 }
