@@ -116,7 +116,8 @@ class _HomePageState extends State<HomePage> {
                 left: 0,
                 right: 0, //https://karnoshab.herokuapp.com/icon/favicon.png
                 child: AppBar(
-                  backgroundColor: homeColor.withOpacity(0.3),
+                  brightness: Brightness.dark,
+                  backgroundColor: Colors.transparent,
                   actions: <Widget>[
                     IconButton(
                         onPressed: () {
