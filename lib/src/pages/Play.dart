@@ -33,6 +33,7 @@ class WebViewExampleState extends State<WebViewExample> {
   void initState() {
     super.initState();
     // Enable hybrid composition.
+    if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
 //https://streamtape.com/e/YWyDojgxaDF211
@@ -42,7 +43,7 @@ class WebViewExampleState extends State<WebViewExample> {
     var hi = MediaQuery.of(context).size.height;
     return Container(
       child: WebView(
-          initialUrl: "http://streamtape.com/e/YWyDojgxaDF211",
+          initialUrl: "https://streamtape.com/e/YWyDojgxaDF211",
           javascriptMode: JavascriptMode.unrestricted,
           navigationDelegate: (NavigationRequest request) {
             return NavigationDecision.prevent;
