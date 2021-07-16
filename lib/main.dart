@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/pages/search.dart';
+import 'package:karnosh/src/widgets/Most/Most.dart';
 import './src/body.dart';
 import '/src/pages/search.dart';
 import 'package:flutter/services.dart';
 import './src/pages/Movie.dart';
 import './src/pages/Anime.dart';
 import './src/pages/Searess.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,12 +21,17 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
+
     return MaterialApp(
         title: 'karnosh',
         debugShowCheckedModeBanner: false,
         home: Directionality(
           textDirection: TextDirection.rtl,
-          child: HomePage(),
+          child: Scaffold(
+            backgroundColor: Colors.black,
+            body: HomePage(),
+          ),
         ));
   }
 }
@@ -44,6 +51,7 @@ class _HomePageState extends State<HomePage> {
     mediaQueryData ??= MediaQuery.of(context);
 
     return Scaffold(
+        extendBodyBehindAppBar: true,
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _itemIndex,
           onTap: (value) {
@@ -64,19 +72,37 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(icon: Icon(Icons.menu), label: "الرئيسة")
           ],
         ),
-        extendBodyBehindAppBar: true,
         backgroundColor: homeColor,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
               floating: true,
+              brightness: Brightness.dark,
+              backgroundColor: Colors.transparent,
+              actions: <Widget>[
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SearchPage()),
+                      );
+                    },
+                    icon: Icon(Icons.search)),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image(
+                      width: 30,
+                      image: NetworkImage(
+                          "https://i.pinimg.com/originals/b6/77/cd/b677cd1cde292f261166533d6fe75872.png")),
+                )
+              ],
             ),
             SliverList(
                 delegate: SliverChildListDelegate([
               Container(
                 width: double.infinity,
                 child: Mybody(),
-              )
+              ),
             ]))
           ],
         ));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../pages/Play.dart';
 
 class Play extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -10,7 +11,10 @@ class Play extends StatelessWidget {
               primary: Colors.white // set the background color
 
               ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => PlayVideo()));
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
