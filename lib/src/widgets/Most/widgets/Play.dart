@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../pages/Play.dart';
+import '../../../pages/ServerList.dart';
 
 class Play extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class Play extends StatelessWidget {
               ),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => PlayVideo()));
+                context, MaterialPageRoute(builder: (context) => ServerList()));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

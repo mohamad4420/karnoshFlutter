@@ -3,28 +3,23 @@ import 'package:flutter/services.dart';
 
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
-import '../widgets/Most/Most.dart';
-import '../widgets/Slider/slider.dart';
 
 class PlayVideo extends StatelessWidget {
-  const PlayVideo({Key key}) : super(key: key);
+  final String url;
+  PlayVideo(this.url);
 
-  @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-      DeviceOrientation.landscapeLeft,
-    ]);
-
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: WebViewExample(),
+      child: WebViewExample(url: url),
     );
   }
 }
 
 class WebViewExample extends StatefulWidget {
-  @override
+  final String url;
+  WebViewExample({this.url});
+
   WebViewExampleState createState() => WebViewExampleState();
 }
 
@@ -32,18 +27,28 @@ class WebViewExampleState extends State<WebViewExample> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
     // Enable hybrid composition.
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
+
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
   }
 
 //https://streamtape.com/e/YWyDojgxaDF211
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var hi = MediaQuery.of(context).size.height;
     return Container(
       child: WebView(
-          initialUrl: "https://streamtape.com/e/YWyDojgxaDF211",
+          initialUrl: widget.url,
           javascriptMode: JavascriptMode.unrestricted,
           navigationDelegate: (NavigationRequest request) {
             return NavigationDecision.prevent;
