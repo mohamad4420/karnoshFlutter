@@ -5,14 +5,19 @@ import '../Most/widgets/FunctionsMost.dart';
 import '../responsive.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SliderItem extends StatelessWidget {
+class SliderItem extends StatefulWidget {
   final String name;
   final String type;
   final bool stored;
   final String genres;
   const SliderItem({Key key, this.name, this.genres, this.stored, this.type})
       : super(key: key);
+  _SliderItemState createState() => _SliderItemState();
+}
 
+class _SliderItemState extends State<SliderItem>
+    with AutomaticKeepAliveClientMixin {
+  bool get wantKeepAlive => true;
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
     return Container(
@@ -24,14 +29,15 @@ class SliderItem extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: Text(
-                name,
+                widget.name,
                 style: TextStyle(fontSize: 22, color: Colors.white),
                 textAlign: TextAlign.start,
               ),
             ),
           ),
           FutureBuilder(
-              future: fetchApi.fetchVid(type, stored, genres),
+              future:
+                  fetchApi.fetchVid(widget.type, widget.stored, widget.genres),
               builder: (context, snapshot) {
                 var vids = snapshot.data;
                 if (!snapshot.hasData)
