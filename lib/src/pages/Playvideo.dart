@@ -27,6 +27,8 @@ class WebViewExampleState extends State<WebViewExample> {
   @override
   void initState() {
     super.initState();
+
+    SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
@@ -36,6 +38,7 @@ class WebViewExampleState extends State<WebViewExample> {
   }
 
   dispose() {
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
