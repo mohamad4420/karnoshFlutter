@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Ganeress extends StatelessWidget {
-  var genData;
-  int count;
+  final genData;
+  final int count;
   Ganeress(this.genData, this.count);
   Widget build(BuildContext context) {
     var ind = 0;

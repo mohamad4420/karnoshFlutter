@@ -61,7 +61,6 @@ void bottomSliderMost(context, data) {
                           Row(
                             children: [
                               Container(
-                                constraints: BoxConstraints(maxHeight: 50),
                                 width:
                                     MediaQuery.of(context).size.width * 0.638,
                                 child: Padding(
@@ -108,18 +107,23 @@ void bottomSliderMost(context, data) {
                           Container(
                               width: MediaQuery.of(context).size.width * 0.72,
                               height: 80,
-                              child: Expanded(
-                                child: SingleChildScrollView(
-                                  child: ReadMoreText(
-                                    data.description,
-                                    trimLines: 3,
-                                    colorClickableText: Colors.white60,
-                                    trimMode: TrimMode.Line,
-                                    trimCollapsedText: 'المزيد',
-                                    trimExpandedText: 'القليل',
-                                    moreStyle: TextStyle(color: Colors.white),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: SingleChildScrollView(
+                                      child: ReadMoreText(
+                                        data.description,
+                                        trimLines: 3,
+                                        colorClickableText: Colors.white60,
+                                        trimMode: TrimMode.Line,
+                                        trimCollapsedText: 'المزيد',
+                                        trimExpandedText: 'القليل',
+                                        moreStyle:
+                                            TextStyle(color: Colors.white),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ))
                         ],
                       ),

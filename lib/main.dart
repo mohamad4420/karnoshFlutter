@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   var homeColor = Colors.black;
 //0xFF212121
   //final List<String> listGen = List.generate(10, (index) => 'Text $index');
-  var _itemIndex = 0;
+  var botIndex = 0;
 
   Widget build(BuildContext context) {
     mediaQueryData ??= MediaQuery.of(context);
@@ -53,23 +53,31 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _itemIndex,
-          onTap: (value) {
-            setState(() {
-              _itemIndex = value;
-              print(value);
-            });
-          },
-          selectedItemColor: Colors.cyan,
+          currentIndex: botIndex,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Color(0xFF6200EE),
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(.60),
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          onTap: (value) {},
           items: [
             BottomNavigationBarItem(
-                backgroundColor: homeColor,
-                icon: Icon(Icons.home),
-                label: "الرئيسة"),
+              label: 'Favorites',
+              icon: Icon(Icons.favorite),
+            ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.download), label: "الرئيسة"),
-            BottomNavigationBarItem(icon: Icon(Icons.call), label: "الرئيسة"),
-            BottomNavigationBarItem(icon: Icon(Icons.menu), label: "الرئيسة")
+              label: 'Music',
+              icon: Icon(Icons.music_note),
+            ),
+            BottomNavigationBarItem(
+              label: 'Places',
+              icon: Icon(Icons.location_on),
+            ),
+            BottomNavigationBarItem(
+              label: 'News',
+              icon: Icon(Icons.library_books),
+            ),
           ],
         ),
         backgroundColor: homeColor,

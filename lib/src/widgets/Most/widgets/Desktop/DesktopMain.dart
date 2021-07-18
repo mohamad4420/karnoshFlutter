@@ -6,10 +6,10 @@ class DesktopMain extends StatelessWidget {
   final VidModels data;
 
   DesktopMain({Key key, this.data}) : super(key: key);
-  double padingAll = 10;
-  double betwenItems = 10;
-  double betwengeneress = 5;
-  var btnColor = Colors.grey[600];
+  final double padingAll = 10;
+  final double betwenItems = 10;
+  final double betwengeneress = 5;
+  final btnColor = Colors.grey[600];
   @override
   Widget build(BuildContext context) {
     return Container(
