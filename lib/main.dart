@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/pages/search.dart';
-import 'package:karnosh/src/widgets/Most/Most.dart';
 import './src/body.dart';
 import '/src/pages/search.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +13,8 @@ void main() {
 }
 
 var mediaQueryData;
+var colorMenu = Colors.transparent;
+var colorMenuSlide = Colors.black;
 
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -52,41 +53,13 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         extendBodyBehindAppBar: true,
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: botIndex,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xFF6200EE),
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white.withOpacity(.60),
-          selectedFontSize: 14,
-          unselectedFontSize: 14,
-          onTap: (value) {},
-          items: [
-            BottomNavigationBarItem(
-              label: 'Favorites',
-              icon: Icon(Icons.favorite),
-            ),
-            BottomNavigationBarItem(
-              label: 'Music',
-              icon: Icon(Icons.music_note),
-            ),
-            BottomNavigationBarItem(
-              label: 'Places',
-              icon: Icon(Icons.location_on),
-            ),
-            BottomNavigationBarItem(
-              label: 'News',
-              icon: Icon(Icons.library_books),
-            ),
-          ],
-        ),
         backgroundColor: homeColor,
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
               floating: true,
               brightness: Brightness.dark,
-              backgroundColor: Colors.transparent,
+              backgroundColor: colorMenuSlide,
               actions: <Widget>[
                 IconButton(
                     onPressed: () {
@@ -107,6 +80,39 @@ class _HomePageState extends State<HomePage> {
             ),
             SliverList(
                 delegate: SliverChildListDelegate([
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                color: Colors.white.withOpacity(0.5),
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Center(
+                          child: Text(
+                            "افلام",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Center(
+                          child: Text(
+                            "مسلسلات",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: Center(
+                          child: Text(
+                            "انمي",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                        )),
+                  ],
+                ),
+              ),
               Container(
                 width: double.infinity,
                 child: Mybody(),
