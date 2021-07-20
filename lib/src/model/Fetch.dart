@@ -7,7 +7,6 @@ import 'models.dart';
 class FetchApi {
   Future<List<VidModels>> fetchVid(
       String type, bool sorted, String genres) async {
-    print("fetchCaled");
     HttpClient httpClient = new HttpClient();
     HttpClientRequest request = await httpClient.postUrl(
         Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"));
@@ -25,5 +24,27 @@ class FetchApi {
     }
 
     return videos;
+  }
+}
+
+class FetshServers {
+  Future<List<SerModel>> fetchServer(String name) async {
+    HttpClient httpClient = new HttpClient();
+    HttpClientRequest request = await httpClient.postUrl(
+        Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"));
+    request.headers.set('content-type', 'application/json');
+    request.add(utf8.encode(json.encode({"name": name})));
+    HttpClientResponse response = await request.close();
+
+    String reply = await response.transform(utf8.decoder).join();
+    var body = json.decode(reply);
+
+    httpClient.close();
+    List<SerModel> servers = [];
+    for (var item in body) {
+      servers.add(SerModel.fromJson(item));
+    }
+
+    return servers;
   }
 }

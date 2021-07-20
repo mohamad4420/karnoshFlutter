@@ -8,6 +8,7 @@ class MyCard extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.grey[900],
       margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
       width: Responsive.isMobile(context)
           ? MediaQuery.of(context).size.width * 0.29

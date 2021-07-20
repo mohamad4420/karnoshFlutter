@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Playvideo.dart';
+import '../model/models.dart';
 
 List<String> servers = [
   'https://streamtape.com/e/YWyDojgxaDF211',
@@ -12,50 +13,65 @@ List<String> servers = [
 ];
 
 class ServerList extends StatelessWidget {
-  const ServerList({Key key}) : super(key: key);
+  final name;
+  const ServerList({Key key, this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Center(
-          child: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                      itemCount: servers.length,
-                      itemBuilder: (context, index) {
-                        return TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          PlayVideo(servers[index])));
-                            },
-                            child: Text(
-                              servers[index].split('https://')[1].split('.')[0],
-                              style: TextStyle(color: Colors.white),
-                            ));
-                      }),
+    FetshServers fetchApi = FetshServers();
+    return FutureBuilder(
+      future: fetchApi.fetchServer(name),
+      builder: (context, snapshot) {
+        var vids = snapshot.data;
+        if (snapshot.hasData) {
+          print(snapshot);
+          return Directionality(
+              textDirection: TextDirection.rtl,
+              child: Center(
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(50.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        child: ListView.builder(
+                            itemCount: servers.length,
+                            itemBuilder: (context, index) {
+                              return TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PlayVideo(servers[index])));
+                                  },
+                                  child: Text(
+                                    servers[index]
+                                        .split('https://')[1]
+                                        .split('.')[0],
+                                    style: TextStyle(color: Colors.white),
+                                  ));
+                            }),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 50,
+                      left: 0,
+                      right: 0,
+                      child: FloatingActionButton(
+                          child: Icon(Icons.exit_to_app),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    )
+                  ],
                 ),
-              ),
-              Positioned(
-                bottom: 50,
-                left: 0,
-                right: 0,
-                child: FloatingActionButton(
-                    child: Icon(Icons.exit_to_app),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-              )
-            ],
-          ),
-        ));
+              ));
+        } else {
+          return Container();
+        }
+      },
+    );
   }
 }

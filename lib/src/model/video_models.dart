@@ -28,7 +28,7 @@ class VidModels {
   String rating;
   String time;
   String galary;
-  List<String> genres = [];
+  List<String> genres = [""];
 
   VidModels(this.name, this.date, this.type, this.description, this.poster,
       this.rating, this.genres);
@@ -38,8 +38,21 @@ class VidModels {
     this.type = map['type'];
     this.time = map['time'];
     this.galary = map['Galary'];
-    if (map['genres'] != null)
+    String type = map['type'];
+
+    if (type.contains("movie")) {
+      genres = ["افلام"];
+    }
+    if (type.contains("ser")) {
+      genres = ["مسلسلات"];
+    }
+    if (type.contains("anime")) {
+      genres = ["انمي"];
+    }
+
+    if (map['genres'] != null || map['genres'] != "n/A") {
       (map['genres'] as List).map((i) => this.genres.add(i)).toList();
+    }
     this.poster = map['poster'];
     this.description = map['Description'];
     if (map['rating'] == null) {

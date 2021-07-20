@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../model/models.dart';
 import './widgets/widgets.dart';
-import '../Most/widgets/FunctionsMost.dart';
+import '../FunctionsMost.dart';
 import '../responsive.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -10,6 +10,7 @@ class SliderItem extends StatefulWidget {
   final String type;
   final bool stored;
   final String genres;
+
   const SliderItem({Key key, this.name, this.genres, this.stored, this.type})
       : super(key: key);
   _SliderItemState createState() => _SliderItemState();
@@ -40,6 +41,7 @@ class _SliderItemState extends State<SliderItem>
                   fetchApi.fetchVid(widget.type, widget.stored, widget.genres),
               builder: (context, snapshot) {
                 var vids = snapshot.data;
+
                 if (!snapshot.hasData)
                   return LoadingSlider();
                 else {
@@ -84,7 +86,7 @@ class LoadingSlider extends StatelessWidget {
       child: Shimmer.fromColors(
         direction: ShimmerDirection.rtl,
         enabled: true,
-        baseColor: Colors.white12,
+        baseColor: Colors.grey[900],
         highlightColor: Colors.white24,
         child: Expanded(
           child: ListView.builder(
@@ -92,7 +94,7 @@ class LoadingSlider extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (BuildContext ctxt, index) {
                 return Container(
-                  color: Colors.black38,
+                  color: Colors.grey[900],
                   margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
                   width: Responsive.isMobile(context)
                       ? MediaQuery.of(context).size.width * 0.29

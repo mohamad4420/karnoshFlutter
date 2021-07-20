@@ -21,17 +21,14 @@ class Most extends StatelessWidget {
     }
 
     return FutureBuilder(
-        future: fetchApi.fetchVid('anime', true, null),
+        future: fetchApi.fetchVid('movie_mt', true, null),
         builder: (context, snapshot) {
           var vids = snapshot.data;
           if (!snapshot.hasData)
             return Container(
+              color: Colors.grey[900],
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * mainMost,
-              child: Container(
-                height: MediaQuery.of(context).size.height * innerMost,
-                width: MediaQuery.of(context).size.width,
-              ),
             );
           else
             return Container(

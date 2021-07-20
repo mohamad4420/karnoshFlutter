@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import '../../../pages/SelectionPage.dart';
+import '../pages/SelectionPage.dart';
 
 void bottomSliderMost(context, data) {
   showModalBottomSheet(
@@ -10,7 +10,7 @@ void bottomSliderMost(context, data) {
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Container(
-            height: 262,
+            height: 266,
             decoration: BoxDecoration(
               color: Color(0xFF212121),
               borderRadius: BorderRadius.only(

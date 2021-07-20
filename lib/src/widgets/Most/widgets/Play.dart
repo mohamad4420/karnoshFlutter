@@ -13,7 +13,10 @@ class Play extends StatelessWidget {
               ),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ServerList()));
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ServerList(name: "Army of the Dead (2021)")));
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
