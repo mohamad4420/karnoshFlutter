@@ -22,9 +22,8 @@ class ServerList extends StatelessWidget {
     return FutureBuilder(
       future: fetchApi.fetchServer(name),
       builder: (context, snapshot) {
-        var vids = snapshot.data;
         if (snapshot.hasData) {
-          print(snapshot);
+          print(snapshot.data[0].server);
           return Directionality(
               textDirection: TextDirection.rtl,
               child: Center(
@@ -36,20 +35,19 @@ class ServerList extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height,
                         child: ListView.builder(
-                            itemCount: servers.length,
+                            itemCount: snapshot.data[0].server.length,
                             itemBuilder: (context, index) {
                               return TextButton(
                                   onPressed: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                PlayVideo(servers[index])));
+                                            builder: (context) => PlayVideo(
+                                                snapshot
+                                                    .data[0].server[index])));
                                   },
                                   child: Text(
-                                    servers[index]
-                                        .split('https://')[1]
-                                        .split('.')[0],
+                                    snapshot.data[0].server[index],
                                     style: TextStyle(color: Colors.white),
                                   ));
                             }),
