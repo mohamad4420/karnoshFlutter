@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import '../pages/SelectionPage.dart';
+import '../pages/ServerList.dart';
 
 void bottomSliderMost(context, data) {
   showModalBottomSheet(
@@ -147,7 +148,13 @@ void bottomSliderMost(context, data) {
                                       Colors.white70 // set the background color
 
                                   ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ServerList(name: data.name)));
+                              },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

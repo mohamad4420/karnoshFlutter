@@ -13,15 +13,15 @@ class Most extends StatelessWidget {
     var mainMost;
     var innerMost;
     if (Responsive.isMobile(context)) {
-      mainMost = 0.8;
-      innerMost = 0.7988;
+      mainMost = 0.90;
+      innerMost = 0.89;
     } else {
       mainMost = 0.95;
       innerMost = 0.948;
     }
 
     return FutureBuilder(
-        future: fetchApi.fetchVid('movie_mt', true, null),
+        future: fetchApi.fetchVid('movie_ar', true, null),
         builder: (context, snapshot) {
           var vids = snapshot.data;
           if (!snapshot.hasData)
