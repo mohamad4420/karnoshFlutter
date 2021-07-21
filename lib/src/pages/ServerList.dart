@@ -47,7 +47,7 @@ class ServerList extends StatelessWidget {
                                                     .data[0].server[index])));
                                   },
                                   child: Text(
-                                    snapshot.data[0].server[index],
+                                    snapshot.data[0].nameServer[index],
                                     style: TextStyle(color: Colors.white),
                                   ));
                             }),
