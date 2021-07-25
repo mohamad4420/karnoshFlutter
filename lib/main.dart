@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:karnosh/src/pages/search.dart';
 import './src/body.dart';
 import '/src/pages/search.dart';
 import 'package:flutter/services.dart';
-import './src/pages/Movie.dart';
-import './src/pages/Anime.dart';
-import './src/pages/Searess.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 void main() {
