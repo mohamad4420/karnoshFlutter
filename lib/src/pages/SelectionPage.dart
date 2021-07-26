@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
 class SelectionPage extends StatelessWidget {
-  final dynamic datas;
-  SelectionPage({this.datas});
+  final dynamic data;
+  SelectionPage({this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +12,25 @@ class SelectionPage extends StatelessWidget {
         child: Scaffold(
             backgroundColor: Colors.black,
             appBar: AppBar(
-              title: Text("مسلسلات"),
+              title: Text(data.type.contains("anime")
+                  ? "انمي"
+                  : data.type.contains("movie")
+                      ? "افلام"
+                      : "مسلسلات"),
               brightness: Brightness.dark,
               backgroundColor: Colors.black,
             ),
-            body: Column(children: [
+            body: Wrap(children: [
               Container(
                 child: AspectRatio(
                     aspectRatio: 16 / 9,
                     child: Image(
-                      image: NetworkImage(datas.poster),
+                      image: NetworkImage(data.poster),
                       fit: BoxFit.cover,
                     )),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.60,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -37,41 +41,45 @@ class SelectionPage extends StatelessWidget {
                             child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  datas.name,
+                                  data.name,
                                   style: TextStyle(
                                       fontSize: 25, color: Colors.white),
                                 ))),
                         Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            padding: EdgeInsets.fromLTRB(0, 0, 10, 5),
                             child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(
-                                  datas.date + '    ' + datas.rating,
+                                  data.date + '    ' + data.rating,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white70),
                                 ))),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.white // set the background color=
-                              ),
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('عرض',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 18)),
-                              Icon(
-                                Icons.play_arrow,
-                                color: Colors.black,
-                              ),
-                            ],
+                        Container(
+                          width: MediaQuery.of(context).size.width - 30,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary:
+                                    Colors.white // set the background color=
+                                ),
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('عرض',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 18)),
+                                Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                           child: ReadMoreText(
-                            datas.description,
+                            data.description,
                             trimLines: 3,
                             colorClickableText: Colors.white60,
                             trimMode: TrimMode.Line,

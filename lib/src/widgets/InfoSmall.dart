@@ -81,12 +81,16 @@ void bottomSliderMost(context, data) {
                                 width: MediaQuery.of(context).size.width * 0.16,
                                 height:
                                     MediaQuery.of(context).size.height * 0.05,
-                                child: IconButton(
-                                  color: Colors.white,
-                                  icon: Icon(Icons.close),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 22, 0),
+                                  child: IconButton(
+                                    color: Colors.white,
+                                    icon: Icon(Icons.close),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
                                 ),
                               ),
                             ],
@@ -142,31 +146,34 @@ void bottomSliderMost(context, data) {
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                         child: Container(
                             width: MediaQuery.of(context).size.width * 0.4,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary:
-                                      Colors.white70 // set the background color
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors
+                                        .white70 // set the background color
 
-                                  ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ServerList(name: data.name)));
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.black,
-                                  ),
-                                  Text(
-                                    'عرض',
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ],
+                                    ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ServerList(name: data.name)));
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.play_arrow,
+                                      color: Colors.black,
+                                    ),
+                                    Text(
+                                      'عرض',
+                                      style: TextStyle(color: Colors.black),
+                                    )
+                                  ],
+                                ),
                               ),
                             )),
                       ),
@@ -213,22 +220,27 @@ void bottomSliderMost(context, data) {
                 color: Colors.grey,
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 8, 8, 0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.info_outline,
-                      color: Colors.white70,
-                    ),
-                    Text(' المزيد من المعلومات ',
-                        style: TextStyle(color: Colors.white)),
-                    Container(
-                      child: Icon(
-                        Icons.subdirectory_arrow_left,
-                        color: Colors.white,
+                padding: const EdgeInsets.fromLTRB(0, 5, 14, 0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SelectionPage(
+                                data: data,
+                              )),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        color: Colors.white70,
                       ),
-                    )
-                  ],
+                      Text(' المزيد من المعلومات ',
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
                 ),
               )
             ]),

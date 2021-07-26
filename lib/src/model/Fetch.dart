@@ -1,47 +1,33 @@
-import 'dart:convert';
-import 'dart:io';
 import 'dart:async';
-
+import 'package:dio/dio.dart';
 import 'models.dart';
 
 class FetchApi {
   Future<List<VidModels>> fetchVid(
       String type, bool sorted, String genres) async {
-    HttpClient httpClient = new HttpClient();
-    HttpClientRequest request = await httpClient.postUrl(
-        Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"));
-    request.headers.set('content-type', 'application/json');
-    request.add(utf8.encode(
-        json.encode({"type": type, "sorted": sorted, "genres": genres})));
-    HttpClientResponse response = await request.close();
-
-    String reply = await response.transform(utf8.decoder).join();
-    var body = json.decode(reply);
-    httpClient.close();
+    var client = Dio(BaseOptions(baseUrl: "http://karnoshab.herokuapp.com"));
+    var res = await client.post(
+      "/api/movie/KarnoshApi",
+      data: {"type": type, "sorted": sorted, "genres": genres},
+    );
     List<VidModels> videos = [];
-    for (var item in body) {
+    for (var item in res.data) {
       videos.add(VidModels.fromJson(item));
     }
-
     return videos;
   }
 }
 
 class FetshServers {
   Future<List<SerModel>> fetchServer(String name) async {
-    HttpClient httpClient = new HttpClient();
-    HttpClientRequest request = await httpClient.postUrl(
-        Uri.parse("http://karnoshab.herokuapp.com/api/movie/KarnoshApi"));
-    request.headers.set('content-type', 'application/json');
-    request.add(utf8.encode(json.encode({"name": name})));
-    HttpClientResponse response = await request.close();
+    var client = Dio(BaseOptions(baseUrl: "http://karnoshab.herokuapp.com"));
+    var res = await client.post(
+      "/api/movie/KarnoshApi",
+      data: {"name": name},
+    );
 
-    String reply = await response.transform(utf8.decoder).join();
-    var body = json.decode(reply);
-
-    httpClient.close();
     List<SerModel> servers = [];
-    for (var item in body) {
+    for (var item in res.data) {
       servers.add(SerModel.fromJson(item));
     }
 

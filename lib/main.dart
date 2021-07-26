@@ -3,7 +3,6 @@ import 'package:karnosh/src/pages/search.dart';
 import './src/body.dart';
 import '/src/pages/search.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
 
     return MaterialApp(
         title: 'karnosh',
