@@ -40,17 +40,14 @@ class Most extends StatelessWidget {
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Stack(key: ObjectKey(context), children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: Responsive.isMobile(context)
-                                ? NetworkImage(vids[index].poster)
-                                : NetworkImage(vids[index].galary),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                      FadeInImage.assetNetwork(
                         height: MediaQuery.of(context).size.height * innerMost,
                         width: MediaQuery.of(context).size.width,
+                        placeholder: "images/loadingGif.gif",
+                        image: Responsive.isMobile(context)
+                            ? vids[index].poster
+                            : vids[index].galary,
+                        fit: BoxFit.cover,
                       ),
                       Container(
                           width: MediaQuery.of(context).size.width,

@@ -8,7 +8,6 @@ class MyCard extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[900],
       margin: EdgeInsets.fromLTRB(0, 0, 5, 0),
       width: Responsive.isMobile(context)
           ? MediaQuery.of(context).size.width * 0.29
@@ -17,9 +16,12 @@ class MyCard extends StatelessWidget {
               : MediaQuery.of(context).size.width * 0.19,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
-        child: Image(
-          fit: BoxFit.fill,
-          image: NetworkImage(img),
+        child: Container(
+          color: Colors.grey[900],
+          child: FadeInImage.assetNetwork(
+              placeholder: "images/sliderLoading.png",
+              image: img,
+              fit: BoxFit.fill),
         ),
       ),
     );

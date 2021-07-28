@@ -75,10 +75,7 @@ class MainAppBar extends StatelessWidget {
       backgroundColor: colorMenu,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Image(
-            width: 20,
-            image: NetworkImage(
-                "https://user-images.githubusercontent.com/33750251/59487006-313d6080-8e73-11e9-8c50-3a5660761138.png")),
+        child: Image(width: 20, image: AssetImage("images/favicon.png")),
       ),
       actions: <Widget>[
         IconButton(
@@ -91,10 +88,10 @@ class MainAppBar extends StatelessWidget {
             icon: Icon(Icons.search)),
         Padding(
           padding: const EdgeInsets.all(10.0),
-          child: Image(
-              width: 30,
-              image: NetworkImage(
-                  "https://i.pinimg.com/originals/b6/77/cd/b677cd1cde292f261166533d6fe75872.png")),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image(
+                  width: 30, image: AssetImage('images/AccountImage.png'))),
         ),
       ],
     );
