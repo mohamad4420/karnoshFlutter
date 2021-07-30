@@ -43,7 +43,7 @@ class Most extends StatelessWidget {
                       FadeInImage.assetNetwork(
                         height: MediaQuery.of(context).size.height * innerMost,
                         width: MediaQuery.of(context).size.width,
-                        placeholder: "images/loadingGif.gif",
+                        placeholder: "images/sliderLoading.png",
                         image: Responsive.isMobile(context)
                             ? vids[index].poster
                             : vids[index].galary,
