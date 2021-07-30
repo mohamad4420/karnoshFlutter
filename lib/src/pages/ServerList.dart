@@ -9,57 +9,95 @@ class ServerList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FetshServers fetchApi = FetshServers();
-    return FutureBuilder(
-      future: fetchApi.fetchServer(name),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          print(snapshot.data[0].server);
-          return Directionality(
-              textDirection: TextDirection.rtl,
-              child: Center(
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(50.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        child: ListView.builder(
-                            itemCount: snapshot.data[0].server.length,
-                            itemBuilder: (context, index) {
-                              return TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => PlayVideo(
-                                                snapshot
-                                                    .data[0].server[index])));
-                                  },
-                                  child: Text(
-                                    snapshot.data[0].nameServer[index],
-                                    style: TextStyle(color: Colors.white),
-                                  ));
-                            }),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 50,
-                      left: 0,
-                      right: 0,
-                      child: FloatingActionButton(
-                          child: Icon(Icons.exit_to_app),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }),
-                    )
-                  ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: FutureBuilder(
+        future: fetchApi.fetchServer(name),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            print(snapshot.data[0].server);
+            List<String> dt = snapshot.data[0].nameServer;
+            int count = 0;
+            return Stack(
+              children: [
+                ListWheelScrollView(
+                  onSelectedItemChanged: (e) {
+                    print(e);
+                  },
+                  itemExtent: 100,
+                  children: dt.map((e) {
+                    count++;
+                    return GestureDetector(
+                        onTap: () {
+                          print('fuck');
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PlayVideo(
+                                      snapshot.data[0].server[count - 1])));
+                        },
+                        child: Text(
+                          snapshot.data[0].nameServer[count - 1],
+                          style: TextStyle(color: Colors.white),
+                        )); //Text(snapshot.data[0].nameServer[count - 1]);
+                  }).toList(),
+                  diameterRatio: 1.5,
                 ),
-              ));
-        } else {
-          return Container();
-        }
-      },
+                /*ListView.builder(
+                        itemCount: snapshot.data[0].server.length,
+                        itemBuilder: (context, index) {
+                          return TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => PlayVideo(
+                                            snapshot
+                                                .data[0].server[index])));
+                              },
+                              child: Text(
+                                snapshot.data[0].nameServer[index],
+                                style: TextStyle(color: Colors.white),
+                              ));
+                        }),*/
+
+                Positioned(
+                  bottom: 50,
+                  left: 0,
+                  right: 0,
+                  child: FloatingActionButton(
+                      child: Icon(Icons.exit_to_app),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                )
+              ],
+            );
+          } else {
+            return Container(
+                /*
+              child: ListWheelScrollView.useDelegate(
+                childDelegate: ListWheelChildBuilderDelegate(builder: (context, index) {
+                  return TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => PlayVideo(
+                                                  snapshot
+                                                      .data[0].server[index])));
+                                    },
+                                    child: Text(
+                                      snapshot.data[0].nameServer[index],
+                                      style: TextStyle(color: Colors.white),
+                                    ));
+                },),
+                itemExtent: snapshot.data[0].server.length,
+              ),*/
+                );
+          }
+        },
+      ),
     );
   }
 }
