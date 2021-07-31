@@ -43,7 +43,7 @@ class Most extends StatelessWidget {
                       FadeInImage.assetNetwork(
                         height: MediaQuery.of(context).size.height * innerMost,
                         width: MediaQuery.of(context).size.width,
-                        placeholder: "images/sliderLoading.png",
+                        placeholder: "images/loadingGif.gif",
                         image: Responsive.isMobile(context)
                             ? vids[index].poster
                             : vids[index].galary,
@@ -100,8 +100,8 @@ class Discription extends StatelessWidget {
         'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
         trimLines: 2,
         trimMode: TrimMode.Line,
-        trimCollapsedText: 'Show more',
-        trimExpandedText: 'Show less',
+        trimCollapsedText: 'اكثر',
+        trimExpandedText: 'اقل',
         moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
       ),
     );
