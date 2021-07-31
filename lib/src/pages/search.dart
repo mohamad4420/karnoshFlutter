@@ -1,7 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../model/SpeechApi.dart';
 
-class SearchPage extends StatelessWidget {
+class SearchPage extends StatefulWidget {
+  @override
+  var txt = TextEditingController();
+
+  _SearchPageState createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -23,6 +31,7 @@ class SearchPage extends StatelessWidget {
             ),
             backgroundColor: Colors.black,
             title: TextFormField(
+              controller: widget.txt,
               cursorHeight: 30,
               style: TextStyle(color: Colors.white),
               decoration: new InputDecoration(
@@ -42,10 +51,13 @@ class SearchPage extends StatelessWidget {
                 tooltip: "البحث بواسطه المايك",
                 icon: Icon(Icons.mic),
                 color: Colors.white70,
-                onPressed: () {},
+                onPressed: toggleSpeech,
               )
             ],
           )),
     );
   }
+
+  Future toggleSpeech() => SpeechApi.toggleRecording(
+      onResult: (text) => setState(() => widget.txt.text = text));
 }
