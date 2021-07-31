@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'ServerList.dart';
 
 class SelectionPage extends StatelessWidget {
   final dynamic data;
@@ -10,6 +11,18 @@ class SelectionPage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          label: Text('عرص'),
+          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        ServerList(name: "Army of the Dead (2021)")));
+          },
+        ),
         backgroundColor: Colors.black,
         body: CustomScrollView(
           slivers: [
@@ -55,27 +68,6 @@ class SelectionPage extends StatelessWidget {
                             style:
                                 TextStyle(fontSize: 16, color: Colors.white70),
                           )),
-                      Container(
-                        width: MediaQuery.of(context).size.width - 30,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.white // set the background color=
-                              ),
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('عرض',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 18)),
-                              Icon(
-                                Icons.play_arrow,
-                                color: Colors.black,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                       ReadMoreText(
                         data.description,
                         trimLines: 3,
@@ -119,6 +111,11 @@ class SelectionPage extends StatelessWidget {
                                 )),
                           )
                         ],
+                      ),
+                      DefaultTabController(
+                        length: 3,
+                        child: TabBar(
+                            tabs: [Text('Screw'), Text('You'), Text('Abodia')]),
                       ),
                       Container(height: 2, color: Colors.grey[800]),
                       ListView.builder(
