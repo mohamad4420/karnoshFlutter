@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Listed extends StatefulWidget {
-  Listed({Key key}) : super(key: key);
+  final data;
+  Listed({Key key, this.data}) : super(key: key);
   @override
   _ListedState createState() => _ListedState();
 }

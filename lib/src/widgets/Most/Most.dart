@@ -73,7 +73,13 @@ class Most extends StatelessWidget {
                               Name(vids[index].name),
                               Ganeress(vids[index].genres,
                                   vids[index].genres.length),
-                              PlayAndListAndInfo()
+                              Row(
+                                children: [
+                                  Listed(data: vids[index]),
+                                  Play(),
+                                  Info(data: vids[index])
+                                ],
+                              )
                             ],
                           ),
                           desktop: DesktopMain(data: vids[index]),
@@ -84,14 +90,6 @@ class Most extends StatelessWidget {
                   }),
             );
         });
-  }
-}
-
-class PlayAndListAndInfo extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Row(
-      children: [Listed(), Play(), Info()],
-    );
   }
 }
 

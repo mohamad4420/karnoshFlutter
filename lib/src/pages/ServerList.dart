@@ -12,7 +12,7 @@ class ServerList extends StatelessWidget {
     FetshServers fetchApi = FetshServers();
     final _scrollController = FixedExtentScrollController();
     const double _itemHeight = 60;
-    int _itemCount = 1;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: FutureBuilder(
@@ -20,7 +20,7 @@ class ServerList extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             print(snapshot.data[0].server);
-            _itemCount = snapshot.data[0].nameServer.length;
+            int _itemCount = snapshot.data[0].nameServer.length;
             return Stack(
               children: [
                 ClickableListWheelScrollView(
@@ -35,6 +35,7 @@ class ServerList extends StatelessWidget {
                                 PlayVideo(snapshot.data[0].server[index])));
                   },
                   child: ListWheelScrollView.useDelegate(
+                    magnification: 1.3,
                     controller: _scrollController,
                     itemExtent: _itemHeight,
                     physics: FixedExtentScrollPhysics(),
@@ -57,54 +58,13 @@ class ServerList extends StatelessWidget {
                       childCount: _itemCount,
                     ),
                   ),
-                )
-                /*
-                ListWheelScrollView(
-                  onSelectedItemChanged: (e) {
-                    print(e);
-                  },
-                  itemExtent: 100,
-                  children: dt.map((e) {
-                    count++;
-                    return GestureDetector(
-                        onTap: () {
-                          print('fuck');
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PlayVideo(
-                                      snapshot.data[0].server[count - 1])));
-                        },
-                        child: Text(
-                          snapshot.data[0].nameServer[count - 1],
-                          style: TextStyle(color: Colors.white),
-                        )); //Text(snapshot.data[0].nameServer[count - 1]);
-                  }).toList(),
-                  diameterRatio: 1.5,
                 ),
-                ListView.builder(
-                        itemCount: snapshot.data[0].server.length,
-                        itemBuilder: (context, index) {
-                          return TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PlayVideo(
-                                            snapshot
-                                                .data[0].server[index])));
-                              },
-                              child: Text(
-                                snapshot.data[0].nameServer[index],
-                                style: TextStyle(color: Colors.white),
-                              ));
-                        }),*/
-                ,
                 Positioned(
                   bottom: 50,
                   left: 0,
                   right: 0,
                   child: FloatingActionButton(
+                      backgroundColor: Colors.grey,
                       child: Icon(Icons.exit_to_app),
                       onPressed: () {
                         Navigator.pop(context);
@@ -113,27 +73,7 @@ class ServerList extends StatelessWidget {
               ],
             );
           } else {
-            return Container(
-                /*
-              child: ListWheelScrollView.useDelegate(
-                childDelegate: ListWheelChildBuilderDelegate(builder: (context, index) {
-                  return TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => PlayVideo(
-                                                  snapshot
-                                                      .data[0].server[index])));
-                                    },
-                                    child: Text(
-                                      snapshot.data[0].nameServer[index],
-                                      style: TextStyle(color: Colors.white),
-                                    ));
-                },),
-                itemExtent: snapshot.data[0].server.length,
-              ),*/
-                );
+            return Container();
           }
         },
       ),
