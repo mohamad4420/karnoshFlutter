@@ -11,17 +11,24 @@ class SelectionPage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(
-          label: Text('عرص'),
-          icon: Icon(Icons.play_arrow),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ServerList(name: "Army of the Dead (2021)")));
-          },
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Container(
+          width: 40,
+          child: FloatingActionButton(
+            focusColor: Colors.amber,
+            tooltip: "مشاهده الفلم",
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.play_arrow,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ServerList(name: data.name)));
+            },
+          ),
         ),
         backgroundColor: Colors.black,
         body: CustomScrollView(
