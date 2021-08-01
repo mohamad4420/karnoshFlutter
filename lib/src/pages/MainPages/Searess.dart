@@ -9,7 +9,11 @@ class Searess extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyAppBar(
       title: Leading(),
-      background: Most(),
+      background: Most(
+        type: "series_mt",
+        generes: null,
+        sort: true,
+      ),
       body: Wrap(children: [
         SliderItem(
           name: "احدث الانميات ",

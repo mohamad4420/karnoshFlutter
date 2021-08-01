@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../model/SpeechApi.dart';
+import '../../model/SpeechApi.dart';
 
 class SearchPage extends StatefulWidget {
-  @override
-  var txt = TextEditingController();
-
+  final text = TextEditingController();
   _SearchPageState createState() => _SearchPageState();
 }
 
@@ -31,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             backgroundColor: Colors.black,
             title: TextFormField(
-              controller: widget.txt,
+              controller: widget.text,
               cursorHeight: 30,
               style: TextStyle(color: Colors.white),
               decoration: new InputDecoration(
@@ -59,5 +57,5 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future toggleSpeech() => SpeechApi.toggleRecording(
-      onResult: (text) => setState(() => widget.txt.text = text));
+      onResult: (text) => setState(() => widget.text.text = text));
 }

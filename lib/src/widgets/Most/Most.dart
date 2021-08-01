@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import '../../model/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
-import 'package:readmore/readmore.dart';
 import '../responsive.dart';
 
 class Most extends StatelessWidget {
+  final String type;
+  final String generes;
+  final bool sort;
+
+  const Most({Key key, this.type, this.generes, this.sort}) : super(key: key);
   Widget build(BuildContext context) {
     FetchApi fetchApi = FetchApi();
     var mainMost;
@@ -21,7 +25,7 @@ class Most extends StatelessWidget {
     }
 
     return FutureBuilder(
-        future: fetchApi.fetchVid('movie_ar', true, null),
+        future: fetchApi.fetchVid(type, sort, generes),
         builder: (context, snapshot) {
           var vids = snapshot.data;
           if (!snapshot.hasData)
@@ -90,40 +94,6 @@ class Most extends StatelessWidget {
                   }),
             );
         });
-  }
-}
-
-class Discription extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Container(
-      child: ReadMoreText(
-        'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
-        trimLines: 2,
-        trimMode: TrimMode.Line,
-        trimCollapsedText: 'اكثر',
-        trimExpandedText: 'اقل',
-        moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
-class Time extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Text(
-            "الوقت :",
-            style: TextStyle(color: Colors.white60),
-          ),
-          Text(
-            "18min",
-            style: TextStyle(color: Colors.white60),
-          ),
-        ],
-      ),
-    );
   }
 }
 
