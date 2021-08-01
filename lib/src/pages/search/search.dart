@@ -49,8 +49,6 @@ class _SearchPageState extends State<SearchPage> {
               search.fetchSearch(data).then((value) => this.setState(() {
                     widget.data = value;
                   }));
-              print(data);
-              print(widget.isSearch);
             },
             controller: widget.txt,
             cursorHeight: 30,
@@ -80,7 +78,7 @@ class _SearchPageState extends State<SearchPage> {
                 ))
           ],
         ),
-        body: BodySearch(data: widget.data),
+        body: widget.isSearch ? BodySearch(data: widget.data) : Container(),
       ),
     );
   }
@@ -99,7 +97,6 @@ class BodySearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.data);
     return GridView.builder(
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 150,
@@ -107,10 +104,11 @@ class BodySearch extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10),
         padding: const EdgeInsets.all(10.0),
+        itemCount: this.data.length,
         itemBuilder: (BuildContext ctx, index) {
           return Container(
             alignment: Alignment.center,
-            child: Text("name"),
+            child: Text(this.data[index].name),
             decoration: BoxDecoration(
                 color: Colors.amber, borderRadius: BorderRadius.circular(5)),
           );
