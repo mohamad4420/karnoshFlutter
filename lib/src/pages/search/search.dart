@@ -84,7 +84,12 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future toggleSpeech() => SpeechApi.toggleRecording(
-        onResult: (text) => setState(() => widget.txt.text = text),
+        onResult: (text) => setState(() {
+          widget.txt.text = text;
+          search.fetchSearch(text).then((value) => this.setState(() {
+                widget.data = value;
+              }));
+        }),
         onListening: (isListening) {
           setState(() => widget.isListening = isListening);
         },
