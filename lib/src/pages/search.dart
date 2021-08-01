@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../model/SpeechApi.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 class SearchPage extends StatefulWidget {
-  @override
-  var txt = TextEditingController();
+  final txt = TextEditingController();
+  bool isListening = false;
 
   _SearchPageState createState() => _SearchPageState();
 }
@@ -47,17 +48,25 @@ class _SearchPageState extends State<SearchPage> {
                   hintText: "بحث"),
             ),
             actions: [
-              IconButton(
-                tooltip: "البحث بواسطه المايك",
-                icon: Icon(Icons.mic),
-                color: Colors.white70,
-                onPressed: toggleSpeech,
-              )
+              AvatarGlow(
+                  animate: widget.isListening,
+                  endRadius: 75,
+                  glowColor: Colors.blue,
+                  child: IconButton(
+                    tooltip: "البحث بواسطه المايك",
+                    icon: Icon(Icons.mic),
+                    color: Colors.white70,
+                    onPressed: toggleSpeech,
+                  ))
             ],
           )),
     );
   }
 
   Future toggleSpeech() => SpeechApi.toggleRecording(
-      onResult: (text) => setState(() => widget.txt.text = text));
+        onResult: (text) => setState(() => widget.txt.text = text),
+        onListening: (isListening) {
+          setState(() => widget.isListening = isListening);
+        },
+      );
 }
