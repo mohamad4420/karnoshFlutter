@@ -3,7 +3,7 @@ import '../../../model/models.dart';
 import '../../../pages/SelectionPage.dart';
 
 class Info extends StatelessWidget {
-  final VidModels data;
+  final GeneralData data;
   const Info({Key key, this.data}) : super(key: key);
   @override
   Widget build(BuildContext context) {

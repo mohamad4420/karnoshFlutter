@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../../model/video_models.dart';
+import '../../../../model/General_models.dart';
 import 'package:readmore/readmore.dart';
 
 class DesktopMain extends StatelessWidget {
-  final VidModels data;
+  final GeneralData data;
 
   DesktopMain({Key key, this.data}) : super(key: key);
   final double padingAll = 10;

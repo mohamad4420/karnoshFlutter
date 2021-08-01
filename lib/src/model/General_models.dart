@@ -1,25 +1,4 @@
-class VidModels {
-  /*
-  final List<String> genres;
-  final List<String> SeasonData;
-  final String name;
-  final List<Actor> Heros;
-  final String time;
-  final String season;
-  final String date;
-  final String rating;
-  final String description;
-  final String poster;
-  final String update;
-  final List<Eps> ep;
-  final String galary;
-  final String linkTraler;
-  final List<String> Server;
-  final List<String> related;
-  final String type;
-  final String updatedAt;
-  final String createdAt;
-  */
+class GeneralData {
   String name;
   String date;
   String type;
@@ -30,16 +9,15 @@ class VidModels {
   String galary;
   List<String> genres = [""];
 
-  VidModels(this.name, this.date, this.type, this.description, this.poster,
+  GeneralData(this.name, this.date, this.type, this.description, this.poster,
       this.rating, this.genres);
-  VidModels.fromJson(Map<String, dynamic> map) {
+  GeneralData.fromJson(Map<String, dynamic> map) {
     this.name = map['name'];
     this.date = map['date'];
     this.type = map['type'];
     this.time = map['time'];
     this.galary = map['Galary'];
     String type = map['type'];
-
     if (type.contains("movie")) {
       genres = ["افلام"];
     }
