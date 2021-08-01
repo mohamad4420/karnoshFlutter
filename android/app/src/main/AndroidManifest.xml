@@ -5,10 +5,14 @@
  <!-- to record -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
  <!-- end record -->
+ <queries>
+    <intent>
+        <action android:name="android.speech.RecognitionService" />
+    </intent>
+</queries>
    <application
         android:label="karnosh"
         android:icon="@mipmap/favicon">
-        
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

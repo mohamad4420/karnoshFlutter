@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD:lib/src/pages/search.dart
 import '../model/SpeechApi.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 
@@ -7,6 +8,12 @@ class SearchPage extends StatefulWidget {
   final txt = TextEditingController();
   bool isListening = false;
 
+=======
+import '../../model/SpeechApi.dart';
+
+class SearchPage extends StatefulWidget {
+  final text = TextEditingController();
+>>>>>>> 379a39ba2334c531549ad4f2e518b346bc0efb35:lib/src/pages/search/search.dart
   _SearchPageState createState() => _SearchPageState();
 }
 
@@ -32,7 +39,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             backgroundColor: Colors.black,
             title: TextFormField(
-              controller: widget.txt,
+              controller: widget.text,
               cursorHeight: 30,
               style: TextStyle(color: Colors.white),
               decoration: new InputDecoration(
@@ -64,9 +71,13 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future toggleSpeech() => SpeechApi.toggleRecording(
+<<<<<<< HEAD:lib/src/pages/search.dart
         onResult: (text) => setState(() => widget.txt.text = text),
         onListening: (isListening) {
           setState(() => widget.isListening = isListening);
         },
       );
+=======
+      onResult: (text) => setState(() => widget.text.text = text));
+>>>>>>> 379a39ba2334c531549ad4f2e518b346bc0efb35:lib/src/pages/search/search.dart
 }

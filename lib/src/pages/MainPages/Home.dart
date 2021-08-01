@@ -10,7 +10,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyAppBar(
       leading: Image(width: 20, image: AssetImage("images/favicon.png")),
-      background: Most(),
+      background: Most(
+        type: "movie_mt",
+        generes: null,
+        sort: true,
+      ),
       bottonAppBar: SecundAppBar(),
       body: Wrap(children: [
         SliderItem(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karnosh/src/pages/search.dart';
+import 'package:karnosh/src/pages/search/search.dart';
 
 var homeColor = Colors.black;
 
