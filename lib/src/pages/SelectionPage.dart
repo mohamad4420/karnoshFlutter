@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import 'ServerList.dart';
 import 'Playvideo.dart';
+import 'package:flutter/services.dart';
 
 class SelectionPage extends StatelessWidget {
   final dynamic data;
@@ -117,21 +117,21 @@ class SelectionPage extends StatelessWidget {
                               child: Container(
                                 child: ListTile(
                                   title: Text(
-                                    'الحلفة رقم' + (index + 1).toString(),
+                                    ' الحلفة رقم ' + (index + 1).toString(),
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   subtitle: Text(
                                     'حجوم العمالقة فتال جد والله',
-                                    style: TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white70),
                                   ),
                                   onTap: () {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => PlayVideo(
-                                                data.name, index + 1)));
+                                                this.key, data.name, index)));
                                   },
-                                  tileColor: Colors.grey[800],
+                                  tileColor: Colors.white10.withOpacity(0.1),
                                 ),
                               ),
                             );

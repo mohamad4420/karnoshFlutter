@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'Playvideo.dart';
-import '../model/models.dart';
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 
 class ServerList extends StatelessWidget {
   dynamic data;
+  dynamic callback;
 
-  ServerList({Key key, this.data}) : super(key: key);
+  ServerList({Key key, this.data, this.callback}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +22,7 @@ class ServerList extends StatelessWidget {
               itemCount: data[0].server.length,
               onItemTapCallback: (index) {
                 Navigator.pop(context);
+                callback(data[0].server[index]);
               },
               child: ListWheelScrollView.useDelegate(
                 magnification: 1.3,

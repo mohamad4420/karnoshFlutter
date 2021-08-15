@@ -10,7 +10,7 @@ class FetchApi {
       "/DataVideo/KarnoshApi",
       data: {"Type": type, "sorted": sorted, "genres": genres},
     );
-    print(res);
+
     List<GeneralData> data = [];
     for (var item in res.data) {
       data.add(GeneralData.fromJson(item));
@@ -26,7 +26,6 @@ class FetshServers {
       "/DataVideo/KarnoshApi",
       data: {"name": name, "index": index},
     );
-    print(res);
     List<SerModel> servers = [];
     for (var item in res.data) {
       servers.add(SerModel.fromJson(item));
@@ -38,9 +37,9 @@ class FetshServers {
 
 class Search {
   Future<List<GeneralData>> fetchSearch(String name) async {
-    var client = Dio(BaseOptions(baseUrl: "http://karnoshab.herokuapp.com"));
+    var client = Dio(BaseOptions(baseUrl: "http://karnoshapi.herokuapp.com"));
     var res = await client.post(
-      "/api/movie/search",
+      "/DataVideo/search",
       data: {"name": name},
     );
     List<GeneralData> data = [];

@@ -40,7 +40,6 @@ class GeneralData {
         genres = ["انمي"];
       }
     } else {
-      print(this.name);
       genres = ["N/A"];
     }
     if (map['Genres'] != null || map['Genres'] != "n/A") {
