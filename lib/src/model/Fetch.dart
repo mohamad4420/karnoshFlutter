@@ -5,11 +5,12 @@ import 'models.dart';
 class FetchApi {
   Future<List<GeneralData>> fetchVid(
       String type, bool sorted, String genres) async {
-    var client = Dio(BaseOptions(baseUrl: "http://karnoshab.herokuapp.com"));
+    var client = Dio(BaseOptions(baseUrl: "http://karnoshapi.herokuapp.com"));
     var res = await client.post(
-      "/api/movie/KarnoshApi",
-      data: {"type": type, "sorted": sorted, "genres": genres},
+      "/DataVideo/KarnoshApi",
+      data: {"Type": type, "sorted": sorted, "genres": genres},
     );
+    print(res);
     List<GeneralData> data = [];
     for (var item in res.data) {
       data.add(GeneralData.fromJson(item));
@@ -20,12 +21,12 @@ class FetchApi {
 
 class FetshServers {
   Future<List<SerModel>> fetchServer(String name) async {
-    var client = Dio(BaseOptions(baseUrl: "http://karnoshab.herokuapp.com"));
+    var client = Dio(BaseOptions(baseUrl: "http://karnoshapi.herokuapp.com"));
     var res = await client.post(
-      "/api/movie/KarnoshApi",
-      data: {"name": name},
+      "/DataVideo/KarnoshApi",
+      data: {"name": name, "index": 1},
     );
-
+    print(res);
     List<SerModel> servers = [];
     for (var item in res.data) {
       servers.add(SerModel.fromJson(item));

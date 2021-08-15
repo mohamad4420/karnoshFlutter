@@ -3,7 +3,7 @@ class SerModel {
   List<String> nameServer = [""];
   SerModel(this.server);
   SerModel.fromJson(Map<String, dynamic> map) {
-    (map['server'] as List).map((data) {
+    (map['server'][0] as List).map((data) {
       String name = data;
       if (name.contains(",")) {
         name = name.split(",")[1];

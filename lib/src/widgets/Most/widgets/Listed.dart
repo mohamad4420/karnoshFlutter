@@ -36,11 +36,11 @@ class _ListedState extends State<Listed>
             children: [
               Icon(
                 _isListed ? Icons.check : Icons.add,
-                color: _isListed ? Colors.green : Colors.white70,
+                color: _isListed ? Colors.white : Colors.white70,
               ),
               Text(_isListed ? 'تم الاضافة' : 'اضافة',
                   style: TextStyle(
-                      color: _isListed ? Colors.green : Colors.white70))
+                      color: _isListed ? Colors.white : Colors.white70))
             ],
           ),
         ));

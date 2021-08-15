@@ -6,6 +6,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import '../../model/General_models.dart';
 import '../../model/Fetch.dart';
 
+// ignore: must_be_immutable
 class SearchPage extends StatefulWidget {
   final txt = TextEditingController();
   List<GeneralData> data = [];
@@ -37,18 +38,20 @@ class _SearchPageState extends State<SearchPage> {
           ),
           backgroundColor: Colors.black,
           title: TextFormField(
-            onChanged: (data) {
+            onChanged: (data) async {
               if (data.length == 0)
                 this.setState(() {
                   widget.isSearch = false;
                 });
-              else
+              else {
                 this.setState(() {
                   widget.isSearch = true;
                 });
-              search.fetchSearch(data).then((value) => this.setState(() {
-                    widget.data = value;
-                  }));
+                List<GeneralData> dataa = await search.fetchSearch(data);
+                this.setState(() {
+                  widget.data = dataa;
+                });
+              }
             },
             controller: widget.txt,
             cursorHeight: 30,
@@ -84,12 +87,11 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   Future toggleSpeech() => SpeechApi.toggleRecording(
-        onResult: (text) => setState(() {
-          widget.txt.text = text;
-          search.fetchSearch(text).then((value) => this.setState(() {
-                widget.data = value;
-              }));
-        }),
+        onResult: (text) {
+          setState(() {
+            widget.txt.text = text;
+          });
+        },
         onListening: (isListening) {
           setState(() => widget.isListening = isListening);
         },
@@ -111,11 +113,14 @@ class BodySearch extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         itemCount: this.data.length,
         itemBuilder: (BuildContext ctx, index) {
-          return Container(
-            alignment: Alignment.center,
-            child: Text(this.data[index].name),
-            decoration: BoxDecoration(
-                color: Colors.amber, borderRadius: BorderRadius.circular(5)),
+          print(data[index].poster);
+
+          return Image.network(
+            "https://karnosh.s3.eu-central-1.amazonaws.com/unnamed.jpg",
+            errorBuilder: (BuildContext context, Object exception,
+                StackTrace stackTrace) {
+              return Text('Your error widget...');
+            },
           );
         });
   }

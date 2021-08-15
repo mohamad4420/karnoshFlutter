@@ -11,7 +11,7 @@ void bottomSliderMost(context, data) {
         return Directionality(
           textDirection: TextDirection.rtl,
           child: Container(
-            height: 266,
+            height: 276,
             decoration: BoxDecoration(
               color: Color(0xFF212121),
               borderRadius: BorderRadius.only(
@@ -100,36 +100,63 @@ void bottomSliderMost(context, data) {
                             height: 30,
                             child: Row(
                               children: [
-                                Text(data.date + "  ",
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 4, 0, 0),
+                                  child: Text(data.date + "   ",
+                                      style: TextStyle(color: Colors.white70)),
+                                ),
+                                Container(
+                                  width: 3,
+                                  height: 3,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.green[500],
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                ),
+                                Text("   " + data.Rating + "   ",
                                     style: TextStyle(color: Colors.white70)),
-                                Text("+16   ",
-                                    style: TextStyle(color: Colors.white70)),
-                                Text(data.time + "  ",
+                                Container(
+                                  width: 3,
+                                  height: 3,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.green[500],
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                ),
+                                Text("   " + data.time + "   ",
                                     style: TextStyle(color: Colors.white70))
                               ],
                             ),
                           ),
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.72,
-                              height: 80,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: SingleChildScrollView(
-                                      child: ReadMoreText(
-                                        data.description,
-                                        trimLines: 3,
-                                        colorClickableText: Colors.white60,
-                                        trimMode: TrimMode.Line,
-                                        trimCollapsedText: 'المزيد',
-                                        trimExpandedText: 'القليل',
-                                        moreStyle:
-                                            TextStyle(color: Colors.white),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.72,
+                                height: 80,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: SingleChildScrollView(
+                                        child: ReadMoreText(
+                                          data.description,
+                                          trimLines: 3,
+                                          colorClickableText: Colors.white60,
+                                          trimMode: TrimMode.Line,
+                                          trimCollapsedText: 'المزيد',
+                                          trimExpandedText: 'القليل',
+                                          moreStyle:
+                                              TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ))
+                                  ],
+                                )),
+                          )
                         ],
                       ),
                     )

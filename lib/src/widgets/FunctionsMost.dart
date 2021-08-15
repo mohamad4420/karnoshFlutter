@@ -96,11 +96,11 @@ void bottomSliderMost(context, data) {
                             height: 30,
                             child: Row(
                               children: [
-                                Text(data.date + "  ",
+                                Text(data.date,
                                     style: TextStyle(color: Colors.white70)),
-                                Text("+16   ",
+                                Text("+16",
                                     style: TextStyle(color: Colors.white70)),
-                                Text(data.time + "  ",
+                                Text(data.time,
                                     style: TextStyle(color: Colors.white70))
                               ],
                             ),
