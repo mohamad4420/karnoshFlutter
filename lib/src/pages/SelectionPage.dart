@@ -117,7 +117,7 @@ class SelectionPage extends StatelessWidget {
                               child: Container(
                                 child: ListTile(
                                   title: Text(
-                                    ' الحلفة رقم ' + (index + 1).toString(),
+                                    ' الحلقة رقم ' + (index + 1).toString(),
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   subtitle: Text(

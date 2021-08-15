@@ -29,6 +29,10 @@ class _PlayVideoState extends State<PlayVideo> {
     return Directionality(
         textDirection: TextDirection.rtl,
         child: OrientationBuilder(builder: (context, orientation) {
+          orientation == Orientation.landscape
+              ? SystemChrome.setEnabledSystemUIOverlays([])
+              : SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+
           return FutureBuilder(
               future: fetchApi.fetchServer(widget.name, widget.epIndex),
               builder: (context, snapshot) {
@@ -44,6 +48,7 @@ class _PlayVideoState extends State<PlayVideo> {
                       return false;
                     },
                     child: Scaffold(
+                        backgroundColor: Colors.black,
                         appBar: orientation == Orientation.portrait
                             ? AppBar(
                                 leading: IconButton(
@@ -111,12 +116,12 @@ class _PlayVideoState extends State<PlayVideo> {
                                           itemCount: 10,
                                           itemBuilder: (context, index) {
                                             return Container(
-                                                child: Text('data$index'),
-                                                height: 100,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                color: Colors.amber);
+                                              child: Text('data$index'),
+                                              height: 100,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                            );
                                           }),
                                     )
                                   : null,
