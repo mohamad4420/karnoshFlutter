@@ -181,13 +181,7 @@ void bottomSliderMost(context, data) {
                                         .white70 // set the background color
 
                                     ),
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ServerList(name: data.name)));
-                                },
+                                onPressed: () {},
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

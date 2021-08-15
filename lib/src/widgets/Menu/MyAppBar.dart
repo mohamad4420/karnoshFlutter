@@ -28,13 +28,13 @@ class MyAppBar extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              bottom: PreferredSize(
+              /* bottom: PreferredSize(
                 preferredSize: Size.fromHeight(60),
                 child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 60,
                     child: bottonAppBar),
-              ),
+              ),*/
               expandedHeight: MediaQuery.of(context).size.height * 0.8,
               pinned: true,
               title: title,

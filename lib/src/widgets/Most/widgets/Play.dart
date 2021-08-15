@@ -11,13 +11,7 @@ class Play extends StatelessWidget {
               primary: Colors.white // set the background color
 
               ),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ServerList(name: "Army of the Dead (2021)")));
-          },
+          onPressed: () {},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

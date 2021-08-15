@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'ServerList.dart';
+import 'Playvideo.dart';
 
 class SelectionPage extends StatelessWidget {
   final dynamic data;
@@ -11,25 +12,6 @@ class SelectionPage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: Container(
-          width: 40,
-          child: FloatingActionButton(
-            focusColor: Colors.amber,
-            tooltip: "مشاهده الفلم",
-            backgroundColor: Colors.white,
-            child: Icon(
-              Icons.play_arrow,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ServerList(name: data.name)));
-            },
-          ),
-        ),
         backgroundColor: Colors.black,
         body: CustomScrollView(
           slivers: [
@@ -128,16 +110,31 @@ class SelectionPage extends StatelessWidget {
                       ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: 10,
+                          itemCount: 5,
                           itemBuilder: (context, index) {
-                            return Container(
-                                width: MediaQuery.of(context).size.width,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                child: Text(
-                                  'Ep $index',
-                                  style: TextStyle(color: Colors.white),
-                                ));
+                            return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                child: ListTile(
+                                  title: Text(
+                                    'الحلفة رقم' + (index + 1).toString(),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  subtitle: Text(
+                                    'حجوم العمالقة فتال جد والله',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => PlayVideo(
+                                                data.name, index + 1)));
+                                  },
+                                  tileColor: Colors.grey[800],
+                                ),
+                              ),
+                            );
                           }),
                     ],
                   ),

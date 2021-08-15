@@ -20,11 +20,11 @@ class FetchApi {
 }
 
 class FetshServers {
-  Future<List<SerModel>> fetchServer(String name) async {
+  Future<List<SerModel>> fetchServer(String name, int index) async {
     var client = Dio(BaseOptions(baseUrl: "http://karnoshapi.herokuapp.com"));
     var res = await client.post(
       "/DataVideo/KarnoshApi",
-      data: {"name": name, "index": 1},
+      data: {"name": name, "index": index},
     );
     print(res);
     List<SerModel> servers = [];
