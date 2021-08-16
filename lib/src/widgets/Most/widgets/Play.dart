@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../pages/ServerList.dart';
 
 class Play extends StatelessWidget {
   Widget build(BuildContext context) {

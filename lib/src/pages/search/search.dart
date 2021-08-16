@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/model/models.dart';
+import '../SelectionPage.dart';
 import '../../model/SpeechApi.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import '../../model/General_models.dart';
 import '../../model/Fetch.dart';
+import '../../widgets/InfoSmall.dart';
 
 // ignore: must_be_immutable
 class SearchPage extends StatefulWidget {
@@ -115,12 +117,23 @@ class BodySearch extends StatelessWidget {
         itemBuilder: (BuildContext ctx, index) {
           print(data[index].poster);
 
-          return Image.network(
-            "https://karnosh.s3.eu-central-1.amazonaws.com/unnamed.jpg",
-            errorBuilder: (BuildContext context, Object exception,
-                StackTrace stackTrace) {
-              return Text('Your error widget...');
-            },
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SelectionPage(
+                              data: data[index],
+                            )));
+              },
+              onLongPress: () {
+                return bottomSliderMost(context, data[index]);
+              },
+              child: Image.network(data[index].poster),
+            ),
           );
         });
   }

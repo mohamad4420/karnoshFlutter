@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/widgets.dart';
 
 import '../model/models.dart';
@@ -115,12 +114,37 @@ class _PlayVideoState extends State<PlayVideo> {
                                       child: ListView.builder(
                                           itemCount: 10,
                                           itemBuilder: (context, index) {
-                                            return Container(
-                                              child: Text('data$index'),
-                                              height: 100,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(10.0),
+                                              child: Container(
+                                                child: ListTile(
+                                                  title: Text(
+                                                    ' الحلقة رقم ' +
+                                                        (index + 1).toString(),
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  subtitle: Text(
+                                                    'حجوم العمالقة فتال جد والله',
+                                                    style: TextStyle(
+                                                        color: Colors.white70),
+                                                  ),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                PlayVideo(
+                                                                    widget.key,
+                                                                    widget.name,
+                                                                    index)));
+                                                  },
+                                                  tileColor: Colors.white10
+                                                      .withOpacity(0.04),
+                                                ),
+                                              ),
                                             );
                                           }),
                                     )

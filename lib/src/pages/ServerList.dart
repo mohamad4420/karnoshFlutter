@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 
+// ignore: must_be_immutable
 class ServerList extends StatelessWidget {
   dynamic data;
   dynamic callback;
