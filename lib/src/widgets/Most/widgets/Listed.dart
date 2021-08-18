@@ -34,8 +34,8 @@ class _ListedState extends State<Listed>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                _isListed ? Icons.check : Icons.add,
-                color: _isListed ? Colors.white : Colors.white70,
+                _isListed ? Icons.task_alt_outlined : Icons.add,
+                color: _isListed ? Colors.green : Colors.white70,
               ),
               Text(_isListed ? 'ازاله' : 'قائمتي',
                   style: TextStyle(

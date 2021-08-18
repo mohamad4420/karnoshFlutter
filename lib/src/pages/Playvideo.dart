@@ -9,7 +9,9 @@ import 'package:flutter/services.dart';
 class PlayVideo extends StatefulWidget {
   final name;
   final epIndex;
-  PlayVideo(Key key, this.name, this.epIndex) : super(key: key);
+  final numberOfServer;
+  PlayVideo(Key key, this.name, this.epIndex, this.numberOfServer)
+      : super(key: key);
   @override
   _PlayVideoState createState() => _PlayVideoState();
 }
@@ -63,6 +65,7 @@ class _PlayVideoState extends State<PlayVideo> {
                                 backgroundColor: Colors.black,
                                 title: IconButton(
                                   splashRadius: 25,
+                                  tooltip: "تغيير السيرفر",
                                   onPressed: () {
                                     Navigator.push(
                                         context,
@@ -77,7 +80,7 @@ class _PlayVideoState extends State<PlayVideo> {
                                                       })
                                                     })));
                                   },
-                                  icon: Icon(Icons.settings),
+                                  icon: Icon(Icons.video_settings),
                                 ),
                               )
                             : null,
@@ -111,16 +114,34 @@ class _PlayVideoState extends State<PlayVideo> {
                                               0.5625 -
                                           105.143,
                                       child: ListView.builder(
-                                          itemCount: 10,
+                                          itemCount: widget.numberOfServer -
+                                              widget.epIndex -
+                                              1,
                                           itemBuilder: (context, index) {
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.all(10.0),
                                               child: Container(
                                                 child: ListTile(
+                                                  trailing: Column(
+                                                    children: [
+                                                      IconButton(
+                                                        tooltip:
+                                                            "وضع للمشاهده لاحقا",
+                                                        onPressed: () {},
+                                                        splashRadius: 15,
+                                                        icon: Icon(Icons
+                                                            .visibility_outlined),
+                                                        color: Colors.white30,
+                                                      ),
+                                                    ],
+                                                  ),
                                                   title: Text(
                                                     ' الحلقة رقم ' +
-                                                        (index + 1).toString(),
+                                                        (index +
+                                                                widget.epIndex +
+                                                                2)
+                                                            .toString(),
                                                     style: TextStyle(
                                                         color: Colors.white),
                                                   ),
@@ -138,7 +159,12 @@ class _PlayVideoState extends State<PlayVideo> {
                                                                 PlayVideo(
                                                                     widget.key,
                                                                     widget.name,
-                                                                    index)));
+                                                                    index +
+                                                                        widget
+                                                                            .epIndex +
+                                                                        1,
+                                                                    widget
+                                                                        .numberOfServer)));
                                                   },
                                                   tileColor: Colors.white10
                                                       .withOpacity(0.04),

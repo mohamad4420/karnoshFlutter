@@ -15,6 +15,7 @@ class SelectionPage extends StatefulWidget {
 }
 
 class _SelectionPageState extends State<SelectionPage> {
+  bool sorts = false;
   bool spasification = false;
   Widget build(BuildContext context) {
     return Directionality(
@@ -128,39 +129,131 @@ class _SelectionPageState extends State<SelectionPage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 110, 0, 0),
-                      child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: widget.data.numberOfServer,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: ListTile(
-                                title: Text(
-                                  ' الحلقة رقم ' +
-                                      (widget.data.numberOfServer - index)
-                                          .toString(),
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                subtitle: Text(
-                                  'حجوم العمالقة فتال جد والله',
-                                  style: TextStyle(color: Colors.white70),
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => PlayVideo(
-                                              widget.key,
-                                              widget.data.name,
-                                              widget.data.numberOfServer -
-                                                  index -
-                                                  1)));
+                      child: ListView(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 60,
+                            child: ListTile(
+                              leading: IconButton(
+                                onPressed: () {
+                                  if (this.sorts) {
+                                    setState(() {
+                                      sorts = false;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      sorts = true;
+                                    });
+                                  }
                                 },
-                                tileColor: Colors.white10.withOpacity(0.04),
+                                icon: Icon(Icons.swap_vert_rounded),
+                                color: Colors.white,
+                                splashRadius: 25,
                               ),
-                            );
-                          }),
+                            ),
+                          ),
+                          this.sorts
+                              ? ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: widget.data.numberOfServer,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: ListTile(
+                                        title: Text(
+                                          ' الحلقة رقم ' +
+                                              (widget.data.numberOfServer -
+                                                      index)
+                                                  .toString(),
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        trailing: Column(
+                                          children: [
+                                            IconButton(
+                                              tooltip: "وضع للمشاهده لاحقا",
+                                              onPressed: () {},
+                                              splashRadius: 15,
+                                              icon: Icon(
+                                                  Icons.visibility_outlined),
+                                              color: Colors.white30,
+                                            ),
+                                          ],
+                                        ),
+                                        subtitle: Text(
+                                          'حجوم العمالقة فتال جد والله',
+                                          style:
+                                              TextStyle(color: Colors.white70),
+                                        ),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => PlayVideo(
+                                                      widget.key,
+                                                      widget.data.name,
+                                                      widget.data
+                                                              .numberOfServer -
+                                                          index -
+                                                          1,
+                                                      widget.data
+                                                          .numberOfServer)));
+                                        },
+                                        tileColor:
+                                            Colors.white10.withOpacity(0.1),
+                                      ),
+                                    );
+                                  })
+                              : ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: widget.data.numberOfServer,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: ListTile(
+                                        title: Text(
+                                          ' الحلقة رقم ' +
+                                              (index + 1).toString(),
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        trailing: Column(
+                                          children: [
+                                            IconButton(
+                                              tooltip: "وضع للمشاهده لاحقا",
+                                              onPressed: () {},
+                                              splashRadius: 15,
+                                              icon: Icon(
+                                                  Icons.visibility_outlined),
+                                              color: Colors.white30,
+                                            ),
+                                          ],
+                                        ),
+                                        subtitle: Text(
+                                          'حجوم العمالقة فتال جد والله',
+                                          style:
+                                              TextStyle(color: Colors.white70),
+                                        ),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PlayVideo(
+                                                          widget.key,
+                                                          widget.data.name,
+                                                          index,
+                                                          widget.data
+                                                              .numberOfServer)));
+                                        },
+                                        tileColor:
+                                            Colors.white10.withOpacity(0.1),
+                                      ),
+                                    );
+                                  }),
+                        ],
+                      ),
                     ),
                     Related(
                       name: widget.data.name,
@@ -389,8 +482,124 @@ class Spasification extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
                           width: MediaQuery.of(context).size.width - 20,
-                          height: MediaQuery.of(context).size.width * 0.8,
                           color: Colors.white10,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                                  child: Generess(
+                                    generess: snapshot.data[0].genres,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: Column(
+                                      children: [
+                                        Text(
+                                          "المصدر",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        Text(snapshot.data[0].source,
+                                            style: TextStyle(
+                                                color: Colors.white38))
+                                      ],
+                                    )),
+                                    Expanded(
+                                        child: Column(
+                                      children: [
+                                        Text("مده الحلقه",
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        Text(snapshot.data[0].time,
+                                            style: TextStyle(
+                                                color: Colors.white38))
+                                      ],
+                                    ))
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Column(
+                                        children: [
+                                          Text(
+                                            "عرض من ",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          Text(snapshot.data[0].from,
+                                              style: TextStyle(
+                                                  color: Colors.white38))
+                                        ],
+                                      )),
+                                      Expanded(
+                                          child: Column(
+                                        children: [
+                                          Text("الى",
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                          Text(snapshot.data[0].to,
+                                              style: TextStyle(
+                                                  color: Colors.white38))
+                                        ],
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Column(
+                                        children: [
+                                          Text(
+                                            "الاستديو",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: Container(
+                                              color: Colors.white10
+                                                  .withOpacity(0.1),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(6.0),
+                                                child: Text(
+                                                  snapshot.data[0].studios,
+                                                  style: TextStyle(
+                                                      color: Colors.white70),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                      Expanded(
+                                          child: Column(
+                                        children: [
+                                          Text("اخر حلقه مضافه",
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                          Text(snapshot.data[0].time,
+                                              style: TextStyle(
+                                                  color: Colors.white38))
+                                        ],
+                                      ))
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -420,5 +629,41 @@ class Spasification extends StatelessWidget {
             );
           }
         });
+  }
+}
+
+class Generess extends StatelessWidget {
+  final dynamic generess;
+  const Generess({Key key, this.generess}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        child: Center(
+            child: ListView.builder(
+                itemCount: generess.length,
+                shrinkWrap: true,
+                scrollDirection: Axis
+                    .horizontal, //GenereItem(name: genData[index].toString());
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: Colors.white10.withOpacity(0.1),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            generess[index],
+                            style: TextStyle(color: Colors.white70),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                })));
   }
 }

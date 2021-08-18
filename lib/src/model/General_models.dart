@@ -8,12 +8,28 @@ class GeneralData {
   String time;
   String galary;
   String broadcast;
+  String source;
+  String from;
+  String studios;
+  String to;
   int numberOfServer;
   // ignore: non_constant_identifier_names
   String Rating;
   List<String> genres = [""];
-  GeneralData(this.Rating, this.name, this.date, this.numberOfServer, this.type,
-      this.description, this.poster, this.rating, this.genres);
+  GeneralData(
+      this.Rating,
+      this.studios,
+      this.name,
+      this.date,
+      this.source,
+      this.numberOfServer,
+      this.type,
+      this.from,
+      this.to,
+      this.description,
+      this.poster,
+      this.rating,
+      this.genres);
   // get fucing
 
   GeneralData.fromJson(Map<String, dynamic> map) {
@@ -45,6 +61,33 @@ class GeneralData {
       this.broadcast = "غير معروف";
     }
 
+    if (map['Studios'] != null) {
+      this.studios = map['Studios'][0];
+    } else {
+      this.studios = "غير معروف";
+    }
+
+    if (map['Source'] != null) {
+      if (map['Source'] == "Manga") {
+        this.source = "مانغا";
+      } else if (map['Source'] == "Card game") {
+        this.source = "لعبه ورق";
+      } else if (map['Source'] == "Visual novel") {
+        this.source = "روايه قصيره";
+      } else {
+        this.source = map['Source'];
+      }
+    } else {
+      this.source = "غير معروف";
+    }
+    if (map['Aired'] != null) {
+      this.from = map['Aired'].split("to")[0];
+      this.to = map['Aired'].split("to")[1];
+    } else {
+      this.from = "غير معروف";
+      this.to = "غير معروف";
+    }
+
     if (map['Duration'] != null) {
       this.time = map['Duration'].replaceAll(" min. per ep.", " دقيقه ");
     } else {
@@ -71,7 +114,7 @@ class GeneralData {
     }
     this.poster = map['poster'];
     this.description = map['Discription'];
-    if (map['rating'] == null) {
+    if (map['rating'] == null || map['rating'].length == 0) {
       this.rating = 'غير معروف';
     } else
       this.rating = map['rating'].toString();
