@@ -7,6 +7,7 @@ import 'package:avatar_glow/avatar_glow.dart';
 import '../../model/General_models.dart';
 import '../../model/Fetch.dart';
 import '../../widgets/InfoSmall.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 // ignore: must_be_immutable
 class SearchPage extends StatefulWidget {
@@ -115,13 +116,12 @@ class BodySearch extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         itemCount: this.data.length,
         itemBuilder: (BuildContext ctx, index) {
-          print(data[index].poster);
-
           return ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                //Navigator.pop(context);
+
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -132,7 +132,14 @@ class BodySearch extends StatelessWidget {
               onLongPress: () {
                 return bottomSliderMost(context, data[index]);
               },
-              child: Image.network(data[index].poster),
+              child: CachedNetworkImage(
+                  placeholder: (context, url) => Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.red,
+                        ),
+                      ),
+                  imageUrl: data[index].poster,
+                  fit: BoxFit.fill),
             ),
           );
         });

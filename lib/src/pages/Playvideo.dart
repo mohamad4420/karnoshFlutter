@@ -70,7 +70,6 @@ class _PlayVideoState extends State<PlayVideo> {
                                             builder: (context) => ServerList(
                                                 data: snapshot.data,
                                                 callback: (data) => {
-                                                      print(data),
                                                       this.setState(() {
                                                         this
                                                             .webviewcontroller

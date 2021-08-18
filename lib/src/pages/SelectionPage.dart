@@ -1,6 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'Playvideo.dart';
 import 'package:flutter/services.dart';
+import '../model/Fetch.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SelectionPage extends StatefulWidget {
   final dynamic data;
@@ -15,92 +19,116 @@ class _SelectionPageState extends State<SelectionPage> {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: Colors.black,
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-                actions: [
-                  IconButton(
-                      splashRadius: 20,
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border_outlined,
-                        color: Colors.white60,
-                      ))
-                ],
-                leading: Transform.rotate(
-                  angle: 3.14,
-                  child: IconButton(
-                    tooltip: "الرجوع ",
-                    color: Colors.white70,
-                    icon: Icon(
-                      Icons.arrow_forward_ios_outlined,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-                title: Text(
-                  widget.data.name,
-                  style: TextStyle(fontSize: 18, color: Colors.white70),
-                ),
-                expandedHeight: this.spasification
-                    ? 60
-                    : MediaQuery.of(context).size.width * 0.6625 + 60,
-                pinned: true,
-                brightness: Brightness.dark,
-                backgroundColor: Colors.black,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Image(
-                    image: NetworkImage(widget.data.galary),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                bottom: PreferredSize(
-                  child: Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: const FractionalOffset(0.0, 1.0),
-                          end: const FractionalOffset(0.0, 0.0),
-                          colors: [Colors.black, Colors.black12],
+      child: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+            backgroundColor: Colors.black,
+            body: NestedScrollView(
+                headerSliverBuilder:
+                    (BuildContext context, bool innerBoxIsScrolled) {
+                  return [
+                    SliverOverlapAbsorber(
+                      handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
+                          context),
+                      sliver: SliverAppBar(
+                        actions: [
+                          IconButton(
+                              splashRadius: 20,
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.white60,
+                              ))
+                        ],
+                        leading: Transform.rotate(
+                          angle: 3.14,
+                          child: IconButton(
+                            tooltip: "الرجوع ",
+                            color: Colors.white70,
+                            icon: Icon(
+                              Icons.arrow_forward_ios_outlined,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
                         ),
-                        border:
-                            Border(bottom: BorderSide(color: Colors.white24))),
-                    child: DefaultTabController(
-                      length: 3,
-                      child: TabBar(indicatorColor: Colors.red, tabs: [
-                        FittedBox(
-                            child: Text(
-                          ' الحلقات (' +
-                              widget.data.numberOfServer.toString() +
-                              ")",
-                          style: TextStyle(color: Colors.white, fontSize: 14),
-                        )),
-                        FittedBox(
-                            child: Text(
-                          'انميات لك',
-                          style: TextStyle(color: Colors.white, height: 2),
-                        )),
-                        FittedBox(
-                            child: Text(
-                          'جميع المعلومات',
-                          style: TextStyle(color: Colors.white, height: 2),
-                        )),
-                      ]),
+                        title: Text(
+                          widget.data.name,
+                          style: TextStyle(fontSize: 18, color: Colors.white70),
+                        ),
+                        expandedHeight: this.spasification
+                            ? 60
+                            : MediaQuery.of(context).size.width * 0.6625 + 30,
+                        pinned: true,
+                        brightness: Brightness.dark,
+                        backgroundColor: Colors.black,
+                        flexibleSpace: FlexibleSpaceBar(
+                          background: CachedNetworkImage(
+                              placeholder: (context, url) => Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                              imageUrl: widget.data.galary,
+                              fit: BoxFit.fill),
+                        ),
+                        bottom: PreferredSize(
+                          preferredSize: const Size.fromHeight(50.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: const FractionalOffset(0.0, 1.0),
+                                  end: const FractionalOffset(0.0, 0.0),
+                                  colors: [Colors.black, Colors.transparent],
+                                ),
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.white24))),
+                            child: TabBar(
+                                indicatorColor: Colors.red,
+                                onTap: (int) {
+                                  print(int);
+                                  if (int == 2) {
+                                    this.setState(() {
+                                      spasification = true;
+                                    });
+                                  } else {
+                                    this.setState(() {
+                                      spasification = false;
+                                    });
+                                  }
+                                },
+                                tabs: [
+                                  Text(
+                                    ' الحلقات (' +
+                                        widget.data.numberOfServer.toString() +
+                                        ")",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 14),
+                                  ),
+                                  Text(
+                                    'انميات لك',
+                                    style: TextStyle(
+                                        color: Colors.white, height: 2),
+                                  ),
+                                  Text(
+                                    'جميع المعلومات',
+                                    style: TextStyle(
+                                        color: Colors.white, height: 2),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  preferredSize: const Size.fromHeight(50.0),
-                )),
-            SliverList(
-                delegate: SliverChildListDelegate([
-              Wrap(children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ListView.builder(
+                  ];
+                },
+                body: TabBarView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 110, 0, 0),
+                      child: ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: widget.data.numberOfServer,
@@ -109,7 +137,9 @@ class _SelectionPageState extends State<SelectionPage> {
                               padding: const EdgeInsets.all(10.0),
                               child: ListTile(
                                 title: Text(
-                                  ' الحلقة رقم ' + (index + 1).toString(),
+                                  ' الحلقة رقم ' +
+                                      (widget.data.numberOfServer - index)
+                                          .toString(),
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 subtitle: Text(
@@ -123,20 +153,272 @@ class _SelectionPageState extends State<SelectionPage> {
                                           builder: (context) => PlayVideo(
                                               widget.key,
                                               widget.data.name,
-                                              index)));
+                                              widget.data.numberOfServer -
+                                                  index -
+                                                  1)));
                                 },
                                 tileColor: Colors.white10.withOpacity(0.04),
                               ),
                             );
                           }),
-                    ],
-                  ),
-                ),
-              ])
-            ]))
-          ],
-        ),
+                    ),
+                    Related(
+                      name: widget.data.name,
+                    ),
+                    Spasification(name: widget.data.name),
+                  ],
+                ))),
       ),
     );
+  }
+}
+
+class Related extends StatelessWidget {
+  final String name;
+  Related({Key key, this.name}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: FetchApi().related(this.name),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(0, 110, 0, 0),
+              child: ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SelectionPage(
+                                        data: snapshot.data[index],
+                                      )));
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                                height:
+                                    MediaQuery.of(context).size.width * 0.54,
+                                width: MediaQuery.of(context).size.width,
+                                color: Colors.white,
+                                child: CachedNetworkImage(
+                                    placeholder: (context, url) => Center(
+                                          child: CircularProgressIndicator(
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                    imageUrl: snapshot.data[index].poster,
+                                    fit: BoxFit.fill)),
+                            ListTile(
+                              title: Text(snapshot.data[index].name,
+                                  style: TextStyle(color: Colors.white)),
+                              subtitle: Container(
+                                height: 28,
+                                child: Text(snapshot.data[index].description,
+                                    style: TextStyle(color: Colors.white60)),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+            );
+          } else {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 110, 0, 0),
+                child: CircularProgressIndicator(
+                  color: Colors.red,
+                ),
+              ),
+            );
+          }
+        });
+  }
+}
+
+class Spasification extends StatelessWidget {
+  final String name;
+  Spasification({Key key, this.name}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: FetchApi().information(this.name),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Padding(
+              padding: EdgeInsets.fromLTRB(0, 105, 0, 0),
+              child: ListView(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(snapshot.data[0].poster),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                              begin: const FractionalOffset(0.0, 1.0),
+                              end: const FractionalOffset(0.0, 0.0),
+                              colors: [Colors.black, Colors.black54],
+                            )),
+                          ),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: CachedNetworkImage(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      height:
+                                          MediaQuery.of(context).size.width *
+                                              0.4,
+                                      placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                      imageUrl: snapshot.data[0].poster,
+                                      fit: BoxFit.fill),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    Text(snapshot.data[0].broadcast,
+                                        style:
+                                            TextStyle(color: Colors.white70)),
+                                    Text(snapshot.data[0].date,
+                                        style:
+                                            TextStyle(color: Colors.white70)),
+                                    Text(
+                                        " انمي | حلقه " +
+                                            snapshot.data[0].numberOfServer
+                                                .toString() +
+                                            " | " +
+                                            snapshot.data[0].Rating,
+                                        style: TextStyle(color: Colors.white70))
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            width: 820,
+                            height: 50,
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 3, // 60% of space => (6/(6 + 4))
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.add,
+                                        color: Colors.white70,
+                                      ),
+                                      Text('قائمتي',
+                                          style:
+                                              TextStyle(color: Colors.white70))
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 3, // 60% of space => (6/(6 + 4))
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.star_border_outlined,
+                                        color: Colors.white70,
+                                      ),
+                                      Text('اضافه تقييم',
+                                          style:
+                                              TextStyle(color: Colors.white70))
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 3, // 60% of space => (6/(6 + 4))
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Colors.yellow[600],
+                                      ),
+                                      Text(snapshot.data[0].rating.toString(),
+                                          style:
+                                              TextStyle(color: Colors.white70))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          height: MediaQuery.of(context).size.width * 0.8,
+                          color: Colors.white10,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 20,
+                          height: MediaQuery.of(context).size.width * 0.8,
+                          color: Colors.white10,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 110, 0, 0),
+                child: CircularProgressIndicator(color: Colors.red),
+              ),
+            );
+          }
+        });
   }
 }

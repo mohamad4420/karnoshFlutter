@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../responsive.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MyCard extends StatelessWidget {
   @required
@@ -18,9 +19,13 @@ class MyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: Container(
           color: Colors.grey[900],
-          child: FadeInImage.assetNetwork(
-              placeholder: "images/sliderLoading.png",
-              image: img,
+          child: CachedNetworkImage(
+              placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
+                  ),
+              imageUrl: img,
               fit: BoxFit.fill),
         ),
       ),

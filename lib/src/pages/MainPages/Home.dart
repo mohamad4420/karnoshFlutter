@@ -24,16 +24,16 @@ class Home extends StatelessWidget {
           genres: null,
         ),
         SliderItem(
-          name: "احدث الانميات ",
+          name: " الانميات ",
           type: "anime",
-          stored: true,
+          stored: false,
           genres: null,
         ),
         SliderItem(
-          name: "احدث الانميات ",
+          name: "انميات اكشن ",
           type: "anime",
-          stored: true,
-          genres: null,
+          stored: false,
+          genres: "مغامره",
         ),
         SliderItem(
           name: "احدث الانميات ",

@@ -7,13 +7,15 @@ class GeneralData {
   String rating;
   String time;
   String galary;
+  String broadcast;
   int numberOfServer;
   // ignore: non_constant_identifier_names
   String Rating;
   List<String> genres = [""];
-
   GeneralData(this.Rating, this.name, this.date, this.numberOfServer, this.type,
       this.description, this.poster, this.rating, this.genres);
+  // get fucing
+
   GeneralData.fromJson(Map<String, dynamic> map) {
     if (map['Rating'] != null) {
       if (map['Rating'].contains("PG-13")) {
@@ -34,9 +36,15 @@ class GeneralData {
     } else {
       this.date = "N/A";
     }
-    print(map['NumberOfServer']);
     this.numberOfServer = map['NumberOfServer'];
     this.type = map['Type'];
+
+    if (map['Broadcast'] != null) {
+      this.broadcast = getFromName(map['Broadcast']);
+    } else {
+      this.broadcast = "غير معروف";
+    }
+
     if (map['Duration'] != null) {
       this.time = map['Duration'].replaceAll(" min. per ep.", " دقيقه ");
     } else {
@@ -55,17 +63,35 @@ class GeneralData {
         genres = ["انمي"];
       }
     } else {
-      genres = ["N/A"];
+      genres = ["غير معروف"];
     }
-    if (map['Genres'] != null || map['Genres'] != "n/A") {
+    if (map['Genres'] != null || map['Genres'] != "غير معروف") {
       genres = [];
       (map['Genres'] as List).map((i) => this.genres.add(i)).toList();
     }
     this.poster = map['poster'];
     this.description = map['Discription'];
     if (map['rating'] == null) {
-      this.rating = 'NoDATA';
+      this.rating = 'غير معروف';
     } else
       this.rating = map['rating'].toString();
+  }
+  getFromName(name) {
+    String date = name.split(" at ")[1];
+    if (name.contains("Monday")) {
+      return " ايام الاثنين " + date;
+    } else if (name.contains("Tuesday")) {
+      return " ايام الثلاثاء " + date;
+    } else if (name.contains("Wednesday")) {
+      return " ايام الخميس " + date;
+    } else if (name.contains("Thursday")) {
+      return " ايام الاربعاء " + date;
+    } else if (name.contains("Friday")) {
+      return " ايام الجمعه " + date;
+    } else if (name.contains("Saturday")) {
+      return " ايام السبت " + date;
+    } else if (name.contains("Sunday")) {
+      return " ايام الاحد " + date;
+    }
   }
 }

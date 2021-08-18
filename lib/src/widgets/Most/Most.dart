@@ -5,6 +5,7 @@ import '../../model/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/physics.dart';
 import '../responsive.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Most extends StatelessWidget {
   final String type;
@@ -44,15 +45,19 @@ class Most extends StatelessWidget {
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Stack(key: ObjectKey(context), children: <Widget>[
-                      FadeInImage.assetNetwork(
-                        height: MediaQuery.of(context).size.height * innerMost,
-                        width: MediaQuery.of(context).size.width,
-                        placeholder: "images/loadingGif.gif",
-                        image: Responsive.isMobile(context)
-                            ? vids[index].poster
-                            : vids[index].galary,
-                        fit: BoxFit.cover,
-                      ),
+                      CachedNetworkImage(
+                          height:
+                              MediaQuery.of(context).size.height * innerMost,
+                          width: MediaQuery.of(context).size.width,
+                          placeholder: (context, url) => Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
+                              ),
+                          imageUrl: Responsive.isMobile(context)
+                              ? vids[index].poster
+                              : vids[index].galary,
+                          fit: BoxFit.fill),
                       Container(
                           width: MediaQuery.of(context).size.width,
                           height:

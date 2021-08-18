@@ -14,7 +14,6 @@ class _ListedState extends State<Listed>
     super.build(context);
     void _setListed() {
       setState(() {
-        print(_isListed);
         _isListed = !_isListed;
       });
     }
@@ -38,7 +37,7 @@ class _ListedState extends State<Listed>
                 _isListed ? Icons.check : Icons.add,
                 color: _isListed ? Colors.white : Colors.white70,
               ),
-              Text(_isListed ? 'تم الاضافة' : 'اضافة',
+              Text(_isListed ? 'ازاله' : 'قائمتي',
                   style: TextStyle(
                       color: _isListed ? Colors.white : Colors.white70))
             ],
