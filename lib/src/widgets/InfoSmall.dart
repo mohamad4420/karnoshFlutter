@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import '../pages/SelectionPage.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void bottomSliderMost(context, data) {
   showModalBottomSheet(
@@ -37,19 +38,25 @@ void bottomSliderMost(context, data) {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(5.0),
                             child: GestureDetector(
-                                onTap: () => {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => SelectionPage(
-                                                  data: data,
-                                                )),
-                                      )
-                                    },
-                                child: Image(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(data.poster),
-                                )),
+                              onTap: () => {
+                                Navigator.pop(context),
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SelectionPage(
+                                            data: data,
+                                          )),
+                                )
+                              },
+                              child: CachedNetworkImage(
+                                  placeholder: (context, url) => Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                  imageUrl: data.poster,
+                                  fit: BoxFit.fill),
+                            ),
                           ),
                         ),
                       ),
@@ -243,6 +250,7 @@ void bottomSliderMost(context, data) {
                 padding: const EdgeInsets.fromLTRB(0, 5, 14, 0),
                 child: InkWell(
                   onTap: () {
+                    Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

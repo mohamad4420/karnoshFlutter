@@ -92,6 +92,7 @@ class _PlayVideoState extends State<PlayVideo> {
                                   ? MediaQuery.of(context).size.width * 0.5625
                                   : MediaQuery.of(context).size.height,
                               child: WebView(
+                                  allowsInlineMediaPlayback: true,
                                   initialUrl: this.url,
                                   onWebViewCreated:
                                       (WebViewController webViewController) {

@@ -12,7 +12,7 @@
 </queries>
    <application
         android:label="karnosh"
-        android:icon="@mipmap/favicon">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

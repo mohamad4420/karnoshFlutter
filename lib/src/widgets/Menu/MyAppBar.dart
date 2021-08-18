@@ -40,7 +40,7 @@ class MyAppBar extends StatelessWidget {
               title: title,
               centerTitle: true,
               brightness: Brightness.dark,
-              backgroundColor: Colors.black.withOpacity(0.3),
+              backgroundColor: Colors.black.withOpacity(0.6),
               leading: leading,
               actions: <Widget>[
                 IconButton(

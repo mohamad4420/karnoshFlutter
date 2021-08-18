@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'Playvideo.dart';
 import 'package:flutter/services.dart';
@@ -56,7 +55,7 @@ class _SelectionPageState extends State<SelectionPage> {
                         ),
                         title: Text(
                           widget.data.name,
-                          style: TextStyle(fontSize: 18, color: Colors.white70),
+                          style: TextStyle(fontSize: 18, color: Colors.white),
                         ),
                         expandedHeight: this.spasification
                             ? 60
@@ -71,8 +70,8 @@ class _SelectionPageState extends State<SelectionPage> {
                                       color: Colors.red,
                                     ),
                                   ),
-                              imageUrl: widget.data.galary,
-                              fit: BoxFit.fill),
+                              imageUrl: widget.data.poster,
+                              fit: BoxFit.cover),
                         ),
                         bottom: PreferredSize(
                           preferredSize: const Size.fromHeight(50.0),
@@ -282,7 +281,7 @@ class Related extends StatelessWidget {
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -306,16 +305,20 @@ class Related extends StatelessWidget {
                                           ),
                                         ),
                                     imageUrl: snapshot.data[index].poster,
-                                    fit: BoxFit.fill)),
-                            ListTile(
-                              title: Text(snapshot.data[index].name,
-                                  style: TextStyle(color: Colors.white)),
-                              subtitle: Container(
-                                height: 28,
-                                child: Text(snapshot.data[index].description,
-                                    style: TextStyle(color: Colors.white60)),
+                                    fit: BoxFit.cover)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text(snapshot.data[index].name,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 16)),
+                                  Text(snapshot.data[index].name,
+                                      style: TextStyle(
+                                          color: Colors.white54, fontSize: 14)),
+                                ],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -611,12 +614,76 @@ class Spasification extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: Container(
                           width: MediaQuery.of(context).size.width - 20,
-                          height: MediaQuery.of(context).size.width * 0.8,
                           color: Colors.white10,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: Column(
+                                      children: [
+                                        Text(
+                                          "حاله العرض",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        Text(snapshot.data[0].status,
+                                            style: TextStyle(
+                                                color: Colors.white38))
+                                      ],
+                                    )),
+                                    Expanded(
+                                        child: Column(
+                                      children: [
+                                        Text("الشعبيه",
+                                            style:
+                                                TextStyle(color: Colors.white)),
+                                        Text(snapshot.data[0].popularity,
+                                            style: TextStyle(
+                                                color: Colors.white38))
+                                      ],
+                                    ))
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Column(
+                                        children: [
+                                          Text(
+                                            "اخر حلقه مضافه",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          Text(snapshot.data[0].ubdate,
+                                              style: TextStyle(
+                                                  color: Colors.white38))
+                                        ],
+                                      )),
+                                      Expanded(
+                                          child: Column(
+                                        children: [
+                                          Text("الموسم",
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                          Text(snapshot.data[0].S,
+                                              style: TextStyle(
+                                                  color: Colors.white38))
+                                        ],
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );

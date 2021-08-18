@@ -8,7 +8,7 @@ class FetchApi {
     var client = Dio(BaseOptions(baseUrl: "http://karnoshapi.herokuapp.com"));
     var res = await client.post(
       "/DataVideo/KarnoshApi",
-      data: {"Type": type, "sorted": sorted, "genres": genres},
+      data: {"Type": type, "sorted": sorted, "Genres": genres},
     );
 
     List<GeneralData> data = [];

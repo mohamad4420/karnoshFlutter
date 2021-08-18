@@ -12,6 +12,10 @@ class GeneralData {
   String from;
   String studios;
   String to;
+  String status;
+  String popularity;
+  String ubdate;
+  String S;
   int numberOfServer;
   // ignore: non_constant_identifier_names
   String Rating;
@@ -22,13 +26,17 @@ class GeneralData {
       this.name,
       this.date,
       this.source,
+      this.ubdate,
       this.numberOfServer,
       this.type,
       this.from,
       this.to,
       this.description,
       this.poster,
+      this.S,
       this.rating,
+      this.status,
+      this.popularity,
       this.genres);
   // get fucing
 
@@ -59,6 +67,37 @@ class GeneralData {
       this.broadcast = getFromName(map['Broadcast']);
     } else {
       this.broadcast = "غير معروف";
+    }
+
+    if (map['S'] != null) {
+      if (map['S'] == "0") {
+        this.S = "1";
+      } else {
+        this.S = map['S'];
+      }
+    } else {
+      this.S = "غير معروف";
+    }
+
+    if (map['ubdate'] != null) {
+      DateTime now = new DateTime.now();
+      print(now);
+      final difference = now.difference(DateTime.parse(map['ubdate'])).inDays;
+      print(difference);
+      this.ubdate = difference.toString() + " ايام ";
+    } else {
+      this.ubdate = "غير معروف";
+    }
+
+    if (map['Popularity'] != null) {
+      this.popularity = map['Popularity'];
+    } else {
+      this.broadcast = "غير معروف";
+    }
+    if (map['Status'] != null) {
+      this.status = map['Status'];
+    } else {
+      this.status = "غير معروف";
     }
 
     if (map['Studios'] != null) {

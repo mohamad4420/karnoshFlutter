@@ -26,7 +26,7 @@ class ServerList extends StatelessWidget {
                 callback(data[0].server[index]);
               },
               child: ListWheelScrollView.useDelegate(
-                magnification: 1.3,
+                magnification: 1.2,
                 controller: _scrollController,
                 itemExtent: _itemHeight,
                 physics: FixedExtentScrollPhysics(),
@@ -36,14 +36,13 @@ class ServerList extends StatelessWidget {
                   print("onSelectedItemChanged index: $index");
                 },
                 childDelegate: ListWheelChildBuilderDelegate(
-                  builder: (context, index) => SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: _itemHeight,
-                    child: ListTile(
-                      title: Center(
-                        child: Text(data[0].nameServer[index],
-                            style: TextStyle(color: Colors.white)),
-                      ),
+                  builder: (context, index) => Padding(
+                    padding: const EdgeInsets.fromLTRB(40, 0, 0, 0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: _itemHeight,
+                      child: Text(data[0].nameServer[index],
+                          style: TextStyle(color: Colors.white)),
                     ),
                   ),
                   childCount: data[0].server.length,
@@ -55,8 +54,8 @@ class ServerList extends StatelessWidget {
               left: 0,
               right: 0,
               child: FloatingActionButton(
-                  backgroundColor: Colors.grey,
-                  child: Icon(Icons.exit_to_app),
+                  backgroundColor: Colors.red,
+                  child: Icon(Icons.exit_to_app_outlined),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
