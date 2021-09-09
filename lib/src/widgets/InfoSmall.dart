@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import '../pages/SelectionPage.dart';
+import '../pages/SelectionPage/SelectionPage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 void bottomSliderMost(context, data) {
@@ -49,6 +49,8 @@ void bottomSliderMost(context, data) {
                                 )
                               },
                               child: CachedNetworkImage(
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
                                   placeholder: (context, url) => Center(
                                         child: CircularProgressIndicator(
                                           color: Colors.red,

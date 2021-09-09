@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../model/models.dart';
-import '../../../pages/SelectionPage.dart';
+import '../../../pages/SelectionPage/SelectionPage.dart';
 
 class Info extends StatelessWidget {
   final GeneralData data;

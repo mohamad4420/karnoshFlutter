@@ -20,6 +20,7 @@ class MyCard extends StatelessWidget {
         child: Container(
           color: Colors.grey[900],
           child: CachedNetworkImage(
+              errorWidget: (context, url, error) => Icon(Icons.error),
               placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(
                       color: Colors.red,

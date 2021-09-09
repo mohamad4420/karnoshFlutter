@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/model/models.dart';
-import '../SelectionPage.dart';
+import '../SelectionPage/SelectionPage.dart';
 import '../../model/SpeechApi.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import '../../model/General_models.dart';

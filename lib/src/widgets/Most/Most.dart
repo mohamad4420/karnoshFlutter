@@ -49,6 +49,7 @@ class Most extends StatelessWidget {
                           height:
                               MediaQuery.of(context).size.height * innerMost,
                           width: MediaQuery.of(context).size.width,
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                           placeholder: (context, url) => Center(
                                 child: CircularProgressIndicator(
                                   color: Colors.red,

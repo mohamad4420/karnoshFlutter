@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import '../pages/SelectionPage.dart';
+import '../pages/SelectionPage/SelectionPage.dart';
 import '../pages/ServerList.dart';
 
 void bottomSliderMost(context, data) {
