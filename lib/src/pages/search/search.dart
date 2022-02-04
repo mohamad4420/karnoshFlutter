@@ -17,6 +17,33 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   Search search = Search();
+  @override
+  void initState() {
+  super.initState();
+
+  // Start listening to changes.
+ widget.txt.addListener(() async{
+   String data = widget.txt.text;
+    if (data==null){
+                this.setState(() {
+                  widget.isSearch = false;
+                });}
+              else {
+                this.setState(() {
+                  widget.isSearch = true;
+                });
+              List<GeneralData> dataa = await search.fetchSearch(data);
+                this.setState(() {
+                  widget.data = dataa;
+                });
+ }});
+}
+@override
+void dispose() {
+  widget.txt.dispose();
+  super.dispose();
+}
+
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -38,22 +65,7 @@ class _SearchPageState extends State<SearchPage> {
           ),
           backgroundColor: Colors.black,
           title: TextFormField(
-            onEditingComplete:() async{
-              if (widget.txt.text==null)
-                this.setState(() {
-                  widget.isSearch = false;
-                });
-              else {
-                this.setState(() {
-                  widget.isSearch = true;
-                });
-              List<GeneralData> dataa = await search.fetchSearch(widget.txt.text);
-                this.setState(() {
-                  widget.data = dataa;
-                });
-            }
-            } ,
-            onChanged: (data) async {
+           /* onChanged: (data) async {
               if (data==null)
                 this.setState(() {
                   widget.isSearch = false;
@@ -67,7 +79,7 @@ class _SearchPageState extends State<SearchPage> {
                   widget.data = dataa;
                 });
               }
-            },
+            },*/
             controller: widget.txt,
             cursorHeight: 30,
             style: TextStyle(color: Colors.white),
