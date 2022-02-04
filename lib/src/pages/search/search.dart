@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:karnosh/src/model/models.dart';
 import '../SelectionPage/SelectionPage.dart';
 import '../../model/SpeechApi.dart';
 import 'package:avatar_glow/avatar_glow.dart';
-import '../../model/General_models.dart';
-import '../../model/Fetch.dart';
 import '../../widgets/InfoSmall.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -41,8 +38,23 @@ class _SearchPageState extends State<SearchPage> {
           ),
           backgroundColor: Colors.black,
           title: TextFormField(
+            onEditingComplete:() async{
+              if (widget.txt.text==null)
+                this.setState(() {
+                  widget.isSearch = false;
+                });
+              else {
+                this.setState(() {
+                  widget.isSearch = true;
+                });
+              List<GeneralData> dataa = await search.fetchSearch(widget.txt.text);
+                this.setState(() {
+                  widget.data = dataa;
+                });
+            }
+            } ,
             onChanged: (data) async {
-              if (data.length == 0)
+              if (data==null)
                 this.setState(() {
                   widget.isSearch = false;
                 });
@@ -92,7 +104,7 @@ class _SearchPageState extends State<SearchPage> {
   Future toggleSpeech() => SpeechApi.toggleRecording(
         onResult: (text) {
           setState(() {
-            widget.txt.text = text;
+          widget.txt.text = text;
           });
         },
         onListening: (isListening) {

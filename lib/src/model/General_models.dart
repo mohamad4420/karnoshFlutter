@@ -1,83 +1,86 @@
 class GeneralData {
   String name;
+  String arabicName;
+  String otherNames;
+  String quality;
+  String year;
   String date;
+  String catagory;
   String type;
   String poster;
+  String originalLink;
   String description;
   String rating;
   String time;
+  String traler;
+  String duration;
   String galary;
-  String broadcast;
   String source;
-  String from;
-  String studios;
-  String to;
-  String status;
-  String popularity;
   String ubdate;
-  String S;
-  int numberOfServer;
-  // ignore: non_constant_identifier_names
-  String Rating;
+  List<String> country =[""];
+  List<String> servers =[""];
   List<String> genres = [""];
+  List<Heros> heros = [];
   GeneralData(
-      this.Rating,
-      this.studios,
-      this.name,
-      this.date,
-      this.source,
-      this.ubdate,
-      this.numberOfServer,
-      this.type,
-      this.from,
-      this.to,
-      this.description,
-      this.poster,
-      this.S,
-      this.rating,
-      this.status,
-      this.popularity,
-      this.genres);
+          this.name,         //
+          this.arabicName,   //
+          this.heros,
+          this.otherNames,   //
+          this.quality,      //
+          this.year,         //
+          this.date,         //
+          this.catagory,     //
+          this.type,         //
+          this.poster,       //
+          this.originalLink, //
+          this.description,  //
+          this.rating,       //
+          this.time,         //
+          this.traler,       //
+          this.duration,     //
+          this.galary,       //
+          this.source,       //
+          this.ubdate,       //
+          this.country,      //
+          this.servers,      //
+          this.genres        //
+      );
   // get fucing
 
   GeneralData.fromJson(Map<String, dynamic> map) {
-    if (map['Rating'] != null) {
-      if (map['Rating'].contains("PG-13")) {
-        this.Rating = "PG-13";
-      } else {
-        this.Rating = map['Rating'].split("-")[0];
-      }
-    } else {
-      map['Rating'] = "N/A";
-    }
+    this.catagory = map['catagory'];
+
     this.name = map['name'];
-    if (map['Premiered'] != null) {
-      this.date = map['Premiered']
-          .replaceAll("Winter", "شتاء")
-          .replaceAll("Spring", "الخريف")
-          .replaceAll("Fall", "خريف")
-          .replaceAll("Summer", "صيف");
+    this.traler = map['traler'];
+    this.originalLink = map['originalLink'];
+
+     if (map['arabicName'] != null || map['arabicName'] != 'N/A' ) {
+      this.arabicName = map['arabicName'];
     } else {
-      this.date = "N/A";
+      this.arabicName = "غير معروف";
     }
-    this.numberOfServer = map['NumberOfServer'];
+     if (map['otherNames'] != null || map['otherNames'] != 'N/A' ) {
+       this.otherNames = map['otherNames'];
+    } else {
+      this.otherNames = "غير معروف";
+    }
+     if (map['quality'] != null || map['quality'] != 'N/A' ) {
+      this.quality = map['quality'];
+    } else {
+      this.quality = "غير معروف";
+    }
+     if (map['year'] != null || map['year'] != 'N/A' ) {
+      this.year = map['year'];
+    } else {
+      this.year = "غير معروف";
+    }
+    if (map['date'] != null || map['date'] != 'N/A' ) {
+      this.date = map['date'];
+    } else {
+      this.date = "غير معروف";
+    }
+
     this.type = map['Type'];
-
-    if (map['Broadcast'] != null) {
-      this.broadcast = getFromName(map['Broadcast']);
-    } else {
-      this.broadcast = "غير معروف";
-    }
-
-    if (map['S'] != null) {
-      if (map['S'] == "0") {
-        this.S = "1";
-      } else {
-        this.S = map['S'];
-      }
-    } else {
-      this.S = "غير معروف";
-    }
 
     if (map['ubdate'] != null) {
       DateTime now = new DateTime.now();
@@ -88,92 +91,76 @@ class GeneralData {
     } else {
       this.ubdate = "غير معروف";
     }
-
-    if (map['Popularity'] != null) {
-      this.popularity = map['Popularity'];
-    } else {
-      this.broadcast = "غير معروف";
-    }
-    if (map['Status'] != null) {
-      this.status = map['Status'];
-    } else {
-      this.status = "غير معروف";
-    }
-
-    if (map['Studios'] != null) {
-      this.studios = map['Studios'][0];
-    } else {
-      this.studios = "غير معروف";
-    }
-
-    if (map['Source'] != null) {
-      if (map['Source'] == "Manga") {
-        this.source = "مانغا";
-      } else if (map['Source'] == "Card game") {
-        this.source = "لعبه ورق";
-      } else if (map['Source'] == "Visual novel") {
-        this.source = "روايه قصيره";
-      } else {
-        this.source = map['Source'];
-      }
-    } else {
       this.source = "غير معروف";
-    }
-    if (map['Aired'] != null) {
-      this.from = map['Aired'].split("to")[0];
-      this.to = map['Aired'].split("to")[1];
-    } else {
-      this.from = "غير معروف";
-      this.to = "غير معروف";
+
+    if (map['duration'] != null || map['duration'] != "") {
+      this.time = map['duration'];
+    } else if(map['time'] != null || map['time'] != "") {
+      this.time = map['time'];
+    } else{
+      this.time = "NA";
     }
 
-    if (map['Duration'] != null) {
-      this.time = map['Duration'].replaceAll(" min. per ep.", " دقيقه ");
-    } else {
-      this.time = "24 min";
-    }
-    this.galary = map['Galary'];
+    this.galary = map['galary'];
+
     String type = map['type'];
     if (type != null) {
-      if (type.contains("movie")) {
-        genres = ["افلام"];
+      if (type.contains("movie_tr")) {
+        genres = ["افلام تركي"];
       }
-      if (type.contains("ser")) {
-        genres = ["مسلسلات"];
+      else if (type.contains("movie_ar")) {
+        genres = ["افلام عربية"];
       }
-      if (type.contains("anime")) {
+      else if (type.contains("movie_mt")) {
+        genres = ["افلام مترجمة"];
+      }
+      else if (type.contains("movie_wth")) {
+        genres = ["افلام وثائقية"];
+      }
+      else if (type.contains("movie_md")) {
+        genres = ["افلام مدبلجة"];
+      }
+      else if (type.contains("movie_hn")) {
+        genres = ["افلام هندوسي"];
+      }
+      else if (type.contains("anime")) {
         genres = ["انمي"];
       }
     } else {
       genres = ["غير معروف"];
     }
-    if (map['Genres'] != null || map['Genres'] != "غير معروف") {
+    
+    if (map['genres'] != null || map['genres'] != "غير معروف") {
       genres = [];
-      (map['Genres'] as List).map((i) => this.genres.add(i)).toList();
+      (map['genres'] as List).map((i) => this.genres.add(i)).toList();
+    }
+    /*if (map['heros'] != null || map['heros'] != "غير معروف") {
+      heros = [];
+      (map['heros'] as List).map((i) => this.heros.add(i)).toList();
+    }*/
+    if (map['country'] != null || map['country'] != "غير معروف") {
+      country = [];
+      (map['country'] as List).map((i) => this.country.add(i)).toList();
+    }
+    if (map['servers'] != null || map['servers'] != "غير معروف") {
+      servers = [];
+      (map['servers'] as List).map((i) => this.servers.add(i)).toList();
     }
     this.poster = map['poster'];
-    this.description = map['Discription'];
+    this.description = map['description'];
+
     if (map['rating'] == null || map['rating'].length == 0) {
       this.rating = 'غير معروف';
     } else
       this.rating = map['rating'].toString();
   }
-  getFromName(name) {
-    String date = name.split(" at ")[1];
-    if (name.contains("Monday")) {
-      return " ايام الاثنين " + date;
-    } else if (name.contains("Tuesday")) {
-      return " ايام الثلاثاء " + date;
-    } else if (name.contains("Wednesday")) {
-      return " ايام الخميس " + date;
-    } else if (name.contains("Thursday")) {
-      return " ايام الاربعاء " + date;
-    } else if (name.contains("Friday")) {
-      return " ايام الجمعه " + date;
-    } else if (name.contains("Saturday")) {
-      return " ايام السبت " + date;
-    } else if (name.contains("Sunday")) {
-      return " ايام الاحد " + date;
-    }
-  }
+}
+class Heros{
+  String img;
+  String name;
+  Heros(this.img,this.name);
+ Heros.fromJson(Map<String, dynamic> map){
+   this.name = map['name'];
+   this.img = map['img'];
+ }
 }
